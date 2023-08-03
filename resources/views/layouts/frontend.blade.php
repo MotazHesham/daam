@@ -233,35 +233,24 @@
                 </div>
             </div>
             @isset($headline)
+                @php 
+                    $headline_items = headline_items();
+                @endphp
                 <div class="scrolling-container">
                     <div class="scrolling-content">
                         <div class="container">
                             <div class="holder">
-                                <div class="text-white d-inline mx-5" style="display: inline; color: #000000">
-                                    جمعيه دعم
-                                </div>
-                                <div class="text-white d-inline mx-5" style="display: inline; color: #000000">
-                                    مبادرة تسليم حقائب مدرسية لأبناء المستفيدات
-                                </div>
-                                <div class="text-white d-inline mx-5" style="display: inline; color: #000000">
-                                    مبادرة تسليم حقائب مدرسية لأبناء المستفيدات
-                                </div>
-                                <div class="text-white d-inline mx-5" style="display: inline; color: #000000">
-                                    مبادرة تسليم حقائب مدرسية لأبناء المستفيدات
-                                </div>
-                                <div class="text-white d-inline mx-5" style="display: inline; color: #000000">
-                                    مبادرة تسليم حقائب مدرسية لأبناء المستفيدات
-                                </div>
-                                <div class="text-white d-inline mx-5" style="display: inline; color: #000000">
-                                    مبادرة تسليم حقائب مدرسية لأبناء المستفيدات
-                                </div>
+                                @foreach($headline_items as $item)
+                                    <a href="{{ $item->route }}" class="text-white d-inline mx-5" style="display: inline; color: #000000"> 
+                                        {{  $item->title }}
+                                    </a> 
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
             @endisset
-        </div>
-
+        </div> 
     </header>
     <!-- header-area-end -->
 
@@ -283,8 +272,9 @@
                             </div>
                         </div>
                         <div class="newsletter-form">
-                            <form action="#">
-                                <input type="text" placeholder="ضع ايميلك هنا" />
+                            <form action="{{ route('frontend.subscribe') }}" method="POST">
+                                @csrf
+                                <input type="email" name="email" placeholder="ضع ايميلك هنا" />
                                 <button type="submit">
                                     <i class="far fa-envelope"></i> اشترك الان
                                 </button>

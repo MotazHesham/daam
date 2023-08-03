@@ -12,7 +12,7 @@ class CreateSlidersTable extends Migration
             $table->bigIncrements('id');
             $table->string('text_1')->nullable();
             $table->string('text_2')->nullable();
-            $table->boolean('published')->default(0)->nullable();
+            $table->boolean('published')->default(1)->nullable();
             $table->string('button_name');
             $table->string('link')->nullable();
             $table->timestamps();

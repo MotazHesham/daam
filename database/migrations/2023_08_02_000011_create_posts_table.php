@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->longText('description');
             $table->boolean('head_line')->default(0)->nullable();
-            $table->boolean('published')->default(0)->nullable();
+            $table->boolean('published')->default(1)->nullable();
             $table->boolean('featured')->default(0)->nullable();
             $table->timestamps();
             $table->softDeletes();

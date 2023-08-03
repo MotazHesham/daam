@@ -16,7 +16,7 @@ class CreateCoursesTable extends Migration
             $table->date('end_at');
             $table->string('attend_type')->nullable();
             $table->string('certificate')->nullable();
-            $table->boolean('published')->default(0)->nullable();
+            $table->boolean('published')->default(1)->nullable();
             $table->longText('short_description')->nullable();
             $table->longText('description');
             $table->timestamps();

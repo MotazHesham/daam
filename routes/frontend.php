@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Frontend\HomeController@home')->name('home');
 
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () { 
+    Route::post('subscribe', 'HomeController@subscribe')->name('subscribe'); 
     Route::get('about', 'HomeController@about')->name('about');
     Route::get('chairman', 'HomeController@chairman')->name('chairman');
     Route::get('terms', 'HomeController@terms')->name('terms');

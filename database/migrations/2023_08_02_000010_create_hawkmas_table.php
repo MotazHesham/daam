@@ -11,7 +11,7 @@ class CreateHawkmasTable extends Migration
         Schema::create('hawkmas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->boolean('published')->default(0)->nullable();
+            $table->boolean('published')->default(1)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

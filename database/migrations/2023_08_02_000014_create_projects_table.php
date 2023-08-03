@@ -16,7 +16,7 @@ class CreateProjectsTable extends Migration
             $table->decimal('goal', 15, 2);
             $table->longText('short_description');
             $table->longText('description');
-            $table->boolean('published')->default(0)->nullable();
+            $table->boolean('published')->default(1)->nullable();
             $table->boolean('head_line')->default(0)->nullable();
             $table->boolean('featured')->default(0)->nullable();
             $table->timestamps();

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSubscribeRequest;
 use App\Models\HawkamCategory;
 use App\Models\Hawkma;
 use App\Models\Partner;
@@ -10,15 +11,16 @@ use App\Models\Post;
 use App\Models\Project;
 use App\Models\SaidAboutUs;
 use App\Models\Setting;
-use App\Models\Slider; 
+use App\Models\Slider;
+use App\Models\Subscribe;
 use App\Models\VolunteerGuide; 
 
 class HomeController extends Controller
 {
-    public function home(){
+    public function home(){ 
         $headline = true;
         $site_settings = Setting::first();
-        $sliders = Slider::where('published',1)->orderBy('created_at','desc')->get();
+        $sliders = Slider::where('published',1)->orderBy('updated_at','desc')->get();
         $projects = Project::where('published',1)->where('featured',1)->orderBy('created_at','desc')->take(10)->get(); 
         $news = Post::where('type','news')->where('published',1)->where('featured',1)->orderBy('created_at','desc')->take(10)->get(); 
         $reviews = SaidAboutUs::orderBy('created_at','desc')->take(10)->get(); 
@@ -74,5 +76,18 @@ class HomeController extends Controller
     public function post($id){
         $post = Post::findOrfail($id);
         return view('frontend.post',compact('post'));
+    }
+
+    
+    public function subscribe(StoreSubscribeRequest $request){
+        $subscribe = Subscribe::where('email',$request->email)->first();
+        if($subscribe){
+            alert('Already Subscribed','','warning');
+            return redirect()->route('home');
+        }else{
+            $subscribe = Subscribe::create($request->all());
+            alert('Successfully Subscribed','','success');
+            return redirect()->route('home');
+        }
     }
 }
