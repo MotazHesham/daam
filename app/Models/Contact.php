@@ -20,9 +20,9 @@ class Contact extends Model
     ];
 
     public const TYPE_SELECT = [
-        'contact'   => 'contact',
-        'suggest'   => 'suggest',
-        'complaint' => 'complaint',
+        'contact'   => 'تواصل',
+        'suggest'   => 'مقترح',
+        'complaint' => 'شكوي',
     ];
 
     protected $fillable = [

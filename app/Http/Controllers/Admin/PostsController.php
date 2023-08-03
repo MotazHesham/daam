@@ -18,6 +18,14 @@ class PostsController extends Controller
 {
     use MediaUploadingTrait;
 
+    public function update_statuses(Request $request){ 
+        $type = $request->type;
+        $post = Post::findOrFail($request->id);
+        $post->$type = $request->status; 
+        $post->save();
+        return 1;
+    }
+
     public function index(Request $request)
     {
         abort_if(Gate::denies('post_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -65,14 +73,26 @@ class PostsController extends Controller
 
                 return '';
             });
-            $table->editColumn('head_line', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->head_line ? 'checked' : null) . '>';
-            });
             $table->editColumn('published', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+                return '
+                <label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="update_statuses(this,\'published\')" value="' . $row->id . '" type="checkbox" class="c-switch-input" '. ($row->published ? "checked" : null) .'>
+                    <span class="c-switch-slider"></span>
+                </label>';
+            });
+            $table->editColumn('head_line', function ($row) {
+                return '
+                <label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="update_statuses(this,\'head_line\')" value="' . $row->id . '" type="checkbox" class="c-switch-input" '. ($row->head_line ? "checked" : null) .'>
+                    <span class="c-switch-slider"></span>
+                </label>';
             });
             $table->editColumn('featured', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->featured ? 'checked' : null) . '>';
+                return '
+                <label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="update_statuses(this,\'featured\')" value="' . $row->id . '" type="checkbox" class="c-switch-input" '. ($row->featured ? "checked" : null) .'>
+                    <span class="c-switch-slider"></span>
+                </label>';
             });
 
             $table->rawColumns(['actions', 'placeholder', 'photo', 'head_line', 'published', 'featured']);

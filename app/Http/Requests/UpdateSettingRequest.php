@@ -19,36 +19,36 @@ class UpdateSettingRequest extends FormRequest
         return [
             'website_name' => [
                 'string',
-                'required',
+                'nullable',
             ],
             'email' => [
-                'required',
+                'nullable',
             ],
             'phone_number' => [
                 'string',
-                'required',
+                'nullable',
             ],
             'facebook' => [
                 'string',
-                'required',
+                'nullable',
             ],
             'instagram' => [
                 'string',
-                'required',
+                'nullable',
             ],
             'logo' => [
-                'required',
+                'nullable',
             ],
             'address' => [
-                'required',
+                'nullable',
             ],
             'tiktok' => [
                 'string',
-                'required',
+                'nullable',
             ],
             'youtube' => [
                 'string',
-                'required',
+                'nullable',
             ],
             'divorced_count' => [
                 'string',

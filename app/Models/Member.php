@@ -16,8 +16,8 @@ class Member extends Model
     public $table = 'members';
 
     public const TYPE_SELECT = [
-        'active'    => 'active',
-        'associate' => 'associate',
+        'active'    => 'عامل',
+        'associate' => 'منتسب',
     ];
 
     protected $dates = [

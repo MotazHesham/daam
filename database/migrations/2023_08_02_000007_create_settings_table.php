@@ -16,8 +16,11 @@ class CreateSettingsTable extends Migration
             $table->string('facebook');
             $table->string('instagram');
             $table->longText('address');
-            $table->string('tiktok');
-            $table->string('youtube');
+            $table->longText('description')->nullable();
+            $table->longText('vision')->nullable();
+            $table->longText('mission')->nullable();
+            $table->string('whatsapp');
+            $table->string('twitter');
             $table->string('divorced_count')->nullable();
             $table->string('widow_count')->nullable();
             $table->string('child_count')->nullable();

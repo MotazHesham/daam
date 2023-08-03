@@ -11,7 +11,7 @@ class StoreContactRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('contact_create');
+        return true;
     }
 
     public function rules()
@@ -19,6 +19,7 @@ class StoreContactRequest extends FormRequest
         return [
             'type' => [
                 'required',
+                'in:'.implode(',',array_keys(Contact::TYPE_SELECT))
             ],
             'name' => [
                 'string',

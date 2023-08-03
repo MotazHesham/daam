@@ -175,17 +175,7 @@
                     {{ trans('cruds.course.title') }}
                 </a>
             </li>
-        @endcan
-        @can('course_student_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.course-students.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/course-students") || request()->is("admin/course-students/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-user-graduate c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.courseStudent.title') }}
-                </a>
-            </li>
-        @endcan
+        @endcan 
         @can('contact_mangment_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/contacts*") ? "c-show" : "" }} {{ request()->is("admin/subscribes*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">

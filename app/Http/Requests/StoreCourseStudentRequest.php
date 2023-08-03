@@ -11,7 +11,7 @@ class StoreCourseStudentRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('course_student_create');
+        return true;
     }
 
     public function rules()

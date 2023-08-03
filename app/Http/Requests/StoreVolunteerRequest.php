@@ -11,7 +11,7 @@ class StoreVolunteerRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('volunteer_create');
+        return true;
     }
 
     public function rules()
@@ -42,6 +42,9 @@ class StoreVolunteerRequest extends FormRequest
             ],
             'prev_experience' => [
                 'string',
+                'nullable',
+            ],
+            'cv' => [ 
                 'nullable',
             ],
         ];

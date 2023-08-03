@@ -18,6 +18,14 @@ class VolunteerGuidesController extends Controller
 {
     use MediaUploadingTrait;
 
+    public function update_statuses(Request $request){ 
+        $type = $request->type;
+        $volunteerGuide = VolunteerGuide::findOrFail($request->id);
+        $volunteerGuide->$type = $request->status; 
+        $volunteerGuide->save();
+        return 1;
+    }
+
     public function index(Request $request)
     {
         abort_if(Gate::denies('volunteer_guide_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -51,7 +59,11 @@ class VolunteerGuidesController extends Controller
                 return $row->title ? $row->title : '';
             });
             $table->editColumn('published', function ($row) {
-                return '<input type="checkbox" disabled ' . ($row->published ? 'checked' : null) . '>';
+                return '
+                <label class="c-switch c-switch-pill c-switch-success">
+                    <input onchange="update_statuses(this,\'published\')" value="' . $row->id . '" type="checkbox" class="c-switch-input" '. ($row->published ? "checked" : null) .'>
+                    <span class="c-switch-slider"></span>
+                </label>';
             });
             $table->editColumn('file', function ($row) {
                 return $row->file ? '<a href="' . $row->file->getUrl() . '" target="_blank">' . trans('global.downloadFile') . '</a>' : '';

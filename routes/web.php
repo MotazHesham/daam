@@ -1,6 +1,8 @@
 <?php
 
-Route::redirect('/', '/login');
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
@@ -41,6 +43,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Sliders
     Route::delete('sliders/destroy', 'SlidersController@massDestroy')->name('sliders.massDestroy');
+    Route::post('sliders/update_statuses', 'SlidersController@update_statuses')->name('sliders.update_statuses');
     Route::post('sliders/media', 'SlidersController@storeMedia')->name('sliders.storeMedia');
     Route::post('sliders/ckmedia', 'SlidersController@storeCKEditorImages')->name('sliders.storeCKEditorImages');
     Route::resource('sliders', 'SlidersController');
@@ -51,12 +54,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Hawkma
     Route::delete('hawkmas/destroy', 'HawkmaController@massDestroy')->name('hawkmas.massDestroy');
+    Route::post('hawkmas/update_statuses', 'HawkmaController@update_statuses')->name('hawkmas.update_statuses');
     Route::post('hawkmas/media', 'HawkmaController@storeMedia')->name('hawkmas.storeMedia');
     Route::post('hawkmas/ckmedia', 'HawkmaController@storeCKEditorImages')->name('hawkmas.storeCKEditorImages');
     Route::resource('hawkmas', 'HawkmaController');
 
     // Posts
     Route::delete('posts/destroy', 'PostsController@massDestroy')->name('posts.massDestroy');
+    Route::post('posts/update_statuses', 'PostsController@update_statuses')->name('posts.update_statuses');
     Route::post('posts/media', 'PostsController@storeMedia')->name('posts.storeMedia');
     Route::post('posts/ckmedia', 'PostsController@storeCKEditorImages')->name('posts.storeCKEditorImages');
     Route::resource('posts', 'PostsController');
@@ -73,6 +78,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Projects
     Route::delete('projects/destroy', 'ProjectsController@massDestroy')->name('projects.massDestroy');
+    Route::post('projects/update_statuses', 'ProjectsController@update_statuses')->name('projects.update_statuses');
     Route::post('projects/media', 'ProjectsController@storeMedia')->name('projects.storeMedia');
     Route::post('projects/ckmedia', 'ProjectsController@storeCKEditorImages')->name('projects.storeCKEditorImages');
     Route::resource('projects', 'ProjectsController');
@@ -85,6 +91,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Volunteer Guides
     Route::delete('volunteer-guides/destroy', 'VolunteerGuidesController@massDestroy')->name('volunteer-guides.massDestroy');
+    Route::post('volunteer-guides/update_statuses', 'VolunteerGuidesController@update_statuses')->name('volunteer-guides.update_statuses');
     Route::post('volunteer-guides/media', 'VolunteerGuidesController@storeMedia')->name('volunteer-guides.storeMedia');
     Route::post('volunteer-guides/ckmedia', 'VolunteerGuidesController@storeCKEditorImages')->name('volunteer-guides.storeCKEditorImages');
     Route::resource('volunteer-guides', 'VolunteerGuidesController');
@@ -103,6 +110,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Courses
     Route::delete('courses/destroy', 'CoursesController@massDestroy')->name('courses.massDestroy');
+    Route::post('courses/update_statuses', 'CoursesController@update_statuses')->name('courses.update_statuses');
     Route::post('courses/media', 'CoursesController@storeMedia')->name('courses.storeMedia');
     Route::post('courses/ckmedia', 'CoursesController@storeCKEditorImages')->name('courses.storeCKEditorImages');
     Route::resource('courses', 'CoursesController');

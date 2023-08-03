@@ -11,7 +11,7 @@ class StoreMemberRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('member_create');
+        return true;
     }
 
     public function rules()
@@ -19,6 +19,7 @@ class StoreMemberRequest extends FormRequest
         return [
             'type' => [
                 'required',
+                'in:'.implode(',',array_keys(Member::TYPE_SELECT))
             ],
             'name' => [
                 'string',

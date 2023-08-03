@@ -30,9 +30,9 @@ class Post extends Model implements HasMedia
     ];
 
     public const TYPE_SELECT = [
-        'news'    => 'News',
-        'tkremat' => 'tkremat',
-        'events'  => 'events',
+        'news'    => 'الأخبار والأحداث',
+        'tkremat' => 'التكريمات',
+        'events'  => 'الفعاليات والأنشطة',
     ];
 
     protected $fillable = [
@@ -57,6 +57,7 @@ class Post extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('preview2')->fit('crop', 440, 440);
     }
 
     public function getDateAttribute($value)
@@ -76,6 +77,7 @@ class Post extends Model implements HasMedia
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
             $file->preview   = $file->getUrl('preview');
+            $file->preview2   = $file->getUrl('preview2');
         }
 
         return $file;

@@ -1,0 +1,47 @@
+.scrolling-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: #0000006b;
+  margin-top: 5px;
+  padding: 15px;
+}
+
+/* Style for the scrolling content */
+.scrolling-content {
+  display: flex;
+  animation: marquee 20s linear infinite; /* Change the duration (20s) as needed */
+  white-space: nowrap;
+}
+
+/* Keyframes for the scrolling animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Add your desired styles for text here */
+.text-white {
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+    /* Adjust font-size for small screens */
+    .text-white {
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .scrolling-content {
+    display: flex;
+    animation: marquee 20s linear infinite; /* Change the duration (20s) as needed */
+    white-space: nowrap;
+   
+    }
+  }
