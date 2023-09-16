@@ -10,7 +10,11 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     Route::get('about', 'HomeController@about')->name('about');
     Route::get('chairman', 'HomeController@chairman')->name('chairman');
     Route::get('terms', 'HomeController@terms')->name('terms');
+    Route::get('video', 'HomeController@video')->name('video');
+    Route::get('jood', 'HomeController@jood')->name('jood');
+    Route::get('identity', 'HomeController@identity')->name('identity');
     Route::get('hawkma/{id}', 'HomeController@hawkma')->name('hawkma');
+    Route::get('reports/{type}', 'HomeController@reports')->name('reports');
 
     Route::get('volunteer-guide', 'HomeController@volunteer_guide')->name('volunteer_guide');
 
@@ -41,5 +45,9 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     // projects
     Route::get('projects', 'HomeController@projects')->name('projects');
     Route::get('project/{id}', 'HomeController@project')->name('project');
+
+    // reviews 
+    Route::get('reviews', 'ReviewController@reviews')->name('reviews'); 
+    Route::post('reviews/store', 'ReviewController@store')->name('reviews.store'); 
 
 });

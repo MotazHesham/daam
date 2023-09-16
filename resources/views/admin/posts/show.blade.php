@@ -49,6 +49,22 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.post.fields.writer') }}
+                        </th>
+                        <td>
+                            {{ $post->writer }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.post.fields.short_description') }}
+                        </th>
+                        <td>
+                            {{ $post->short_description }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.post.fields.description') }}
                         </th>
                         <td>

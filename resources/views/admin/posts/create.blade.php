@@ -45,6 +45,26 @@
                 <span class="help-block">{{ trans('cruds.post.fields.title_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="writer">{{ trans('cruds.post.fields.writer') }}</label>
+                <input class="form-control {{ $errors->has('writer') ? 'is-invalid' : '' }}" type="text" name="writer" id="writer" value="{{ old('writer', '') }}">
+                @if($errors->has('writer'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('writer') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.post.fields.writer_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label  for="short_description">{{ trans('cruds.post.fields.short_description') }}</label>
+                <input class="form-control {{ $errors->has('short_description') ? 'is-invalid' : '' }}" type="text" name="short_description" id="short_description" value="{{ old('short_description', '') }}">
+                @if($errors->has('short_description'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('short_description') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.post.fields.short_description_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="description">{{ trans('cruds.post.fields.description') }}</label>
                 <textarea class="form-control ckeditor {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description">{!! old('description') !!}</textarea>
                 @if($errors->has('description'))

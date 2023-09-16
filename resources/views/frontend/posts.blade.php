@@ -52,6 +52,9 @@
                                     <a href="{{route('frontend.post',$raw->id)}}">
                                         {{$raw->title}}
                                     </a>
+                                    @if($raw->type == 'blog')
+                                        <p>{{$raw->short_description}}</p>
+                                    @endif
                                 </h2>
                                 <a href="{{route('frontend.post',$raw->id)}}" class="read-more">المزيد</a>
                             </div> 

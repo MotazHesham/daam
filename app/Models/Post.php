@@ -33,12 +33,16 @@ class Post extends Model implements HasMedia
         'news'    => 'الأخبار والأحداث',
         'tkremat' => 'التكريمات',
         'events'  => 'الفعاليات والأنشطة',
+        'studies'  => 'الدراسات والأصدارات',
+        'blog' => 'المدونة',
     ];
 
     protected $fillable = [
         'type',
         'date',
         'title',
+        'writer',
+        'short_description',
         'description',
         'head_line',
         'published',

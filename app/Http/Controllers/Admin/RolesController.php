@@ -14,6 +14,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RolesController extends Controller
 {
+    
+    public function update_statuses(Request $request){ 
+        $type = $request->type;
+        $role = Role::findOrFail($request->id);
+        $role->$type = $request->status; 
+        $role->save();
+        return 1;
+    }
+
+
     public function index()
     {
         abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');

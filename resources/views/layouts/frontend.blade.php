@@ -15,6 +15,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/img/favicon.png') }}" />
 
     <!-- CSS here -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
+    
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}" />
@@ -30,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/style-ar.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/edits.css') }}" />
     <link rel="stylesheet" href="{{ asset('dashboard_offline/css/bootstrap-datetimepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dashboard_offline/css/dropzone.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashboard_offline/css/dropzone.min.css') }}"> 
     @yield('styles')
 </head>
 
@@ -59,10 +61,9 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 col-sm-6 d-none d-sm-block">
                         <div class="header-top-left navbar-wrap">
-                            <ul>
-                                <li class="dropdown">
-                                    <a href="#"><img src="{{ asset('frontend/img/people.png') }}"
-                                            alt="" /></a>
+                            <ul> 
+                                <li class="dropdown e-services">
+                                    <div class="btn">الخدمات الإلكترونية <img src="http://design.daam.org.sa/public/frontend/img/people.png" /></div>
                                     <ul class="submenu">
                                         <li><a href="{{ route('login') }}">تسجيل الدخول</a></li>
                                         <li><a
@@ -83,13 +84,27 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <div class="header-top-right">
-                            <div class="login">
-                                <a href="{{ route('frontend.courses') }}"><img src="{{ asset('frontend/img/online-learning.png') }}"
-                                        alt="" /></a>
+                            <div class="login dropdown" onmouseover="toggleDropdown(true)"
+                                onmouseout="toggleDropdown(false)">
+                                <a href="#">
+                                    <img src="img/online-learning.png" alt=""> المشاركات  
+                                </a>
+                                <ul id="dropdownList" class="hidden" onmouseover="cancelHide()"
+                                    onmouseout="hideDropdown()">
+                                    <li><a href="{{ route('frontend.courses') }}"> الدورات</a></li>
+                                    <li><a href="{{ route('frontend.posts', 'events') }}"> الفعاليات والانشطة</a></li> 
+                                    <!-- Add more list items as needed -->
+                                </ul>
                             </div>
+
                             <div class="login">
                                 <a href="https://daamj.sa" target="_blanc"><img src="{{ asset('frontend/img/shopping-cart.png') }}"
                                         alt="" /></a>
+                            </div>
+                            <div class="login"> 
+                                <a href="{{ route('frontend.reviews') }}">
+                                    <div class="btn"> تقييم المستفيدين</div> 
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -116,9 +131,7 @@
                                                 <li><a href="{{ route('frontend.about') }}"> عن دعم</a></li>
                                                 <li><a href="{{ route('frontend.chairman') }}"> كلمة رئيس مجلس
                                                         الأدارة</a></li>
-                                                <li><a target="_blanc"
-                                                        href="{{ $site_settings->profile ? $site_settings->profile->getUrl() : '' }}">
-                                                        الملف التعريفي</a></li>
+                                                <li><a href="{{ route('frontend.identity') }}"> الملف التعريفي</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown @if(request()->is("hawkma/*")) active @endif">
@@ -131,6 +144,16 @@
                                                 @endforeach
                                             </ul>
                                         </li>
+                                        <li class="dropdown @if(request()->is("reports/*")) active @endif">
+                                            <a href="#">التقارير</a>
+                                            <ul class="submenu">
+                                                @foreach (\App\Models\Report::TYPE_SELECT as $key => $label)
+                                                    <li><a
+                                                            href="{{ route('frontend.reports', $key) }}">{{ $label }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
                                         <li class="dropdown  @if(request()->is("terms")) active @endif">
                                             <a href="#">وحدة الأسكان التنموي</a>
                                             <ul class="submenu">
@@ -138,7 +161,10 @@
                                                         href="{{ $site_settings->iskan_info ? $site_settings->iskan_info->getUrl() : '' }}">
                                                         عن وحدة الأسكان التنموي </a></li>
                                                 <li><a
-                                                        href="{{ $site_settings->iskan_tutorial ? $site_settings->iskan_tutorial->getUrl() : '' }}">
+                                                        href="{{ route('frontend.jood') }}">
+                                                        ماهو جود الأسكان</a></li>
+                                                <li><a
+                                                        href="{{ route('frontend.video') }}">
                                                         طريقة التقديم </a></li>
                                                 <li><a href="{{ route('frontend.terms') }}"> شروط التسجيل </a></li>
                                             </ul>
@@ -152,19 +178,21 @@
                                             </ul>
                                         </li>
 
-                                        <li class="dropdown @if(request()->is("posts/news") || request()->is("posts/tkremat") || request()->is("posts/events") || request()->is("post/*")) active @endif">
+                                        <li class="dropdown @if(request()->is("posts/news") || request()->is("posts/tkremat") || request()->is("posts/projects") || request()->is("posts/studies") || request()->is("post/*")) active @endif">
                                             <a href="#">المركز الإعلامي</a>
                                             <ul class="submenu">
                                                 <li><a href="{{ route('frontend.posts', 'news') }}"> الأخبار </a></li>
                                                 <li><a href="{{ route('frontend.posts', 'tkremat') }}"> التكريمات </a>
                                                 </li>
-                                                <li><a href="{{ route('frontend.posts', 'events') }}"> الفعاليات
-                                                        والانشطة </a></li>
+                                                <li><a href="{{ route('frontend.posts', 'studies') }}">  
+                                                        الدراسات والأصدارات</a></li> 
+                                                <li><a href="{{ route('frontend.projects') }}">  
+                                                    مشاريع دعم</a></li>
                                             </ul>
                                         </li>
 
                                         <li class="dropdown @if(request()->is("members/active") || request()->is("members/associate")) active @endif">
-                                            <a href="#">الخدمات الإلكترونية</a>
+                                            <a href="#">  انضم ألينا</a>
                                             <ul class="submenu">
                                                 <li><a href="{{ route('frontend.members', 'active') }}"> عضو عامل </a>
                                                 </li>
@@ -172,7 +200,7 @@
                                                     </a></li>
                                             </ul>
                                         </li>
-
+                                        <li href="#">   <a href="{{ route('frontend.posts', 'blog') }}">المدونة</a></li>
                                         <li class="dropdown @if(request()->is("contacts/contact") || request()->is("contacts/suggest") || request()->is("contacts/complaints")) active @endif">
                                             <a href="#"> صوتك مسموع</a>
                                             <ul class="submenu">
@@ -414,7 +442,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="footer-bottom-right">
                                 <ul>
-                                    <li>تصميم وبرمجة<a href="#"> تحالف الرؤى</a></li>
+                                    <li>تصميم وبرمجة<a href="#"> تكامل الرؤى</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -444,6 +472,42 @@
     <script src="{{ asset('dashboard_offline/js/moment.min.js') }}"></script>
     <script src="{{ asset('dashboard_offline/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('dashboard_offline/js/dropzone.min.js') }}"></script>
+    
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/js/bootstrap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
+    <script id="rendered-js">
+        const multipleItemCarousel = document.querySelector("#carouselExampleControls");
+
+        if (window.matchMedia("(min-width:576px)").matches) {
+            const carousel = new bootstrap.Carousel(multipleItemCarousel, {
+                interval: false
+            });
+
+
+            var carouselWidth = $(".carousel-inner")[0].scrollWidth;
+            var cardWidth = $(".carousel-item").width();
+
+            var scrollPosition = 0;
+
+            $(".carousel-control-next").on("click", function () {
+                if (scrollPosition < carouselWidth - cardWidth * 4) {
+                    scrollPosition = scrollPosition + cardWidth;
+                    $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 600);
+                }
+            });
+            $(".carousel-control-prev").on("click", function () {
+                if (scrollPosition > 0) {
+                    scrollPosition = scrollPosition - cardWidth;
+                    $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 600);
+                }
+            });
+        } else {
+            $(multipleItemCarousel).addClass("slide");
+        }
+        //# sourceURL=pen.js
+    </script>
+
     <script>
         $(document).ready(function() {
             window._token = $('meta[name="csrf-token"]').attr('content')
@@ -488,6 +552,34 @@
             }) 
 
         })
+    </script>
+    <script>
+        let hoverTimeout; // Variable to track hover timeout
+        let isDropdownOpen = false; // Flag to check if dropdown is open
+
+        function toggleDropdown(show) {
+            const dropdown = document.getElementById("dropdownList");
+
+            if (show) {
+                dropdown.classList.remove("hidden");
+                isDropdownOpen = true;
+            } else {
+                dropdownTimeout = setTimeout(() => {
+                    if (!isDropdownOpen) {
+                        dropdown.classList.add("hidden");
+                    }
+                }, 300); // Adjust the delay (in milliseconds) as needed
+            }
+        }
+
+        function cancelHide() {
+            clearTimeout(dropdownTimeout);
+        }
+
+        function hideDropdown() {
+            isDropdownOpen = false;
+            toggleDropdown(false);
+        }
     </script>
     @yield('scripts')
 </body>

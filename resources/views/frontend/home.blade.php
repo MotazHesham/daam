@@ -11,7 +11,6 @@
 @endsection
 
 @section('content')
-
     <main style="overflow: hidden;">
         <!-- slider-area -->
         <section class="slider-area">
@@ -50,8 +49,8 @@
         <section class="mt-5">
             <div class="row">
                 <div class="col-md-2">
-                    <img style="width: 280px;height: 200px;padding-left: 0px;"
-                        src="{{ asset('frontend/img/icon/daam.jpg') }}" alt="">
+                        <img style="width: 280px;height: 200px;padding-left: 0px;"
+                            src="{{ asset('frontend/img/icon/daam.jpg') }}" alt="">
                 </div>
                 <div class="col-md-8">
                     <div class="section-title text-center mb-55">
@@ -62,8 +61,10 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <img style="width: 200px;height: 200px;" src="{{ asset('frontend/img/icon/eskan.jpg') }}"
-                        alt="">
+                    <a href="{{ route('frontend.jood') }}">
+                        <img style="width: 200px;height: 200px;" src="{{ asset('frontend/img/icon/eskan.jpg') }}"
+                            alt="">
+                    </a>
                 </div>
             </div>
         </section>
@@ -135,7 +136,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-10">
                             <div class="testimonial-item mb-30">
                                 <div class="project-thumb">
-                                    <a href="{{ route('frontend.project',$project->id) }}">
+                                    <a href="{{ route('frontend.project', $project->id) }}">
                                         <img src="{{ $project->image ? $project->image->getUrl('preview2') : '' }}"
                                             alt="" />
                                     </a>
@@ -143,7 +144,7 @@
                                 </div>
                                 <div class="project-content">
                                     <h2 class="title">
-                                        <a href="{{ route('frontend.project',$project->id) }}"> {{ $project->title }} </a>
+                                        <a href="{{ route('frontend.project', $project->id) }}"> {{ $project->title }} </a>
                                     </h2>
                                     <p>{{ $project->short_description }}</p>
                                     <div class="progress-bar-details">
@@ -167,7 +168,8 @@
                                     <div class="project-meta">
                                         <ul>
                                             <li>
-                                                <a href="{{ route('frontend.project',$project->id) }}"><i class="far fa-arrow-left"></i> المزيد</a>
+                                                <a href="{{ $project->file ? $project->file->getUrl() : '' }}" target="_blanc"><i
+                                                        class="far fa-arrow-left"></i> المزيد</a>
                                             </li>
                                             <li>
                                                 <a href="https://daam-donation.org"><i class="far fa-hands"></i> تبرع
@@ -187,6 +189,48 @@
         </section>
         <!-- project-area-end -->
 
+        <section class="Volunteer-w-us  color-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-8">
+                        <div class="section-title text-center mb-30">
+                            <h2 class="title"> التطوع</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-2 col-sm-6">
+                        <p>تسعى جمعية دعم أن تكون جمعية فاعلة في تحقيق إشراك مستدام للمتطوعين، ويجد المتطوعين فيها بيئة
+                            جاذبة وتنمية لقدراتهم واشادة بجهودهم، وإسهاما لنهضة مجتمعهم.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class=" col-md-4">
+                        <div class=" home_Volunteer ">
+                            <div class="icon"><img src="{{ asset('frontend/img/volunteer.png') }}" /></div>
+                            <h4>عدد المتطوعين : {{ $site_settings->volunteer_count ?? '' }} متطوع /ه</h4>
+                        </div>
+                    </div>
+
+                    <div class=" col-md-4">
+                        <div class=" home_Volunteer b-left">
+                            <div class="icon"><img src="{{ asset('frontend/img/clock.png') }}" /></div>
+                            <h4> عدد الساعات : {{ $site_settings->hours_count ?? '' }} ساعة </h4>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <a class="submit-btn text-center" href="{{ route('frontend.volunteer') }}">
+                        <button type="submit" class="btn btn-style-two"> تطوع معنا</button>
+                    </a>
+                </div>
+        </section>
         <!-- news-area -->
         <section class="blog-area testimonial-area testimonial-style-three pt-100 pb-100">
             <div class="container">
@@ -204,7 +248,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-8 col-sm-10">
                             <div class="blog-item mb-30  testimonial-item" data-wow-delay=".2s">
                                 <div class="blog-thumb">
-                                    <a href="{{ route('frontend.post',$raw->id) }}">
+                                    <a href="{{ route('frontend.post', $raw->id) }}">
                                         <img src="{{ $raw->photo ? $raw->photo->getUrl('preview2') : '' }}"
                                             alt="" />
                                     </a>
@@ -216,9 +260,9 @@
                                         </ul>
                                     </div>
                                     <h2 class="title">
-                                        <a href="{{ route('frontend.post',$raw->id) }}">{{ $raw->title }}</a>
+                                        <a href="{{ route('frontend.post', $raw->id) }}">{{ $raw->title }}</a>
                                     </h2>
-                                    <a href="{{ route('frontend.post',$raw->id) }}" class="read-more">المزيد</a>
+                                    <a href="{{ route('frontend.post', $raw->id) }}" class="read-more">المزيد</a>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +280,7 @@
                         <div class="section-title mb-50">
                             <div class="overlay-title"> دعم</div>
                             <span class="sub-title">-- قالوا عنا</span>
-                            <h2 class="title">راى عملائنا فينا</h2>
+                            <h2 class="title"> قالوا عنا</h2>
                         </div>
                     </div>
                 </div>
@@ -289,10 +333,11 @@
                                     <div class="swiper-wrapper">
                                         @foreach ($partners as $partner)
                                             <div class="swiper-slide">
-                                                <img src="{{ $partner->image ? $partner->image->getUrl('preview') : '' }}" >
+                                                <img
+                                                    src="{{ $partner->image ? $partner->image->getUrl('preview') : '' }}">
                                             </div>
-                                        @endforeach 
-                                    </div> 
+                                        @endforeach
+                                    </div>
                                     <div class="swiper-pagination"></div>
                                 </div>
 

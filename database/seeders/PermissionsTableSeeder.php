@@ -484,6 +484,58 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 119,
+                'title' => 'review_delete',
+            ],
+            [
+                'id'    => 120,
+                'title' => 'review_access',
+            ],
+            [
+                'id'    => 121,
+                'title' => 'report_mangment_access',
+            ],
+            [
+                'id'    => 122,
+                'title' => 'report_category_create',
+            ],
+            [
+                'id'    => 123,
+                'title' => 'report_category_edit',
+            ],
+            [
+                'id'    => 124,
+                'title' => 'report_category_show',
+            ],
+            [
+                'id'    => 125,
+                'title' => 'report_category_delete',
+            ],
+            [
+                'id'    => 126,
+                'title' => 'report_category_access',
+            ],
+            [
+                'id'    => 127,
+                'title' => 'report_create',
+            ],
+            [
+                'id'    => 128,
+                'title' => 'report_edit',
+            ],
+            [
+                'id'    => 129,
+                'title' => 'report_show',
+            ],
+            [
+                'id'    => 130,
+                'title' => 'report_delete',
+            ],
+            [
+                'id'    => 131,
+                'title' => 'report_access',
+            ],
+            [
+                'id'    => 132,
                 'title' => 'profile_password_edit',
             ],
         ];

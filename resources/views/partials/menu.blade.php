@@ -156,6 +156,38 @@
                 </ul>
             </li>
         @endcan
+        @can('report_mangment_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/report-categories*") ? "c-show" : "" }} {{ request()->is("admin/reports*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw far fa-file-alt c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.reportMangment.title') }}
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('report_category_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.report-categories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/report-categories") || request()->is("admin/report-categories/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-barcode c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.reportCategory.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('report_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.reports.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/reports") || request()->is("admin/reports/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-file-alt c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.report.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
         @can('member_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.members.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/members") || request()->is("admin/members/*") ? "c-active" : "" }}">
@@ -320,6 +352,16 @@
                         </li>
                     @endcan
                 </ul>
+            </li>
+        @endcan
+        @can('review_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.reviews.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/reviews") || request()->is("admin/reviews/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-star-half-alt c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.review.title') }}
+                </a>
             </li>
         @endcan
         @php($unread = \App\Models\QaTopic::unreadCount())

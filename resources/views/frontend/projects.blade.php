@@ -62,7 +62,7 @@
                                     <div class="project-meta">
                                         <ul>
                                             <li>
-                                                <a href="{{ route('frontend.project',$project->id) }}"><i class="far fa-arrow-left"></i> المزيد</a>
+                                                <a href="{{ $project->file ? $project->file->getUrl() : '' }}" target="_blanc"><i class="far fa-arrow-left"></i> المزيد</a>
                                             </li>
                                             <li>
                                                 <a href="https://daam-donation.org"><i class="far fa-hands"></i> تبرع

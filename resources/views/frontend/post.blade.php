@@ -43,6 +43,9 @@
                     <div class="col-lg-7">
                         <div class="shop-details-content">
                             <p>{{ $post->date }}</p>
+                            @if($post->type == 'blog')
+                                <strong>{{$post->writer}}</strong>
+                            @endif
                             <p>
                                 {!! $post->description !!}
                             </p> 

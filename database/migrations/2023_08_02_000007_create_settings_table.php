@@ -27,6 +27,8 @@ class CreateSettingsTable extends Migration
             $table->string('unit_count')->nullable();
             $table->string('building_count')->nullable();
             $table->string('beneficiary_count')->nullable();
+            $table->string('volunteer_count')->nullable();
+            $table->string('hours_count')->nullable();
             $table->longText('chairman_description')->nullable();
             $table->longText('iskan_description')->nullable();
             $table->longText('iskan_terms')->nullable();

@@ -66,4 +66,28 @@
         @endif
         <span class="help-block">{{ trans('cruds.setting.fields.beneficiary_count_helper') }}</span>
     </div>
+    <div class="form-group col-md-3">
+        <label for="volunteer_count">{{ trans('cruds.setting.fields.volunteer_count') }}</label>
+        <input class="form-control {{ $errors->has('volunteer_count') ? 'is-invalid' : '' }}" type="text"
+            name="volunteer_count" id="volunteer_count"
+            value="{{ old('volunteer_count', $setting->volunteer_count) }}">
+        @if ($errors->has('volunteer_count'))
+            <div class="invalid-feedback">
+                {{ $errors->first('volunteer_count') }}
+            </div>
+        @endif
+        <span class="help-block">{{ trans('cruds.setting.fields.beneficiary_count_helper') }}</span>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="hours_count">{{ trans('cruds.setting.fields.hours_count') }}</label>
+        <input class="form-control {{ $errors->has('hours_count') ? 'is-invalid' : '' }}" type="text"
+            name="hours_count" id="hours_count"
+            value="{{ old('hours_count', $setting->hours_count) }}">
+        @if ($errors->has('hours_count'))
+            <div class="invalid-feedback">
+                {{ $errors->first('hours_count') }}
+            </div>
+        @endif
+        <span class="help-block">{{ trans('cruds.setting.fields.hours_count_helper') }}</span>
+    </div>
 </div>

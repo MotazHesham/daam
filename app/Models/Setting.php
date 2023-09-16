@@ -51,6 +51,8 @@ class Setting extends Model implements HasMedia
         'unit_count',
         'building_count',
         'beneficiary_count',
+        'volunteer_count',
+        'hours_count',
         'chairman_description',
         'iskan_description',
         'iskan_terms',

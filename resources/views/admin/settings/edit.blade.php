@@ -568,14 +568,14 @@
     <script>
         Dropzone.options.iskanTutorialDropzone = {
             url: '{{ route('admin.settings.storeMedia') }}',
-            maxFilesize: 50, // MB
+            maxFilesize: 80, // MB
             maxFiles: 1,
             addRemoveLinks: true,
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             params: {
-                size: 50
+                size: 80
             },
             success: function(file, response) {
                 $('form').find('input[name="iskan_tutorial"]').remove()

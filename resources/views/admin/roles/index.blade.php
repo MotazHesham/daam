@@ -31,6 +31,7 @@
                         <th>
                             {{ trans('cruds.role.fields.permissions') }}
                         </th>
+                        <th>featured</th>
                         <th>
                             &nbsp;
                         </th>
@@ -52,6 +53,12 @@
                                 @foreach($role->permissions as $key => $item)
                                     <span class="badge badge-info">{{ $item->title }}</span>
                                 @endforeach
+                            </td>
+                            <td>
+                                <label class="c-switch c-switch-pill c-switch-success">
+                                    <input onchange="update_statuses(this,'featured')" value="{{$role->id}}" type="checkbox" class="c-switch-input" {{ ($role->featured ? "checked" : null) }}>
+                                    <span class="c-switch-slider"></span>
+                                </label>
                             </td>
                             <td>
                                 @can('role_show')
@@ -90,6 +97,21 @@
 @section('scripts')
 @parent
 <script>
+    function update_statuses(el,type){
+        if(el.checked){
+            var status = 1;
+        }
+        else{
+            var status = 0;
+        }
+        $.post('{{ route('admin.roles.update_statuses') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status, type:type}, function(data){
+            if(data == 1){
+                showAlert('success', 'Success', '');
+            }else{
+                showAlert('danger', 'Something went wrong', '');
+            }
+        });
+    }
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 @can('role_delete')

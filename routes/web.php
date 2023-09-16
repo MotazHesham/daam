@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Roles
     Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
+    Route::post('roles/update_statuses', 'RolesController@update_statuses')->name('roles.update_statuses');
     Route::resource('roles', 'RolesController');
 
     // Users
@@ -135,6 +136,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Tasks Calendar
     Route::resource('tasks-calendars', 'TasksCalendarController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Reviews
+    Route::delete('reviews/destroy', 'ReviewsController@massDestroy')->name('reviews.massDestroy');
+    Route::resource('reviews', 'ReviewsController', ['except' => ['create', 'store', 'edit', 'update', 'show']]);
+
+    // Report Categories
+    Route::delete('report-categories/destroy', 'ReportCategoriesController@massDestroy')->name('report-categories.massDestroy');
+    Route::post('report-categories/update_statuses', 'ReportCategoriesController@update_statuses')->name('report-categories.update_statuses');
+    Route::resource('report-categories', 'ReportCategoriesController');
+
+    // Reports
+    Route::delete('reports/destroy', 'ReportsController@massDestroy')->name('reports.massDestroy');
+    Route::post('reports/update_statuses', 'ReportsController@update_statuses')->name('reports.update_statuses');
+    Route::post('reports/media', 'ReportsController@storeMedia')->name('reports.storeMedia');
+    Route::post('reports/ckmedia', 'ReportsController@storeCKEditorImages')->name('reports.storeCKEditorImages');
+    Route::resource('reports', 'ReportsController');
 
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
