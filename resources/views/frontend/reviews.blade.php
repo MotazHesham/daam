@@ -70,6 +70,9 @@
                                             @endforeach
                                         </div>
                                     </div>  
+                                    <div class="col-md-12">
+                                        @include('partials.recaptcha')
+                                    </div>  
                                     <div class="submit-btn text-center">
                                         <button type="submit" class="btn">أرسال</button>
                                     </div>

@@ -35,14 +35,16 @@
                                 </div>
                                 <h3>{{ $course->title }}</h3>
                                 <span>{{ $course->trainer }}</span>
-                                <p>{!! $course->short_description !!}</p>
+                                <p>{!! $course->short_description !!}</p> 
                                 <div class="row">
                                     <div class="col-6">
                                         <a href="{{ route('frontend.course', $course->id) }}" class="btn">المزيد</a>
                                     </div>
-                                    <div class="col-6">
-                                        <a href="{{ route('frontend.course.subscribe', $course->id) }}" class="btn"> اشترك الان </a>
-                                    </div>
+                                    @if($course->end_at >= date(config('panel.date_format')))
+                                        <div class="col-6">
+                                            <a href="{{ route('frontend.course.subscribe', $course->id) }}" class="btn"> اشترك الان </a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -121,6 +121,7 @@
                                             <i class="far fa-pen"></i>
                                             <textarea name="message" placeholder="رسالتك"  required></textarea>
                                         </div>
+                                        @include('partials.recaptcha')
                                     </div>
                                     <div class="submit-btn text-center">
                                         <button type="submit" class="btn">ارسال الان</button>
@@ -135,4 +136,4 @@
         </div>
         <!-- contact-area-end -->  
     </main>
-@endsection
+@endsection 

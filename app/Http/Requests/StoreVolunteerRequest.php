@@ -47,6 +47,9 @@ class StoreVolunteerRequest extends FormRequest
             'cv' => [ 
                 'nullable',
             ],
+            'g-recaptcha-response' => [ 
+                'required',
+            ],
         ];
     }
 }

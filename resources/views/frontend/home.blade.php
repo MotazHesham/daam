@@ -7,6 +7,22 @@
             position: inherit !important;
 
         }
+        .swiper-slide {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition-property: transform;
+            display: block;
+            border: #ccc 2px solid;
+            text-align: center;
+            padding:10px
+        }
+        
+        .swiper-slide img{
+            height: 150px;
+            width: 100%;
+        }
     </style>
 @endsection
 
@@ -22,19 +38,23 @@
                             <div class="row">
                                 <div class="">
                                     <div class="slider-content">
-                                        <h6 data-animation="fadeInUp" data-delay=".3s">
-                                            <i class="fas fa-bookmark"></i>
-                                            {{ $slider->text_1 }}
-                                        </h6>
+                                        @if($slider->text_1)
+                                            <h6 data-animation="fadeInUp" data-delay=".3s">
+                                                <i class="fas fa-bookmark"></i>
+                                                {{ $slider->text_1 }}
+                                            </h6>
+                                        @endif
                                         <h2 data-animation="fadeInUp" data-delay=".6s">
                                             {{ $slider->text_2 }}
                                         </h2>
-                                        <div class="slider-btn">
-                                            <a href="{{ $slider->link }}" class="btn" data-animation="fadeInLeft"
-                                                data-delay=".9s">
-                                                {{ $slider->button_name }}
-                                            </a>
-                                        </div>
+                                        @if($slider->button_name)
+                                            <div class="slider-btn">
+                                                <a href="{{ $slider->link }}" class="btn" data-animation="fadeInLeft"
+                                                    data-delay=".9s">
+                                                    {{ $slider->button_name }}
+                                                </a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -169,10 +189,10 @@
                                         <ul>
                                             <li>
                                                 <a href="{{ $project->file ? $project->file->getUrl() : '' }}" target="_blanc"><i
-                                                        class="far fa-arrow-left"></i> المزيد</a>
+                                                        class="far fa-arrow-left"></i> المزيد</a>>
                                             </li>
                                             <li>
-                                                <a href="https://daam-donation.org"><i class="far fa-hands"></i> تبرع
+                                                <a href="#"><i class="far fa-hands"></i> تبرع
                                                     الان</a>
                                             </li>
                                         </ul>
@@ -356,7 +376,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 3,
+            slidesPerView: 4,
             slidesPerColumn: 2,
 
             spaceBetween: 50,

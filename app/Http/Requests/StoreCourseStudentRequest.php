@@ -37,6 +37,9 @@ class StoreCourseStudentRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'g-recaptcha-response' => [ 
+                'required',
+            ],
         ];
     }
 }

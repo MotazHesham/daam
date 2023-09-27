@@ -105,6 +105,7 @@
                                         <textarea type="text" placeholder=" " name="description" required></textarea>
                                     </div>
 
+                                    @include('partials.recaptcha')
 
                                     <div class="submit-btn text-center">
                                         <button type="submit" class="btn">اشترك الآن</button>

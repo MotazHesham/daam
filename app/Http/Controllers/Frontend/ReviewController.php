@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreReviewRequest;
 use App\Models\Review;
 use App\Models\Role;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class ReviewController extends Controller
         return view('frontend.reviews',compact('roles'));
     }
 
-    public function store(Request $request){
+    public function store(StoreReviewRequest $request){
         $review = Review::create($request->all()); 
         alert('تم أرسال تقييمك بنجاح','','success');
         return redirect()->route('frontend.reviews');

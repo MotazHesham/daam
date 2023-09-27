@@ -53,6 +53,9 @@ class StoreMemberRequest extends FormRequest
                 'date_format:' . config('panel.date_format'),
                 'nullable',
             ],
+            'g-recaptcha-response' => [ 
+                'required',
+            ],
         ];
     }
 }

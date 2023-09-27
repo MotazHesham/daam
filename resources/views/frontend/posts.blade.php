@@ -46,13 +46,17 @@
                                 <div class="blog-meta">
                                     <ul> 
                                         <li><i class="fas fa-calendar-alt"></i> {{$raw->date}}</li>
+                                        @if($raw->type == 'blog')
+                                            &nbsp; &nbsp; &nbsp;
+                                            <li><i class="fas fa-user"></i> {{$raw->writer}}</li>
+                                        @endif
                                     </ul>
                                 </div>
                                 <h2 class="title">
                                     <a href="{{route('frontend.post',$raw->id)}}">
                                         {{$raw->title}}
-                                    </a>
-                                    @if($raw->type == 'blog')
+                                    </a> 
+                                    @if($raw->type == 'blog') 
                                         <p>{{$raw->short_description}}</p>
                                     @endif
                                 </h2>

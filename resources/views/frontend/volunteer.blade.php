@@ -96,6 +96,7 @@
                                         </div>
                                     </div> 
 
+                                    @include('partials.recaptcha')
                                     <div class="submit-btn text-center mt-4">
                                         <button type="submit" class="btn">أرسال</button>
                                     </div>

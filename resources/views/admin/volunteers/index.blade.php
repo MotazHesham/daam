@@ -37,6 +37,9 @@
                         {{ trans('cruds.volunteer.fields.cv') }}
                     </th>
                     <th>
+                        {{ trans('cruds.volunteer.fields.created_at') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -97,6 +100,7 @@
 { data: 'phone_number', name: 'phone_number' },
 { data: 'initiative_name', name: 'initiative_name' },
 { data: 'cv', name: 'cv', sortable: false, searchable: false },
+{ data: 'created_at', name: 'created_at' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

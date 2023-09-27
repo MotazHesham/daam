@@ -42,8 +42,8 @@
                 <span class="help-block">{{ trans('cruds.slider.fields.image_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="button_name">{{ trans('cruds.slider.fields.button_name') }}</label>
-                <input class="form-control {{ $errors->has('button_name') ? 'is-invalid' : '' }}" type="text" name="button_name" id="button_name" value="{{ old('button_name', $slider->button_name) }}" required>
+                <label for="button_name">{{ trans('cruds.slider.fields.button_name') }}</label>
+                <input class="form-control {{ $errors->has('button_name') ? 'is-invalid' : '' }}" type="text" name="button_name" id="button_name" value="{{ old('button_name', $slider->button_name) }}"  >
                 @if($errors->has('button_name'))
                     <div class="invalid-feedback">
                         {{ $errors->first('button_name') }}

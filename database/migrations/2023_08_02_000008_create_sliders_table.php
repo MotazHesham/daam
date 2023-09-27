@@ -13,7 +13,7 @@ class CreateSlidersTable extends Migration
             $table->string('text_1')->nullable();
             $table->string('text_2')->nullable();
             $table->boolean('published')->default(1)->nullable();
-            $table->string('button_name');
+            $table->string('button_name')->nullable();
             $table->string('link')->nullable();
             $table->timestamps();
             $table->softDeletes();

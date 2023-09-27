@@ -25,6 +25,9 @@ class StoreContactRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'g-recaptcha-response' => [ 
+                'required',
+            ],
             'job' => [
                 'string',
                 'nullable',

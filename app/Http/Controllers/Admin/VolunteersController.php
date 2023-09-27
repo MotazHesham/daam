@@ -56,6 +56,9 @@ class VolunteersController extends Controller
             $table->editColumn('initiative_name', function ($row) {
                 return $row->initiative_name ? $row->initiative_name : '';
             });
+            $table->editColumn('created_at', function ($row) {
+                return $row->created_at ? $row->created_at : '';
+            });
             $table->editColumn('cv', function ($row) {
                 return $row->cv ? '<a href="' . $row->cv->getUrl() . '" target="_blank">' . trans('global.downloadFile') . '</a>' : '';
             });

@@ -19,7 +19,7 @@ class ContactController extends Controller
     }
     
     public function store(StoreContactRequest $request)
-    {
+    { 
         $contact = Contact::create($request->all());
 
         alert('تم أرسال طلبك بنجاح','','success');

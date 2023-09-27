@@ -11,23 +11,14 @@ class StoreReviewRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('review_create');
+        return true;
     }
 
     public function rules()
     {
-        return [
-            'role' => [
-                'string',
+        return [  
+            'g-recaptcha-response' => [ 
                 'required',
-            ],
-            'identity_number' => [
-                'string',
-                'nullable',
-            ],
-            'phone_number' => [
-                'string',
-                'nullable',
             ],
         ];
     }

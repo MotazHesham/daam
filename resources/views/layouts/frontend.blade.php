@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/edits.css') }}" />
     <link rel="stylesheet" href="{{ asset('dashboard_offline/css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard_offline/css/dropzone.min.css') }}"> 
+
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Ldk2VgoAAAAAOGVP5p3dduJoaAHwp1nF3YH6Muq"></script>
+
     @yield('styles')
 </head>
 
@@ -63,7 +66,7 @@
                         <div class="header-top-left navbar-wrap">
                             <ul> 
                                 <li class="dropdown e-services">
-                                    <div class="btn">الخدمات الإلكترونية <img src="http://design.daam.org.sa/public/frontend/img/people.png" /></div>
+                                    <div class="btn">الخدمات الإلكترونية <img src="{{ asset('frontend/img/people.png') }}" /></div>
                                     <ul class="submenu">
                                         <li><a href="{{ route('login') }}">تسجيل الدخول</a></li>
                                         <li><a
@@ -82,7 +85,7 @@
                                     alt="" /></a>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6">
+                    <div class="col-lg-4 col-sm-6 d-none d-md-block">
                         <div class="header-top-right">
                             <div class="login dropdown" onmouseover="toggleDropdown(true)"
                                 onmouseout="toggleDropdown(false)">
@@ -581,6 +584,7 @@
             toggleDropdown(false);
         }
     </script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     @yield('scripts')
 </body>
 

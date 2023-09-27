@@ -65,7 +65,7 @@
                                                 <a href="{{ $project->file ? $project->file->getUrl() : '' }}" target="_blanc"><i class="far fa-arrow-left"></i> المزيد</a>
                                             </li>
                                             <li>
-                                                <a href="https://daam-donation.org"><i class="far fa-hands"></i> تبرع
+                                                <a href="#"><i class="far fa-hands"></i> تبرع
                                                     الان</a>
                                             </li>
                                         </ul>

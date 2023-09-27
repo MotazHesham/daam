@@ -27,11 +27,7 @@ class StoreSliderRequest extends FormRequest
             ],
             'image' => [
                 'required',
-            ],
-            'button_name' => [
-                'string',
-                'required',
-            ],
+            ], 
             'link' => [
                 'string',
                 'nullable',
