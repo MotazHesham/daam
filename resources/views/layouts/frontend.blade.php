@@ -34,8 +34,6 @@
     <link rel="stylesheet" href="{{ asset('dashboard_offline/css/bootstrap-datetimepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard_offline/css/dropzone.min.css') }}"> 
 
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Ldk2VgoAAAAAOGVP5p3dduJoaAHwp1nF3YH6Muq"></script>
-
     @yield('styles')
 </head>
 
@@ -134,7 +132,7 @@
                                                 <li><a href="{{ route('frontend.about') }}"> عن دعم</a></li>
                                                 <li><a href="{{ route('frontend.chairman') }}"> كلمة رئيس مجلس
                                                         الأدارة</a></li>
-                                                <li><a href="{{ route('frontend.identity') }}"> الملف التعريفي</a></li>
+                                                {{-- <li><a href="{{ route('frontend.identity') }}"> الملف التعريفي</a></li> --}}
                                             </ul>
                                         </li>
                                         <li class="dropdown @if(request()->is("hawkma/*")) active @endif">
@@ -422,7 +420,7 @@
                                                     <span><i class="fas fa-calendar-alt"></i>
                                                         {{ $post->date }}</span>
                                                     <h2 class="title">
-                                                        <a href="{{ route('frontend.post',$post->id) }}">انطلاق برنامج بوابات سوق العمل</a>
+                                                        <a href="{{ route('frontend.post',$post->id) }}"> {{ $post->title }} </a>
                                                     </h2>
                                                 </div>
                                             </li> 
@@ -585,6 +583,8 @@
         }
     </script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+    <div class="elfsight-app-369666ef-2d73-443d-af5e-82a0914d1ea7"></div>
     @yield('scripts')
 </body>
 

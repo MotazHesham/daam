@@ -13,6 +13,9 @@
         }
     </style>
 @endsection
+@section('styles') 
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Ldk2VgoAAAAAOGVP5p3dduJoaAHwp1nF3YH6Muq"></script>
+@endsection
 @section('content')
     <!-- main-area -->
     <main> 
