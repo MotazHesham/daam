@@ -38,6 +38,8 @@
 </head>
 
 <body>
+    
+
     <!-- preloader -->
     <div id="preloader">
         <div id="loading-center">
@@ -52,7 +54,7 @@
     <!-- Scroll-top -->
     <button class="scroll-top scroll-to-target" data-target="html">
         <i class="fas fa-angle-up"></i>
-    </button>
+    </button> 
     <!-- Scroll-top-end-->
 
     <!-- header-area -->
@@ -208,7 +210,25 @@
                                                 <li><a href="{{ route('frontend.contacts','contact') }}"> تواصل معنا </a></li>
                                                 <li><a href="{{ route('frontend.contacts','suggest') }}"> الشكاوى والمقترحات</a></li>
                                             </ul>
+                                        </li> 
+
+                                        <li href="#" class="d-block d-md-none"> <a href="https://daamj.sa">المتجر</a></li>
+                                        <li href="#" class="d-block d-md-none"> <a href="{{ route('frontend.reviews') }}">تقييم المستفيدين</a></li>
+                                        <li class="dropdown d-block d-md-none ">
+                                            <a href="#"> الخدمات الإلكترونية</a>
+                                            <ul class="submenu">
+                                                <li><a href="{{ route('login') }}"> تسجيل الدخول </a></li>
+                                                <li><a href="https://charities-sys.com/index.aspx?Ref=up5813ujajmpkrte4hyyaftdethvkihzozxdnz2r'"> دخول المستفيدات</a></li>
+                                                <li><a href="https://charities-sys.com/charity/Login.aspx'"> دخول الادارة</a></li>
+                                            </ul>
                                         </li>
+                                        <li class="dropdown d-block d-md-none ">
+                                            <a href="#">  المشاركات</a>
+                                            <ul class="submenu">
+                                                <li><a href="{{ route('frontend.courses') }}">   الدورات </a></li>
+                                                <li><a href="{{ route('frontend.posts', 'events') }}"> الفعاليات والانشطة</a></li> 
+                                            </ul>
+                                        </li> 
                                     </ul>
                                 </div>
                             </nav>
@@ -400,7 +420,7 @@
                                         <li><a href="{{ route('frontend.projects') }}">مشاريعنا</a></li>
                                         <li><a href="{{ route('frontend.contacts','contact') }}">تواصل معنا</a></li> 
                                         <li><a href="{{ route('frontend.posts','events') }}"> الفعاليات والانشطة</a></li> 
-                                        <li><a href="{{ route('frontend.members','active') }}">الخدمات الالكترونية</a></li>
+                                        {{-- <li><a href="{{ route('frontend.members','active') }}">الخدمات الالكترونية</a></li> --}}
                                         <li><a href="{{ route('frontend.contacts','suggest') }}">صوتك مسموع</a></li>
                                     </ul>
                                 </div>
@@ -432,7 +452,7 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer-bottom"> 
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
@@ -452,6 +472,7 @@
             </div>
         </div>
     </footer>
+
     <!-- footer-area-end -->
 
     @include('sweetalert::alert')
@@ -582,9 +603,44 @@
             toggleDropdown(false);
         }
     </script>
+
+    <script>
+        var url = 'https://wati-integration-service.clare.ai/ShopifyWidget/shopifyWidget.js?85148';
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = url;
+        var options = {
+            "enabled":true,
+            "chatButtonSetting":{
+                "backgroundColor":"#4dc247",
+                "ctaText":"",
+                "borderRadius":"25",
+                "marginLeft":"0",
+                "marginBottom":"50",
+                "marginRight":"50",
+                "position":"right"
+            },
+            "brandSetting":{
+                "brandName":"حمعية دعم لرعاية المطلقات والارامل وابنائهن",
+                "brandSubTitle":"عادة مانرد في خلال يوم",
+                "brandImg":"https://daam.org.sa/frontData/img/logo.png",
+                "welcomeText":"مرحباً بك.\nكيف يمكننا مساعدتك؟",
+                "messageText":"مرحبا لدي استفسار بخصوص",
+                "backgroundColor":"#0a5f54",
+                "ctaText":"تواصل معنا",
+                "borderRadius":"25",
+                "autoShow":false,
+                "phoneNumber":"966544545965"
+            }
+        };
+        s.onload = function() {
+            CreateWhatsappChatWidget(options);
+        };
+        var x = document.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+    </script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-    <div class="elfsight-app-369666ef-2d73-443d-af5e-82a0914d1ea7"></div>
     @yield('scripts')
 </body>
 

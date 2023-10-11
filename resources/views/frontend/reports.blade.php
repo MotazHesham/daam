@@ -41,11 +41,13 @@
                         <div class="tab-content" id="nav-tabContent">
                             @foreach($reportCategories as $category)
                                 <div class="tab-pane fade @if($loop->first) show active @endif" id="nav-{{ $category->id }}" role="tabpanel" aria-labelledby="nav-{{ $category->id }}-tab">
-                                    @foreach($category->reports->where('published',1) as $report)
-                                        <div class="col-4">
-                                            <a href="{{ $report->file ? $report->file->getUrl() : '' }}" class="category-item"><img src="{{ $report->image ? $report->image->getUrl() : asset('img/logo.png') }}" alt=""><span> {{ $report->name }}  </span></a>
-                                        </div> 
-                                    @endforeach
+                                    <div class="row">
+                                        @foreach($category->reports->where('published',1) as $report)
+                                            <div class="col-md-4">
+                                                <a href="{{ $report->file ? $report->file->getUrl() : '' }}" class="category-item"><img src="{{ $report->image ? $report->image->getUrl() : asset('img/logo.png') }}" alt=""><span> {{ $report->name }}  </span></a>
+                                            </div> 
+                                        @endforeach
+                                    </div>
                                 </div> 
                             @endforeach
                         </div>

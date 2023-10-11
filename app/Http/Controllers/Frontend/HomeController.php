@@ -47,7 +47,7 @@ class HomeController extends Controller
     }
 
     public function reports($type){ 
-        $reportCategories = ReportCategory::with('reports')->where('type',$type)->where('published',1)->orderBy('created_at','desc')->paginate(15); 
+        $reportCategories = ReportCategory::with('reports')->where('type',$type)->where('published',1)->orderBy('created_at','asc')->paginate(15); 
         $type = Report::TYPE_SELECT[$type];
         return view('frontend.reports',compact('reportCategories','type'));
     }

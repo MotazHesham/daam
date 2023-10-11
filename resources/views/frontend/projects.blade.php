@@ -40,34 +40,12 @@
                                     <h2 class="title">
                                         <a href="#"> {{ $project->title }} </a>
                                     </h2>
-                                    <p>{{ $project->short_description }}</p>
-                                    <div class="progress-bar-details">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar"
-                                                style="width: {{ $project->percentage() }}%"
-                                                aria-valuenow="{{ $project->percentage() }}" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                        <div class="cause-amounts row">
-                                            <div class="col-6">
-                                                <p>المستهدف</p>
-                                                <span>{{ $project->goal }} ريال</span>
-                                            </div>
-                                            <div class="col-6">
-                                                <p>تم جمع</p>
-                                                <span>{{ $project->collected }} ريال</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <p>{{ $project->short_description }}</p> 
                                     <div class="project-meta">
                                         <ul>
                                             <li>
                                                 <a href="{{ $project->file ? $project->file->getUrl() : '' }}" target="_blanc"><i class="far fa-arrow-left"></i> المزيد</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="far fa-hands"></i> تبرع
-                                                    الان</a>
-                                            </li>
+                                            </li> 
                                         </ul>
                                     </div>
                                 </div>

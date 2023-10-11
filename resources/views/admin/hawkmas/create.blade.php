@@ -72,14 +72,14 @@
 <script>
     Dropzone.options.fileDropzone = {
     url: '{{ route('admin.hawkmas.storeMedia') }}',
-    maxFilesize: 2, // MB
+    maxFilesize: 50, // MB
     maxFiles: 1,
     addRemoveLinks: true,
     headers: {
       'X-CSRF-TOKEN': "{{ csrf_token() }}"
     },
     params: {
-      size: 2
+      size: 50
     },
     success: function (file, response) {
       $('form').find('input[name="file"]').remove()

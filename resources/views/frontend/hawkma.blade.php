@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     @foreach($hawkma as $raw)
-                        <div class="col-4">
+                        <div class="col-md-4">
                             <a href="{{ $raw->file ? $raw->file->getUrl() : '' }}" target="_blanc" class="category-item">
                                 <img src="{{ $raw->icon ? $raw->icon->getUrl('preview') : asset('frontend/img/file_icon__.png') }}" alt="">
                                 <span>{{ $raw->title }}</span>

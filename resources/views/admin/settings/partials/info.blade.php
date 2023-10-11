@@ -33,9 +33,9 @@
         <span class="help-block">{{ trans('cruds.setting.fields.phone_number_helper') }}</span>
     </div>
     <div class="form-group col-md-3">
-        <label class="required" for="facebook">{{ trans('cruds.setting.fields.facebook') }}</label>
+        <label class="" for="facebook">{{ trans('cruds.setting.fields.facebook') }}</label>
         <input class="form-control {{ $errors->has('facebook') ? 'is-invalid' : '' }}" type="text" name="facebook"
-            id="facebook" value="{{ old('facebook', $setting->facebook) }}" required>
+            id="facebook" value="{{ old('facebook', $setting->facebook) }}">
         @if ($errors->has('facebook'))
             <div class="invalid-feedback">
                 {{ $errors->first('facebook') }}
@@ -44,9 +44,9 @@
         <span class="help-block">{{ trans('cruds.setting.fields.facebook_helper') }}</span>
     </div>
     <div class="form-group col-md-3">
-        <label class="required" for="instagram">{{ trans('cruds.setting.fields.instagram') }}</label>
+        <label class="" for="instagram">{{ trans('cruds.setting.fields.instagram') }}</label>
         <input class="form-control {{ $errors->has('instagram') ? 'is-invalid' : '' }}" type="text" name="instagram"
-            id="instagram" value="{{ old('instagram', $setting->instagram) }}" required>
+            id="instagram" value="{{ old('instagram', $setting->instagram) }}" >
         @if ($errors->has('instagram'))
             <div class="invalid-feedback">
                 {{ $errors->first('instagram') }}
@@ -55,9 +55,9 @@
         <span class="help-block">{{ trans('cruds.setting.fields.instagram_helper') }}</span>
     </div>
     <div class="form-group col-md-3">
-        <label class="required" for="whatsapp">{{ trans('cruds.setting.fields.whatsapp') }}</label>
+        <label class="" for="whatsapp">{{ trans('cruds.setting.fields.whatsapp') }}</label>
         <input class="form-control {{ $errors->has('whatsapp') ? 'is-invalid' : '' }}" type="text" name="whatsapp"
-            id="whatsapp" value="{{ old('whatsapp', $setting->whatsapp) }}" required>
+            id="whatsapp" value="{{ old('whatsapp', $setting->whatsapp) }}" >
         @if ($errors->has('whatsapp'))
             <div class="invalid-feedback">
                 {{ $errors->first('whatsapp') }}
@@ -66,9 +66,9 @@
         <span class="help-block">{{ trans('cruds.setting.fields.whatsapp_helper') }}</span>
     </div>
     <div class="form-group col-md-3">
-        <label class="required" for="twitter">{{ trans('cruds.setting.fields.twitter') }}</label>
+        <label class="" for="twitter">{{ trans('cruds.setting.fields.twitter') }}</label>
         <input class="form-control {{ $errors->has('twitter') ? 'is-invalid' : '' }}" type="text" name="twitter"
-            id="twitter" value="{{ old('twitter', $setting->twitter) }}" required>
+            id="twitter" value="{{ old('twitter', $setting->twitter) }}" >
         @if ($errors->has('twitter'))
             <div class="invalid-feedback">
                 {{ $errors->first('twitter') }}

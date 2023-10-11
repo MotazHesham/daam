@@ -40,7 +40,8 @@
                                     <div class="col-6">
                                         <a href="{{ route('frontend.course', $course->id) }}" class="btn">المزيد</a>
                                     </div>
-                                    @if($course->end_at >= date(config('panel.date_format')))
+                                    
+                                    @if(\Carbon\Carbon::createFromFormat(config('panel.date_format'), $course->end_at)->format('Y-m-d') >= date('Y-m-d'))
                                         <div class="col-6">
                                             <a href="{{ route('frontend.course.subscribe', $course->id) }}" class="btn"> اشترك الان </a>
                                         </div>

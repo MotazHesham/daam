@@ -98,14 +98,14 @@
 <script>
     Dropzone.options.fileDropzone = {
     url: '{{ route('admin.reports.storeMedia') }}',
-    maxFilesize: 15, // MB
+    maxFilesize: 50, // MB
     maxFiles: 1,
     addRemoveLinks: true,
     headers: {
       'X-CSRF-TOKEN': "{{ csrf_token() }}"
     },
     params: {
-      size: 15
+      size: 50
     },
     success: function (file, response) {
       $('form').find('input[name="file"]').remove()

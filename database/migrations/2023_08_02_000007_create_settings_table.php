@@ -13,14 +13,14 @@ class CreateSettingsTable extends Migration
             $table->string('website_name');
             $table->string('email');
             $table->string('phone_number');
-            $table->string('facebook');
-            $table->string('instagram');
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
             $table->longText('address');
             $table->longText('description')->nullable();
             $table->longText('vision')->nullable();
             $table->longText('mission')->nullable();
-            $table->string('whatsapp');
-            $table->string('twitter');
+            $table->string('whatsapp')->nullable();
+            $table->string('twitter')->nullable();
             $table->string('divorced_count')->nullable();
             $table->string('widow_count')->nullable();
             $table->string('child_count')->nullable();
