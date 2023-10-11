@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 @section('content')
-    <main> 
+    <main>
         <!-- breadcrumb-area -->
         <section class="breadcrumb-area breadcrumb-bg" data-background="{{ asset('frontend/img/bg/breadcrumb_bg.jpg') }}">
             <div class="container">
@@ -26,7 +26,7 @@
             <div class="container">
 
                 <div class="row justify-content-center">
-                    @foreach($projects as $project)
+                    @foreach ($projects as $project)
                         <div class="col-lg-4 col-md-6 col-sm-10">
                             <div class="project-item mb-30">
                                 <div class="project-thumb">
@@ -40,23 +40,24 @@
                                     <h2 class="title">
                                         <a href="#"> {{ $project->title }} </a>
                                     </h2>
-                                    <p>{{ $project->short_description }}</p> 
+                                    <p>{{ $project->short_description }}</p>
                                     <div class="project-meta">
                                         <ul>
                                             <li>
-                                                <a href="{{ $project->file ? $project->file->getUrl() : '' }}" target="_blanc"><i class="far fa-arrow-left"></i> المزيد</a>
-                                            </li> 
+                                                <a href="{{ $project->file ? $project->file->getUrl() : '' }}"
+                                                    target="_blanc"><i class="far fa-arrow-left"></i> المزيد</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     @endforeach
-                </div> 
-                {{ $projects->links(); }}
+                </div>
+                {{ $projects->links() }}
             </div>
         </section>
-        <!-- project-area-end -->  
+        <!-- project-area-end -->
 
     </main>
 @endsection

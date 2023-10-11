@@ -1,27 +1,38 @@
 @extends('layouts.frontend')
 
 @section('styles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.css" />
-    <style>
-        .swiper-pagination {
-            position: inherit !important;
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
+    <style>
+        .sample-slider {
+            width: 45vw;
+            height: 30vw;
         }
-        .swiper-slide {
-            flex-shrink: 0;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transition-property: transform;
-            display: block;
-            border: #ccc 2px solid;
-            text-align: center;
-            padding:10px
+
+        .sample-slider .swiper-slide {
+            height: calc((100% - 15px) / 2);
         }
-        
-        .swiper-slide img{
-            height: 150px;
-            width: 100%;
+
+        @media (min-width: 992px) and (max-width: 1200px) {
+            .sample-slider {
+                width: 39vw;
+                height: 45vw;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 991px) {
+            .sample-slider {
+                width: 25vw;
+                height: 30vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sample-slider {
+                height: 70vw;
+                width: 70vw;
+            }
         }
     </style>
 @endsection
@@ -38,7 +49,7 @@
                             <div class="row">
                                 <div class="">
                                     <div class="slider-content">
-                                        @if($slider->text_1)
+                                        @if ($slider->text_1)
                                             <h6 data-animation="fadeInUp" data-delay=".3s">
                                                 <i class="fas fa-bookmark"></i>
                                                 {{ $slider->text_1 }}
@@ -47,7 +58,7 @@
                                         <h2 data-animation="fadeInUp" data-delay=".6s">
                                             {{ $slider->text_2 }}
                                         </h2>
-                                        @if($slider->button_name)
+                                        @if ($slider->button_name)
                                             <div class="slider-btn">
                                                 <a href="{{ $slider->link }}" class="btn" data-animation="fadeInLeft"
                                                     data-delay=".9s">
@@ -69,8 +80,8 @@
         <section class="mt-5">
             <div class="row">
                 <div class="col-md-2">
-                        <img style="width: 280px;height: 200px;padding-left: 0px;"
-                            src="{{ asset('frontend/img/icon/daam.jpg') }}" alt="">
+                    <img style="width: 280px;height: 200px;padding-left: 0px;"
+                        src="{{ asset('frontend/img/icon/daam.jpg') }}" alt="">
                 </div>
                 <div class="col-md-8">
                     <div class="section-title text-center mb-55">
@@ -164,15 +175,16 @@
                                 </div>
                                 <div class="project-content">
                                     <h2 class="title">
-                                        <a href="{{ route('frontend.project', $project->id) }}"> {{ $project->title }} </a>
+                                        <a href="{{ route('frontend.project', $project->id) }}"> {{ $project->title }}
+                                        </a>
                                     </h2>
-                                    <p>{{ $project->short_description }}</p> 
+                                    <p>{{ $project->short_description }}</p>
                                     <div class="project-meta">
                                         <ul>
                                             <li>
-                                                <a href="{{ $project->file ? $project->file->getUrl() : '' }}" target="_blanc"><i
-                                                        class="far fa-arrow-left"></i> المزيد</a>
-                                            </li> 
+                                                <a href="{{ $project->file ? $project->file->getUrl() : '' }}"
+                                                    target="_blanc"><i class="far fa-arrow-left"></i> المزيد</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -267,7 +279,7 @@
                     @endforeach
                 </div>
                 <div class="more-project text-center mt-20">
-                    <a href="{{ route('frontend.posts','news') }}" class="btn">المزيد<span>+</span></a>
+                    <a href="{{ route('frontend.posts', 'news') }}" class="btn">المزيد<span>+</span></a>
                 </div>
             </div>
         </section>
@@ -326,24 +338,16 @@
                         </div>
                     </div>
                 </div>
-                <section class="p_40" data-bg-color="#eee">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="swiper-container mySwiper ss" style=" margin-bottom: 80px;">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($partners as $partner)
-                                            <div class="swiper-slide">
-                                                <img
-                                                    src="{{ $partner->image ? $partner->image->getUrl('preview') : '' }}">
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <div class="swiper-pagination"></div>
+                <section class="p_40" data-bg-color="#eee" style="height: auto">
+                    <div class="swiper sample-slider">
+                        <div class="swiper-wrapper">
+                            @foreach ($partners as $partner)
+                                <div class="swiper-slide">
+                                    <img src="{{ $partner->image ? $partner->image->getUrl('preview') : '' }}">
                                 </div>
-
-                            </div>
+                            @endforeach
                         </div>
+                        <div class="swiper-pagination mt-5"></div>
                     </div>
                 </section>
             </div>
@@ -354,21 +358,42 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.js"></script>
     <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 4,
-            slidesPerColumn: 2,
-
-            spaceBetween: 50,
+        const swiper = new Swiper('.sample-slider', {
+            slidesPerView: 4, //column count of shown slide
+            spaceBetween: 10, //gap of slides
+            grid: { //row count of shown slide
+                rows: 2,
+            },
             pagination: {
                 el: '.swiper-pagination',
-                clickable: true,
             },
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
             },
-        });
+            breakpoints: {
+                // When the screen width is 768px or less (mobile screens)
+                768: {
+                    slidesPerView: 1, // Display only one slide per view
+                    grid: {
+                        rows: 1, // Show only one row
+                    },
+                },
+                // When the screen width is 992px or more (larger screens)
+                992: {
+                    slidesPerView: 2, // Display two slides per view
+                    grid: {
+                        rows: 2,
+                    },
+                },
+                1200: {
+                    slidesPerView: 3, // Display three slides per view
+                    grid: {
+                        rows: 2,
+                    },
+                },
+            },
+        })
     </script>
 @endsection
