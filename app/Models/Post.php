@@ -42,6 +42,7 @@ class Post extends Model implements HasMedia
         'date',
         'title',
         'writer',
+        'video_link',
         'short_description',
         'description',
         'head_line',

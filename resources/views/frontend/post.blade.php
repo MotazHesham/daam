@@ -25,6 +25,9 @@
 
         <!-- shop-details-area -->
         <section class="shop-details-area pt-130 pb-100">
+            <div class="text-center">
+                {!! $post->video_link ?? '' !!}
+            </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-9">

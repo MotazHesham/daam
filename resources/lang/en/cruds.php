@@ -273,6 +273,8 @@ return [
             'writer_helper'       => ' ',
             'short_description'              => 'Short Description',
             'short_description_helper'       => ' ',
+            'video_link'              => 'Video Link',
+            'video_link_helper'       => 'iframe from youtube',
             'description'        => 'Description',
             'description_helper' => ' ',
             'photo'              => 'Photo',

@@ -273,6 +273,8 @@ return [
             'writer_helper'       => ' ',
             'short_description'              => 'وصف مختصر',
             'short_description_helper'       => ' ',
+            'video_link'              => 'رابط الفيديو',
+            'video_link_helper'       => 'iframe from youtube',
             'description'        => 'الوصف',
             'description_helper' => ' ',
             'photo'              => 'الصورة',

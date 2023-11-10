@@ -15,6 +15,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('writer')->nullable();
             $table->text('short_description')->nullable();
+            $table->text('video_link')->nullable();
             $table->longText('description')->nullable();
             $table->boolean('head_line')->default(0)->nullable();
             $table->boolean('published')->default(1)->nullable();

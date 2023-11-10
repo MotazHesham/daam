@@ -65,6 +65,16 @@
                 <span class="help-block">{{ trans('cruds.post.fields.short_description_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="video_link">{{ trans('cruds.post.fields.video_link') }}</label>
+                <textarea class="form-control {{ $errors->has('video_link') ? 'is-invalid' : '' }}" name="video_link" id="video_link">{!! old('video_link') !!}</textarea>
+                @if($errors->has('video_link'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('video_link') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.post.fields.video_link_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="description">{{ trans('cruds.post.fields.description') }}</label>
                 <textarea class="form-control ckeditor {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description">{!! old('description') !!}</textarea>
                 @if($errors->has('description'))

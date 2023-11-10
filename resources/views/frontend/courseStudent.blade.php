@@ -75,11 +75,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="row ">
+                                    {{-- <div class="row ">
                                         <div class="form-grp col-md-6">
                                             <input type="text" class="date_frontend" placeholder=" تاريخ الميلاد" required name="date_of_birth">
                                         </div> 
-                                    </div>
+                                    </div> --}}
                                     <div class="row ">
                                         <div class="  col-md-6">
                                             <span class="theme-color"> 
