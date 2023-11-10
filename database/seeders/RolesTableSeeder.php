@@ -13,10 +13,12 @@ class RolesTableSeeder extends Seeder
             [
                 'id'    => 1,
                 'title' => 'Admin',
+                'featured' => 0
             ],
             [
                 'id'    => 2,
                 'title' => 'User',
+                'featured' => 0
             ],
         ];
 
