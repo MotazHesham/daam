@@ -400,13 +400,7 @@
                                                 <a href="{{ $site_settings->instagram }}"><i
                                                         class="fab fa-instagram"></i></a>
                                             </li>
-                                        @endif
-                                        @if ($site_settings->whatsapp)
-                                            <li>
-                                                <a href="{{ $site_settings->whatsapp }}"><i
-                                                        class="fab fa-whatsapp"></i></a>
-                                            </li>
-                                        @endif
+                                        @endif 
                                     </ul>
                                 </div>
                             </div>
@@ -420,7 +414,7 @@
                                         <li><a href="{{ route('frontend.projects') }}">مشاريعنا</a></li>
                                         <li><a href="{{ route('frontend.contacts','contact') }}">تواصل معنا</a></li> 
                                         <li><a href="{{ route('frontend.posts','events') }}"> الفعاليات والانشطة</a></li> 
-                                        {{-- <li><a href="{{ route('frontend.members','active') }}">الخدمات الالكترونية</a></li> --}}
+                                        <!--<li><a href="{{ route('frontend.members','active') }}">الخدمات الالكترونية</a></li>-->
                                         <li><a href="{{ route('frontend.contacts','suggest') }}">صوتك مسموع</a></li>
                                     </ul>
                                 </div>
@@ -631,7 +625,7 @@
                 "ctaText":"تواصل معنا",
                 "borderRadius":"25",
                 "autoShow":false,
-                "phoneNumber":"966544545965"
+                "phoneNumber":@if($site_settings->whatsapp) '{{ $site_settings->whatsapp }}' @endif
             }
         };
         s.onload = function() {
