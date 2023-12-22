@@ -53,6 +53,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('hawkam-categories/destroy', 'HawkamCategoriesController@massDestroy')->name('hawkam-categories.massDestroy');
     Route::resource('hawkam-categories', 'HawkamCategoriesController');
 
+    // Humanitarian Aid
+    Route::delete('humanitarian-aids/destroy', 'HumanitarianAidController@massDestroy')->name('humanitarian-aids.massDestroy');
+    Route::post('humanitarian-aids/media', 'HumanitarianAidController@storeMedia')->name('humanitarian-aids.storeMedia');
+    Route::post('humanitarian-aids/ckmedia', 'HumanitarianAidController@storeCKEditorImages')->name('humanitarian-aids.storeCKEditorImages');
+    Route::resource('humanitarian-aids', 'HumanitarianAidController');
+
     // Hawkma
     Route::delete('hawkmas/destroy', 'HawkmaController@massDestroy')->name('hawkmas.massDestroy');
     Route::post('hawkmas/update_statuses', 'HawkmaController@update_statuses')->name('hawkmas.update_statuses');

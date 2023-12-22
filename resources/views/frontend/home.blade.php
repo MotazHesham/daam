@@ -101,50 +101,25 @@
         </section>
         <!-- iskan-area-end -->
 
-
         <!-- counter-area -->
         <section class="counter-area">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="counter-item">
-                            <div class="counter-img">
-                                <img src="{{ asset('frontend/img/icon/counter_icon01.png') }}" alt="" />
-                            </div>
-                            <div class="counter-content">
-                                <h2 class="count">
-                                    <span class="odometer" data-count="{{ $site_settings->building_count }}"></span>
-                                </h2>
-                                <p>عمارة</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="counter-item">
-                            <div class="counter-img">
-                                <img src="{{ asset('frontend/img/icon/counter_icon02.png') }}" alt="" />
-                            </div>
-                            <div class="counter-content">
-                                <h2 class="count">
-                                    <span class="odometer" data-count="{{ $site_settings->unit_count }}"></span>
-                                </h2>
-                                <p>وحدة سكنية</p>
+                <div class="row">
+                    @foreach ($Aids as $aid)
+                        <div class="col">
+                            <div class="counter-item" title="{{ $aid->type }}">
+                                <div class="counter-img">
+                                    <img src="{{ $aid->icon->getUrl() }}" alt="" />
+                                </div>
+                                <div class="counter-content">
+                                    <h4 class="count fs-5">
+                                        <span class="odometer" data-count="{{ $aid->aid_number }}"></span>
+                                    </h4>
+                                    <p class="text-black text-bold">{{ $aid->unit_of_aid }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="counter-item">
-                            <div class="counter-img">
-                                <img src="{{ asset('frontend/img/icon/counter_icon03.png') }}" alt="" />
-                            </div>
-                            <div class="counter-content">
-                                <h2 class="count">
-                                    <span class="odometer" data-count="{{ $site_settings->beneficiary_count }}"></span>
-                                </h2>
-                                <p>مستفيدة</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>

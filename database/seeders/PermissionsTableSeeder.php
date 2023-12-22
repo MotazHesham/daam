@@ -536,6 +536,26 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 132,
+                'title' => 'humanitarian_aid_create',
+            ],
+            [
+                'id'    => 133,
+                'title' => 'humanitarian_aid_edit',
+            ],
+            [
+                'id'    => 134,
+                'title' => 'humanitarian_aid_show',
+            ],
+            [
+                'id'    => 135,
+                'title' => 'humanitarian_aid_delete',
+            ],
+            [
+                'id'    => 136,
+                'title' => 'humanitarian_aid_access',
+            ],
+            [
+                'id'    => 137,
                 'title' => 'profile_password_edit',
             ],
         ];
