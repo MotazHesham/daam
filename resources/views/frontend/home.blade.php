@@ -34,6 +34,12 @@
                 width: 70vw;
             }
         }
+
+        @media (max-width: 575.98px) {
+            .max-width-50 {
+                max-width: 35%;
+            }
+        }
     </style>
 @endsection
 
@@ -106,10 +112,11 @@
             <div class="container">
                 <div class="row">
                     @foreach ($Aids as $aid)
-                        <div class="col">
+                        <div class="col-md-2 col-sm-3 col-lg-1">
                             <div class="counter-item" title="{{ $aid->type }}">
                                 <div class="counter-img">
-                                    <img src="{{ $aid->icon->getUrl() }}" alt="" />
+                                    <img src="{{ $aid->icon->getUrl() }}" alt=""
+                                        class="img-fluid mx-auto d-block max-width-50" />
                                 </div>
                                 <div class="counter-content">
                                     <h4 class="count fs-5">
@@ -124,7 +131,6 @@
             </div>
         </section>
         <!-- counter-area-end -->
-
         <!-- project-area -->
         <section class="project-area testimonial-area testimonial-style-three pt-100 pb-100">
             <div class="container">
