@@ -110,24 +110,59 @@
         <!-- counter-area -->
         <section class="counter-area">
             <div class="container">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-8">
+                            <div class="counter-item" title="انجازات وحدة الاسكان">
+                                <div class="counter-title">
+                                    <h6 class="title m-3">انجازات وحدة الاسكان</h6>
+                                </div>
+                                <div class="row">
+                                    @foreach ($Aids->where('type', 'انجازات وحدة الاسكان') as $aid)
+                                        <div class="col-sm-4 col-md-4 col-lg-4">
+                                            <div class="counter-img">
+                                                <img src="{{ $aid->icon->getUrl() }}" alt=""
+                                                    class="img-fluid mx-auto d-block max-width-50 black-icon" />
+                                            </div>
+                                            <div class="counter-content">
+                                                <h4 class="count fs-5">
+                                                    <span class="odometer" data-count="{{ $aid->aid_number }}"></span>
+                                                </h4>
+                                                <p class="m-2 text-black text-bold">{{ $aid->unit_of_aid }}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
                 <div class="row">
-                    @foreach ($Aids as $aid)
-                        <div class="col-md-2 col-sm-3 col-lg-1">
-                            <div class="counter-item" title="{{ $aid->type }}">
+                    @foreach ($Aids->where('type', '!=', 'انجازات وحدة الاسكان') as $aid)
+                        <div class="col-md-2 col-sm-3 col-lg-1 p-2 m-3">
+                            <div class="counter-item " title="{{ $aid->type }}">
+                                <div class="counter-title">
+                                    <h6 class="title m-3">{{ $aid->type }}</h6>
+                                </div>
                                 <div class="counter-img">
                                     <img src="{{ $aid->icon->getUrl() }}" alt=""
-                                        class="img-fluid mx-auto d-block max-width-50" />
+                                        class="img-fluid mx-auto d-block max-width-50 " />
                                 </div>
                                 <div class="counter-content">
                                     <h4 class="count fs-5">
                                         <span class="odometer" data-count="{{ $aid->aid_number }}"></span>
                                     </h4>
-                                    <p class="text-black text-bold">{{ $aid->unit_of_aid }}</p>
+                                    <p class=" m-2 text-black text-bold">{{ $aid->unit_of_aid }}</p>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
+
+
+
+
             </div>
         </section>
         <!-- counter-area-end -->
