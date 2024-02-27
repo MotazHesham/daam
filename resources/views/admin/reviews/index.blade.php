@@ -54,6 +54,10 @@
                             </td>
                             <td>
                                 {{ App\Models\Review::REVIEW_RADIO[$review->review] ?? '' }}
+                                <br>
+                                @if($review->review == 'not_good')
+                                    {{ $review->reason }}
+                                @endif
                             </td>
                             <td>
 

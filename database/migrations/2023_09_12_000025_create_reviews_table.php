@@ -13,6 +13,7 @@ class CreateReviewsTable extends Migration
             $table->string('identity_number')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('review')->nullable();
+            $table->text('reason')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

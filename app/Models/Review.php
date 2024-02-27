@@ -29,6 +29,7 @@ class Review extends Model
         'identity_number',
         'phone_number',
         'review',
+        'reason',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -53,27 +53,32 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-grp">
-                                            <input type="text" placeholder="رقم الهوية" required name="identity_number">
+                                            <input type="text" placeholder="رقم الهوية" value="{{ old('identity_number') }}" required name="identity_number">
                                         </div>
                                     </div> 
                                     <div class="col-md-6">
                                         <div class="form-grp">
-                                            <input type="text" placeholder=" رقم الجوال " required name="phone_number">
+                                            <input type="text" placeholder=" رقم الجوال " value="{{ old('phone_number') }}" required name="phone_number">
                                         </div>
                                     </div>  
-                                    <div class="col-md-4">
-                                        <div class="row">
+                                    <div class="col-md-12 mb-4">
+                                        <div style="display:flex;justify-content: space-evenly;">
                                             @foreach(App\Models\Review::REVIEW_RADIO as $key => $label)
-                                                <div class="col-md-6">
+                                                <div >
                                                     <div class="form-check {{ $errors->has('review') ? 'is-invalid' : '' }}">
-                                                        <input class="form-check-input" type="radio" id="review_{{ $key }}" name="review" value="{{ $key }}" {{ old('review', '') === (string) $key ? 'checked' : '' }}>
-                                                        <label class="form-check-label" for="review_{{ $key }}">{{ $label }}</label>
+                                                        <input onclick="on_change_review()" class="form-check-input" style="width: 1.3em;height:1.3em;margin-left:-3.5em" type="radio" id="review_{{ $key }}" name="review" required value="{{ $key }}" {{ old('review', '') === (string) $key ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="review_{{ $key }}" style="font-size: x-large">{{ $label }}</label>
                                                     </div>
                                                 </div>
                                             @endforeach
                                         </div>
                                     </div>  
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 mt-3" id="reason-div" style="display: none">
+                                        <div class="form-grp">
+                                            <textarea name="reason" id="reason"  rows="3" class="form-control" placeholder="أكتب سبب عدم رضاك"></textarea>
+                                        </div>
+                                    </div>  
+                                    <div class="col-md-12 mt-3">
                                         @include('partials.recaptcha')
                                     </div>  
                                     <div class="submit-btn text-center">
@@ -91,4 +96,17 @@
 
 
     </main>
+@endsection
+
+@section('scripts')
+    @parent 
+    <script>
+        function on_change_review(){
+            if($("#review_not_good").prop("checked")){
+                $('#reason-div').css('display','block');
+            }else{
+                $('#reason-div').css('display','none');
+            }
+        }
+    </script>
 @endsection
