@@ -9,8 +9,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
-                        <div class="breadcrumb-content text-center"> 
-                            <h2 class="title">شاركنا بتقييم الخدمة في الجمعية </h2>  
+                        <div class="breadcrumb-content text-center">  
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">الرئيسية</a></li>
@@ -25,7 +24,7 @@
         <!-- breadcrumb-area-end -->
 
         <!-- contact-area -->
-        <div class="contact-area pt-130">
+        <div class="contact-area pt-50">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -44,6 +43,7 @@
                                 <div class="row">
                                     <div class="col-md-12"> 
                                         <div class="form-grp">
+                                            <lable>الإدارات</lable>
                                             <select class="form-control select2 {{ $errors->has('role') ? 'is-invalid' : '' }}" name="role_id" id="role_id" required>
                                                 @foreach($roles as $role)
                                                     <option value="{{ $role->id }}" {{ old('role_id') == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
