@@ -7,6 +7,7 @@ use App\Http\Requests\StoreSubscribeRequest;
 use App\Models\HawkamCategory;
 use App\Models\Hawkma;
 use App\Models\HumanitarianAid;
+use App\Models\Mempership;
 use App\Models\Partner;
 use App\Models\Post;
 use App\Models\Project;
@@ -17,6 +18,8 @@ use App\Models\Setting;
 use App\Models\Slider;
 use App\Models\Subscribe;
 use App\Models\VolunteerGuide;
+use Illuminate\Http\Request;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class HomeController extends Controller
 {
@@ -64,6 +67,31 @@ class HomeController extends Controller
         $site_settings = Setting::first();
         return view('frontend.terms', compact('site_settings'));
     }
+
+    public function joining_form_1(){
+        $site_settings = Setting::first();
+        return view('joining_form.step1',compact('site_settings'));
+    }
+    public function joining_form_2(){
+        $site_settings = Setting::first();
+        return view('joining_form.step2',compact('site_settings'));
+    }
+
+    
+    public function store_mempership(Request $request)
+    {
+        $mempership = Mempership::create($request->all());
+
+        if ($request->has('identity_photo')) {
+            $mempership->addMedia($request->identity_photo)->toMediaCollection('identity_photo');
+        }
+
+        if ($request->has('receipt_photo') ){
+            $mempership->addMedia($request->receipt_photo)->toMediaCollection('receipt_photo');
+        } 
+
+        return redirect()->back();
+    } 
 
     public function video()
     {

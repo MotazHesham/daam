@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Frontend\HomeController@home')->name('home');
 
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () { 
+
+    Route::get('joining/form_1', 'HomeController@joining_form_1')->name('joining_form_1');
+    Route::get('joining/form_2', 'HomeController@joining_form_2')->name('joining_form_2');
+    Route::post('memperships/store', 'HomeController@store_mempership')->name('memperships.store');
+
     Route::post('subscribe', 'HomeController@subscribe')->name('subscribe'); 
     Route::get('about', 'HomeController@about')->name('about');
     Route::get('chairman', 'HomeController@chairman')->name('chairman');
@@ -49,5 +54,6 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     // reviews 
     Route::get('reviews', 'ReviewController@reviews')->name('reviews'); 
     Route::post('reviews/store', 'ReviewController@store')->name('reviews.store'); 
+    
 
 });

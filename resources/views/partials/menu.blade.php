@@ -112,6 +112,17 @@
                 </ul>
             </li>
         @endcan
+        @can('memperships')
+        <li class="c-sidebar-nav-item">
+            <a href="{{ route('admin.memperships.index') }}"
+                class="c-sidebar-nav-link {{ request()->is('admin/memperships') || request()->is('admin/memperships/*') ? 'c-active' : '' }}">
+                <i class="fa-fw fas fa-graduation-cap c-sidebar-nav-icon">
+
+                </i>
+                عضوية الجمعية العمومية
+            </a>
+        </li>
+        @endcan
         @can('post_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route('admin.posts.index') }}"

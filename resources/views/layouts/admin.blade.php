@@ -144,6 +144,7 @@
         </div>
     </div> 
     
+
     @include('sweetalert::alert')
 
     <script src="{{ asset('dashboard_offline/js/jquery.min.js') }}"></script>

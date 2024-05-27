@@ -159,6 +159,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('reports/ckmedia', 'ReportsController@storeCKEditorImages')->name('reports.storeCKEditorImages');
     Route::resource('reports', 'ReportsController');
 
+    // Memperships
+    Route::delete('memperships/destroy', 'MempershipsController@massDestroy')->name('memperships.massDestroy');
+    Route::post('memperships/update_certificate', 'MempershipsController@update_certificate')->name('memperships.update_certificate');
+    Route::post('memperships/send_certificate', 'MempershipsController@send_certificate')->name('memperships.send_certificate');
+    Route::post('memperships/media', 'MempershipsController@storeMedia')->name('memperships.storeMedia');
+    Route::post('memperships/ckmedia', 'MempershipsController@storeCKEditorImages')->name('memperships.storeCKEditorImages');
+    Route::resource('memperships', 'MempershipsController');
+    
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
