@@ -11,6 +11,9 @@ use App\Models\Mempership;
 use App\Models\Partner;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\QuestionnaireCourse;
+use App\Models\QuestionnaireTraning;
+use App\Models\QuestionnaireVolunteer;
 use App\Models\Report;
 use App\Models\ReportCategory;
 use App\Models\SaidAboutUs;
@@ -93,6 +96,39 @@ class HomeController extends Controller
         return redirect()->back();
     } 
 
+    public function questionnaire($type)
+    {
+        $title = 'قياس أثر التدريب للموظف';
+        $view = 'traning';
+        if($type == 'traning'){
+            $title = 'قياس أثر التدريب للموظف';
+            $view = 'traning';
+        }elseif($type == 'volunteers'){
+            $title = 'قياس رضا المتطوعين';
+            $view = 'volunteers';
+        }elseif($type == 'courses'){ 
+            $title = 'تقييم دورة تدريبية بمكتب التطوير المؤسسي';
+            $view = 'courses';
+        }
+        return view('frontend.questionnaire.'.$view,compact('type','title'));
+    }
+
+    public function questionnaire_store(Request $request){
+        $request->validate([
+            'type' => 'in:traning,volunteers,courses'
+        ]);
+
+        if($request->type == 'traning'){
+            QuestionnaireTraning::create($request->all());
+        }elseif($request->type == 'volunteers'){
+            QuestionnaireVolunteer::create($request->all());
+        }elseif($request->type == 'courses'){
+            QuestionnaireCourse::create($request->all());
+        }
+        
+        alert('تم أرسال التقييم بنجاح', '', 'success');
+        return redirect()->back();
+    }
     public function video()
     {
         return view('frontend.video');

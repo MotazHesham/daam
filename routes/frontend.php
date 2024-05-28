@@ -12,6 +12,8 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     Route::post('memperships/store', 'HomeController@store_mempership')->name('memperships.store');
 
     Route::post('subscribe', 'HomeController@subscribe')->name('subscribe'); 
+    Route::get('questionnaire/{type}', 'HomeController@questionnaire')->name('questionnaire');
+    Route::post('questionnaire/store', 'HomeController@questionnaire_store')->name('questionnaire.store');
     Route::get('about', 'HomeController@about')->name('about');
     Route::get('chairman', 'HomeController@chairman')->name('chairman');
     Route::get('terms', 'HomeController@terms')->name('terms');

@@ -203,7 +203,17 @@
                                                     </a></li>
                                             </ul>
                                         </li>
-                                        <li href="#">   <a href="{{ route('frontend.posts', 'blog') }}">المدونة</a></li>
+                                        <li class="dropdown @if(request()->is("questionnaire/traning") || request()->is("questionnaire/volunteers") || request()->is("questionnaire/courses")) active @endif">
+                                            <a href="#">  الاستبيانات</a>
+                                            <ul class="submenu">
+                                                <li><a href="{{ route('frontend.questionnaire', 'traning') }}">  <b> * </b>قياس أثر التدريب للموظف </a>
+                                                </li> 
+                                                <li><a href="{{ route('frontend.questionnaire', 'volunteers') }}">  <b> * </b>قياس رضا المتطوعين   </a>
+                                                </li> 
+                                                <li><a href="{{ route('frontend.questionnaire', 'courses') }}">    <b> * </b>تقييم دورة تدريبية بمكتب التطوير المؤسسي </a>
+                                                </li> 
+                                            </ul>
+                                        </li> 
                                         <li class="dropdown @if(request()->is("contacts/contact") || request()->is("contacts/suggest") || request()->is("contacts/complaints")) active @endif">
                                             <a href="#"> صوتك مسموع</a>
                                             <ul class="submenu">

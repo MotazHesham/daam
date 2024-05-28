@@ -123,6 +123,48 @@
             </a>
         </li>
         @endcan
+        @can('questionnaire')
+        <li
+            class="c-sidebar-nav-dropdown {{ request()->is('admin/questionnaire*') ? 'c-show' : '' }} ">
+            <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                <i class="fa-fw fas fa-chart-bar c-sidebar-nav-icon">
+
+                </i>
+                الاستبيانات
+            </a>
+            <ul class="c-sidebar-nav-dropdown-items"> 
+                <li class="c-sidebar-nav-item">
+                    <a href="{{ route('admin.questionnaire.traning') }}"
+                        class="c-sidebar-nav-link {{ request()->is('admin/questionnaire/traning') ? 'c-active' : '' }}">
+                        <i class="fa-fw fas fa-chart-line c-sidebar-nav-icon">
+
+                        </i>
+                        قياس أثر التدريب للموظف
+
+                    </a>
+                </li>  
+                <li class="c-sidebar-nav-item">
+                    <a href="{{ route('admin.questionnaire.volunteers') }}"
+                        class="c-sidebar-nav-link {{ request()->is('admin/questionnaire/volunteers') ? 'c-active' : '' }}">
+                        <i class="fa-fw fas fa-chart-line c-sidebar-nav-icon">
+
+                        </i>
+                        قياس رضا المتطوعين
+
+                    </a>
+                </li>  
+                <li class="c-sidebar-nav-item">
+                    <a href="{{ route('admin.questionnaire.courses') }}"
+                        class="c-sidebar-nav-link {{ request()->is('admin/questionnaire/courses') ? 'c-active' : '' }}">
+                        <i class="fa-fw fas fa-chart-line c-sidebar-nav-icon">
+
+                        </i>
+                        تقييم دورة تدريبية<br> بمكتب التطوير المؤسسي
+                    </a>
+                </li>  
+            </ul>
+        </li>
+        @endcan
         @can('post_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route('admin.posts.index') }}"

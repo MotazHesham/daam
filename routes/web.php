@@ -166,6 +166,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('memperships/media', 'MempershipsController@storeMedia')->name('memperships.storeMedia');
     Route::post('memperships/ckmedia', 'MempershipsController@storeCKEditorImages')->name('memperships.storeCKEditorImages');
     Route::resource('memperships', 'MempershipsController');
+
+
+    // questionneries
+    Route::get('questionnaire/traning','QuestionnaireController@traning')->name('questionnaire.traning');
+    Route::get('questionnaire/traning/{id}','QuestionnaireController@traning_show')->name('questionnaire.traning.show');
+    Route::get('questionnaire/volunteers','QuestionnaireController@volunteers')->name('questionnaire.volunteers');
+    Route::get('questionnaire/volunteers/{id}','QuestionnaireController@volunteers_show')->name('questionnaire.volunteers.show');
+    Route::get('questionnaire/courses','QuestionnaireController@courses')->name('questionnaire.courses');
+    Route::get('questionnaire/courses/{id}','QuestionnaireController@courses_show')->name('questionnaire.courses.show');
     
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
