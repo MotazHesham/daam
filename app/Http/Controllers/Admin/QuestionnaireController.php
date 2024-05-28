@@ -152,7 +152,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireVolunteer',
         ];
@@ -168,7 +168,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireVolunteer',
         ];
@@ -184,7 +184,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireVolunteer',
         ];
@@ -200,7 +200,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireVolunteer',
         ];
@@ -216,7 +216,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireVolunteer',
         ];
@@ -232,7 +232,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireVolunteer',
         ];
@@ -248,7 +248,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireVolunteer',
         ];
@@ -264,7 +264,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireVolunteer',
         ];
@@ -280,7 +280,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireVolunteer',
         ];
@@ -422,7 +422,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -438,7 +438,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -454,7 +454,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -470,7 +470,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -486,7 +486,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -502,7 +502,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -518,7 +518,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -534,7 +534,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -550,7 +550,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -566,7 +566,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-4',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -582,7 +582,7 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-2',
+            'column_class'          => 'col-md-4',
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];

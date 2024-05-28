@@ -2,27 +2,27 @@
 @section('content') 
     <div class="row"> 
         <div class="{{ $chart6->options['column_class'] }} mb-5">
-            <h5>{!! $chart6->options['chart_title'] !!}</h5>
+            <b>{!! $chart6->options['chart_title'] !!}</b>
             {!! $chart6->renderHtml() !!}
         </div>
         <div class="{{ $chart7->options['column_class'] }} mb-5">
-            <h5>{!! $chart7->options['chart_title'] !!}</h5>
+            <b>{!! $chart7->options['chart_title'] !!}</b>
             {!! $chart7->renderHtml() !!}
         </div>
         <div class="{{ $chart8->options['column_class'] }} mb-5">
-            <h5>{!! $chart8->options['chart_title'] !!}</h5>
+            <b>{!! $chart8->options['chart_title'] !!}</b>
             {!! $chart8->renderHtml() !!}
         </div>
         <div class="{{ $chart9->options['column_class'] }} mb-5">
-            <h5>{!! $chart9->options['chart_title'] !!}</h5>
+            <b>{!! $chart9->options['chart_title'] !!}</b>
             {!! $chart9->renderHtml() !!}
         </div>
         <div class="{{ $chart10->options['column_class'] }} mb-5">
-            <h5>{!! $chart10->options['chart_title'] !!}</h5>
+            <b>{!! $chart10->options['chart_title'] !!}</b>
             {!! $chart10->renderHtml() !!}
         </div>
         <div class="{{ $chart11->options['column_class'] }} mb-5">
-            <h5>{!! $chart11->options['chart_title'] !!}</h5>
+            <b>{!! $chart11->options['chart_title'] !!}</b>
             {!! $chart11->renderHtml() !!}
         </div>
     </div>
@@ -70,12 +70,14 @@
 @endsection
 @section('scripts')
     @parent 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>{!! $chart6->renderJs() !!}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>{!! $chart7->renderJs() !!}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>{!! $chart8->renderJs() !!}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>{!! $chart9->renderJs() !!}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>{!! $chart10->renderJs() !!}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>{!! $chart11->renderJs() !!}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+    {!! $chart6->renderJs() !!}
+    {!! $chart7->renderJs() !!}
+    {!! $chart8->renderJs() !!}
+    {!! $chart9->renderJs() !!}
+    {!! $chart10->renderJs() !!}
+    {!! $chart11->renderJs() !!}
     
     <script>
         $(function() {
