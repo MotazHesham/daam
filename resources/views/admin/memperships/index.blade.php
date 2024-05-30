@@ -2,7 +2,7 @@
 @section('content') 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="#" onclick="copyToClipboard()">
+            <a class="btn btn-success" href="#" onclick="copyToClipboard('{{ route('frontend.joining_form_1') }}')">
                 رابط التسجيل
             </a>
         </div>
@@ -140,18 +140,7 @@
             $(".hijri-date-default").hijriDatePicker();
         }
     </script>
-    <script>
-        
-        function copyToClipboard() {
-            // Get the text field
-            var copyText = "{{ route('frontend.joining_form_1') }}"; 
-            
-            // Copy the text inside the text field
-            navigator.clipboard.writeText(copyText);
-            
-            // Alert the copied text
-            alert("Copied the text: " + copyText);
-        }
+    <script> 
         $(function() {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
             @can('mempership_delete')

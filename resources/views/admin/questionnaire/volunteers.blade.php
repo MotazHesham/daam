@@ -38,6 +38,13 @@
         {!! $chart9->renderHtml() !!}
     </div> 
 </div>
+<div style="margin-bottom: 10px;" class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-success" href="#" onclick="copyToClipboard('{{ route('frontend.questionnaire','volunteers') }}')">
+            رابط الاستبيان
+        </a>
+    </div>
+</div> 
     <div class="card">
         <div class="card-header">
             قياس رضا المتطوعين

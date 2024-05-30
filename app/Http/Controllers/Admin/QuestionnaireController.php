@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\QuestionnaireCourse;
+use App\Models\QuestionnaireMember;
 use App\Models\QuestionnaireTraning;
 use App\Models\QuestionnaireVolunteer;
 use Illuminate\Http\Request;
@@ -616,5 +617,150 @@ class QuestionnaireController extends Controller
         $raw = QuestionnaireCourse::findOrfail($id);
 
         return view('admin.questionnaire.courses_show',compact('raw'));
+    }
+
+    
+    public function members(Request $request)
+    {
+
+
+        $settings1 = [
+            'chart_title'           => QuestionnaireMember::Q_SELECT['question_1'],
+            'chart_type'            => 'doughnut',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireMember',
+            'group_by_field'        => 'question_1', 
+            'aggregate_function'    => 'count', 
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-3',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireMember',
+        ];
+
+        $chart1 = new LaravelChart($settings1);
+
+        $settings2 = [
+            'chart_title'           => QuestionnaireMember::Q_SELECT['question_2'],
+            'chart_type'            => 'doughnut',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireMember',
+            'group_by_field'        => 'question_2', 
+            'aggregate_function'    => 'count', 
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-3',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireMember',
+        ];
+
+        $chart2 = new LaravelChart($settings2);
+
+        $settings3 = [
+            'chart_title'           => QuestionnaireMember::Q_SELECT['question_3'],
+            'chart_type'            => 'doughnut',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireMember',
+            'group_by_field'        => 'question_3', 
+            'aggregate_function'    => 'count', 
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-3',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireMember',
+        ];
+
+        $chart3 = new LaravelChart($settings3);
+
+        $settings4 = [
+            'chart_title'           => QuestionnaireMember::Q_SELECT['question_4'],
+            'chart_type'            => 'doughnut',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireMember',
+            'group_by_field'        => 'question_4', 
+            'aggregate_function'    => 'count', 
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-3',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireMember',
+        ];
+
+        $chart4 = new LaravelChart($settings4);
+
+        $settings5 = [
+            'chart_title'           => QuestionnaireMember::Q_SELECT['question_5'],
+            'chart_type'            => 'doughnut',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireMember',
+            'group_by_field'        => 'question_5', 
+            'aggregate_function'    => 'count', 
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-3',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireMember',
+        ];
+
+        $chart5 = new LaravelChart($settings5);
+
+        $settings6 = [
+            'chart_title'           => QuestionnaireMember::Q_SELECT['question_6'],
+            'chart_type'            => 'doughnut',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireMember',
+            'group_by_field'        => 'question_6', 
+            'aggregate_function'    => 'count', 
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-3',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireMember',
+        ];
+
+        $chart6 = new LaravelChart($settings6);
+        
+        $settings7 = [
+            'chart_title'           => QuestionnaireMember::Q_SELECT['question_7'],
+            'chart_type'            => 'doughnut',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireMember',
+            'group_by_field'        => 'question_7', 
+            'aggregate_function'    => 'count', 
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-3',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireMember',
+        ];
+
+        $chart7 = new LaravelChart($settings7); 
+
+        if ($request->ajax()) {
+            $query = QuestionnaireMember::query()->select(sprintf('%s.*', (new QuestionnaireMember)->table));
+            $table = Datatables::of($query);
+
+            $table->addColumn('placeholder', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+
+            $table->editColumn('actions', function ($row) { 
+
+                return '<a class="btn btn-xs btn-primary" href="' . route('admin.questionnaire.members.show', $row->id) .'">
+                    '. trans('global.view') .'
+                </a>';
+            }); 
+
+            $table->rawColumns(['actions', 'placeholder']);
+
+            return $table->make(true);
+        }
+
+        return view('admin.questionnaire.members',compact('chart1','chart2','chart3','chart4','chart5','chart6','chart7'));
+    }
+    public function members_show($id){
+
+        $raw = QuestionnaireMember::findOrfail($id);
+
+        return view('admin.questionnaire.members_show',compact('raw'));
     }
 }

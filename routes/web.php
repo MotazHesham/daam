@@ -175,6 +175,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('questionnaire/volunteers/{id}','QuestionnaireController@volunteers_show')->name('questionnaire.volunteers.show');
     Route::get('questionnaire/courses','QuestionnaireController@courses')->name('questionnaire.courses');
     Route::get('questionnaire/courses/{id}','QuestionnaireController@courses_show')->name('questionnaire.courses.show');
+    Route::get('questionnaire/members','QuestionnaireController@members')->name('questionnaire.members');
+    Route::get('questionnaire/members/{id}','QuestionnaireController@members_show')->name('questionnaire.members.show');
     
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');

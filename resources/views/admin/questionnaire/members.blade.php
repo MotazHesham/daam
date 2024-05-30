@@ -1,6 +1,5 @@
 @extends('layouts.admin')
-@section('content') 
-<h1>المدرب</h1>
+@section('content')  
 <div class="row"> 
     <div class="{{ $chart1->options['column_class'] }} mb-5">
         <b>{!! $chart1->options['chart_title'] !!}</b>
@@ -26,73 +25,21 @@
         <b>{!! $chart6->options['chart_title'] !!}</b>
         {!! $chart6->renderHtml() !!}
     </div>
-</div>
-<h1> المحتوي التدريبي</h1>
-<div class="row"> 
     <div class="{{ $chart7->options['column_class'] }} mb-5">
         <b>{!! $chart7->options['chart_title'] !!}</b>
         {!! $chart7->renderHtml() !!}
     </div>
-    <div class="{{ $chart8->options['column_class'] }} mb-5">
-        <b>{!! $chart8->options['chart_title'] !!}</b>
-        {!! $chart8->renderHtml() !!}
-    </div>
-    <div class="{{ $chart9->options['column_class'] }} mb-5">
-        <b>{!! $chart9->options['chart_title'] !!}</b>
-        {!! $chart9->renderHtml() !!}
-    </div> 
-    <div class="{{ $chart10->options['column_class'] }} mb-5">
-        <b>{!! $chart10->options['chart_title'] !!}</b>
-        {!! $chart10->renderHtml() !!}
-    </div> 
 </div> 
-<h1>المتدربين</h1>
-<div class="row"> 
-    <div class="{{ $chart11->options['column_class'] }} mb-5">
-        <b>{!! $chart11->options['chart_title'] !!}</b>
-        {!! $chart11->renderHtml() !!}
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="#" onclick="copyToClipboard('{{ route('frontend.questionnaire','members') }}')">
+                رابط الاستبيان
+            </a>
+        </div>
     </div> 
-    <div class="{{ $chart12->options['column_class'] }} mb-5">
-        <b>{!! $chart12->options['chart_title'] !!}</b>
-        {!! $chart12->renderHtml() !!}
-    </div> 
-</div> 
-<h1>المناخ التدريبي</h1>
-<div class="row"> 
-    <div class="{{ $chart13->options['column_class'] }} mb-5">
-        <b>{!! $chart13->options['chart_title'] !!}</b>
-        {!! $chart13->renderHtml() !!}
-    </div> 
-    <div class="{{ $chart14->options['column_class'] }} mb-5">
-        <b>{!! $chart14->options['chart_title'] !!}</b>
-        {!! $chart14->renderHtml() !!}
-    </div> 
-    <div class="{{ $chart15->options['column_class'] }} mb-5">
-        <b>{!! $chart15->options['chart_title'] !!}</b>
-        {!! $chart15->renderHtml() !!}
-    </div> 
-</div> 
-<h1>التقييم</h1>
-<div class="row"> 
-    <div class="{{ $chart16->options['column_class'] }} mb-5">
-        <b>{!! $chart16->options['chart_title'] !!}</b>
-        {!! $chart16->renderHtml() !!}
-    </div> 
-    <div class="{{ $chart17->options['column_class'] }} mb-5">
-        <b>{!! $chart17->options['chart_title'] !!}</b>
-        {!! $chart17->renderHtml() !!}
-    </div> 
-</div>
-<div style="margin-bottom: 10px;" class="row">
-    <div class="col-lg-12">
-        <a class="btn btn-success" href="#" onclick="copyToClipboard('{{ route('frontend.questionnaire','courses') }}')">
-            رابط الاستبيان
-        </a>
-    </div>
-</div> 
     <div class="card">
         <div class="card-header">
-            تقييم دورة تدريبية بمكتب التطوير المؤسسي
+            استبيان قياس رأي أعضاء الجمعية العمومية       
         </div>
 
         <div class="card-body">
@@ -106,16 +53,16 @@
                             id
                         </th>
                         <th>
-                            اسم الدورة
+                            اسم الجهة
                         </th>
                         <th>
-                            المدرب
+                            الاسم
                         </th>
                         <th>
-                            الترايخ
+                            الجوال
                         </th>
                         <th>
-                            المهنة
+                            البريد الالكتروني
                         </th> 
                         <th>
                             مقترح
@@ -139,18 +86,8 @@
     {!! $chart4->renderJs() !!}
     {!! $chart5->renderJs() !!}
     {!! $chart6->renderJs() !!}
-    {!! $chart7->renderJs() !!}
-    {!! $chart8->renderJs() !!}
-    {!! $chart9->renderJs() !!} 
-    {!! $chart10->renderJs() !!} 
-    {!! $chart11->renderJs() !!} 
-    {!! $chart12->renderJs() !!} 
-    {!! $chart13->renderJs() !!} 
-    {!! $chart14->renderJs() !!} 
-    {!! $chart15->renderJs() !!} 
-    {!! $chart16->renderJs() !!} 
-    {!! $chart17->renderJs() !!} 
-    <script>
+    {!! $chart7->renderJs() !!} 
+    <script> 
         $(function() {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons) 
 
@@ -160,7 +97,7 @@
                 serverSide: true,
                 retrieve: true,
                 aaSorting: [],
-                ajax: "{{ route('admin.questionnaire.courses') }}",
+                ajax: "{{ route('admin.questionnaire.members') }}",
                 columns: [{
                         data: 'placeholder',
                         name: 'placeholder'
@@ -170,20 +107,20 @@
                         name: 'id'
                     },
                     {
-                        data: 'course_name',
-                        name: 'course_name'
+                        data: 'company_name',
+                        name: 'company_name'
                     },
                     {
-                        data: 'trainer',
-                        name: 'trainer'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
-                        data: 'date',
-                        name: 'date'
+                        data: 'phone',
+                        name: 'phone'
                     },
                     {
-                        data: 'job',
-                        name: 'job'
+                        data: 'email',
+                        name: 'email'
                     },  
                     {
                         data: 'suggestion',

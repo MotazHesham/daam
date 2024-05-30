@@ -26,6 +26,13 @@
             {!! $chart11->renderHtml() !!}
         </div>
     </div>
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="#" onclick="copyToClipboard('{{ route('frontend.questionnaire','traning') }}')">
+                رابط الاستبيان
+            </a>
+        </div>
+    </div> 
     <div class="card">
         <div class="card-header">
             قياس أثر التدريب للموظف
@@ -79,7 +86,7 @@
     {!! $chart10->renderJs() !!}
     {!! $chart11->renderJs() !!}
     
-    <script>
+    <script> 
         $(function() {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons) 
 

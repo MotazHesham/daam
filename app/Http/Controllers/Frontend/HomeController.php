@@ -12,6 +12,7 @@ use App\Models\Partner;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\QuestionnaireCourse;
+use App\Models\QuestionnaireMember;
 use App\Models\QuestionnaireTraning;
 use App\Models\QuestionnaireVolunteer;
 use App\Models\Report;
@@ -109,13 +110,16 @@ class HomeController extends Controller
         }elseif($type == 'courses'){ 
             $title = 'تقييم دورة تدريبية بمكتب التطوير المؤسسي';
             $view = 'courses';
+        }elseif($type == 'members'){ 
+            $title = 'استبيان قياس رأي أعضاء الجمعية العمومية';
+            $view = 'members';
         }
         return view('frontend.questionnaire.'.$view,compact('type','title'));
     }
 
     public function questionnaire_store(Request $request){
         $request->validate([
-            'type' => 'in:traning,volunteers,courses'
+            'type' => 'in:traning,volunteers,courses,members'
         ]);
 
         if($request->type == 'traning'){
@@ -124,6 +128,8 @@ class HomeController extends Controller
             QuestionnaireVolunteer::create($request->all());
         }elseif($request->type == 'courses'){
             QuestionnaireCourse::create($request->all());
+        }elseif($request->type == 'members'){
+            QuestionnaireMember::create($request->all());
         }
         
         alert('تم أرسال التقييم بنجاح', '', 'success');

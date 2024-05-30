@@ -115,7 +115,7 @@
                     <input class="form-control" type="text" name="postal_code" id="postal_code" placeholder="الرمز البريدي" value="{{ old('postal_code', '') }}"> 
                 </div>
                 <div class="col-md-4 form-group">  
-                    <input class="form-control" type="email" name="email" id="email" placeholder="البريد الاكتروني" value="{{ old('email', '') }}"> 
+                    <input class="form-control" type="email" name="email" id="email" placeholder="البريد الألكتروني" value="{{ old('email', '') }}"> 
                 </div>
             </div>
 
