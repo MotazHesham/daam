@@ -43,7 +43,7 @@
                             <form action="{{ route('frontend.questionnaire.store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="type" value="{{ $type }}" id="">
-                                <input type="hidden" name="course_type" value="1">
+                                <input type="hidden" name="course_type" value="2">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-grp">

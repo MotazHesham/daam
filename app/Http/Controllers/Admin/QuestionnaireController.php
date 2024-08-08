@@ -316,7 +316,8 @@ class QuestionnaireController extends Controller
         return view('admin.questionnaire.volunteers_show',compact('raw'));
     }
     public function courses(Request $request)
-    {
+    { 
+        $course_type = request('course_type') ?? 1;
 
         $settings1 = [
             'chart_title'           => QuestionnaireCourse::Q_SELECT['question_1'],
@@ -326,6 +327,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_1', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -342,6 +344,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_2', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -358,6 +361,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_3', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -374,6 +378,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_4', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -390,6 +395,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_5', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -406,6 +412,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_6', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -422,6 +429,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_7', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -438,6 +446,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_8', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -454,6 +463,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_9', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -470,6 +480,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_10', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -486,6 +497,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_11', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -502,6 +514,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_12', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -518,6 +531,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_13', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -534,6 +548,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_14', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -550,6 +565,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_15', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -566,6 +582,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_16', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-4',
             'entries_number'        => '5',
@@ -582,6 +599,7 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_17', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'where_raw'             => 'course_type = ' . $course_type,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-4',
             'entries_number'        => '5',
@@ -592,7 +610,7 @@ class QuestionnaireController extends Controller
 
 
         if ($request->ajax()) {
-            $query = QuestionnaireCourse::query()->select(sprintf('%s.*', (new QuestionnaireCourse)->table));
+            $query = QuestionnaireCourse::where('course_type',request('course_type') ?? 1)->select(sprintf('%s.*', (new QuestionnaireCourse)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -601,8 +619,8 @@ class QuestionnaireController extends Controller
             $table->editColumn('actions', function ($row) { 
 
                 return '<a class="btn btn-xs btn-primary" href="' . route('admin.questionnaire.courses.show', $row->id) .'">
-                    '. trans('global.view') .'
-                </a>';
+                            '. trans('global.view') .'
+                        </a>';
             }); 
 
             $table->rawColumns(['actions', 'placeholder']);
@@ -610,14 +628,14 @@ class QuestionnaireController extends Controller
             return $table->make(true);
         }
         return view('admin.questionnaire.courses',compact('chart1','chart2','chart3','chart4','chart5','chart6','chart7','chart8','chart9','chart10'
-        ,'chart11','chart12','chart13','chart14','chart15','chart16','chart17'));
+        ,'chart11','chart12','chart13','chart14','chart15','chart16','chart17','course_type'));
     }
     public function courses_show($id){
 
         $raw = QuestionnaireCourse::findOrfail($id);
 
         return view('admin.questionnaire.courses_show',compact('raw'));
-    }
+    } 
 
     
     public function members(Request $request)

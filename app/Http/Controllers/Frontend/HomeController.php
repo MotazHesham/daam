@@ -110,6 +110,9 @@ class HomeController extends Controller
         }elseif($type == 'courses'){ 
             $title = 'تقييم دورة تدريبية بمكتب التطوير المؤسسي';
             $view = 'courses';
+        }elseif($type == 'courses_2'){ 
+            $title = 'تقييم دورة تدريبية بمكتب التطوير المؤسسي (قسم الجودة)';
+            $view = 'courses_2';
         }elseif($type == 'members'){ 
             $title = 'استبيان قياس رأي أعضاء الجمعية العمومية';
             $view = 'members';
@@ -119,7 +122,7 @@ class HomeController extends Controller
 
     public function questionnaire_store(Request $request){
         $request->validate([
-            'type' => 'in:traning,volunteers,courses,members'
+            'type' => 'in:traning,volunteers,courses,members,courses_2'
         ]);
 
         if($request->type == 'traning'){
@@ -127,6 +130,8 @@ class HomeController extends Controller
         }elseif($request->type == 'volunteers'){
             QuestionnaireVolunteer::create($request->all());
         }elseif($request->type == 'courses'){
+            QuestionnaireCourse::create($request->all());
+        }elseif($request->type == 'courses_2'){
             QuestionnaireCourse::create($request->all());
         }elseif($request->type == 'members'){
             QuestionnaireMember::create($request->all());

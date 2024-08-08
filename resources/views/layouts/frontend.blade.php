@@ -423,6 +423,20 @@
                                         <!--<li><a href="{{ route('frontend.members','active') }}">الخدمات الالكترونية</a></li>-->
                                         <li><a href="{{ route('frontend.contacts','suggest') }}">صوتك مسموع</a></li>
                                     </ul>
+                                    <a href="{{ asset('cert.pdf') }}">
+                                        <div style="border: 1px solid white; padding: 10px 12px;border-radius:25px;margin-top:20px">
+                                            <div style="display: flex;justify-content:space-between">
+                                                <small>مسجل لدي</small> 
+                                                <small>Registered on</small> 
+                                            </div>
+                                            <div class="text-center">
+                                                <img src="{{ asset('cert.png') }}" alt="" style="width: 180px;margin: 15px 0 27px 0;">
+                                                <br>
+                                                <b>رقم الترخيص 1049 <i class="far fa-check-circle"></i></b>
+                                            </div>
+                                            
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -466,7 +480,7 @@
                                     <li>تصميم وبرمجة<a href="#"> تكامل الرؤى</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>

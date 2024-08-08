@@ -16,7 +16,13 @@ class QuestionnaireCourse extends Model
         'updated_at', 
     ];
 
+    const COURSE_TYPE = [
+        '1' => 'تقييم دورة تدريبية بمكتب التطوير المؤسسي',
+        '2' => 'تقييم دورة تدريبية بمكتب التطوير المؤسسي قسم الجودة',
+    ];
+
     protected $fillable = [
+        'course_type',
         'course_name',
         'trainer',
         'date',

@@ -52,8 +52,12 @@ class MempershipsController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $actions = '<a class="btn btn-xs btn-primary" href="'. route('admin.memperships.show', $row->id) .'">
-                                ' . trans('global.view')  .'
+                $actions = '<a class="btn btn-xs btn-dark" href="'. route('admin.memperships.print', $row->id) .'">
+                                طباعة
+                            </a>'; 
+                            
+                $actions .= '<a class="btn btn-xs btn-primary" href="'. route('admin.memperships.show', $row->id) .'">
+                                عرض
                             </a>'; 
                 if(file_exists( public_path() . '/storage/memperships/mempership_'.$row->id.'.pdf')){
                     $text_button = 'تعديل الشهادة';
@@ -150,6 +154,11 @@ class MempershipsController extends Controller
     { 
 
         return view('admin.memperships.show', compact('mempership'));
+    }
+    public function print($id)
+    { 
+        $mempership = Mempership::findOrFail($id);
+        return view('admin.memperships.print', compact('mempership'));
     }
 
     public function destroy(Mempership $mempership)

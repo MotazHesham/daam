@@ -163,6 +163,17 @@
                     </a>
                 </li>  
                 <li class="c-sidebar-nav-item">
+                    <a href="{{ route('admin.questionnaire.courses.type',['course_type' => '2']) }}"
+                        class="c-sidebar-nav-link {{ request()->is('admin/questionnaire/courses/type') ? 'c-active' : '' }}">
+                        <i class="fa-fw fas fa-chart-line c-sidebar-nav-icon">
+
+                        </i>
+                        تقييم دورة تدريبية
+                        <br> بمكتب التطوير المؤسسي
+                        <br> قسم الجودة
+                    </a>
+                </li>  
+                <li class="c-sidebar-nav-item">
                     <a href="{{ route('admin.questionnaire.members') }}"
                         class="c-sidebar-nav-link {{ request()->is('admin/questionnaire/members') ? 'c-active' : '' }}">
                         <i class="fa-fw fas fa-chart-line c-sidebar-nav-icon">

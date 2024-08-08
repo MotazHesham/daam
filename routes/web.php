@@ -165,6 +165,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('memperships/send_certificate', 'MempershipsController@send_certificate')->name('memperships.send_certificate');
     Route::post('memperships/media', 'MempershipsController@storeMedia')->name('memperships.storeMedia');
     Route::post('memperships/ckmedia', 'MempershipsController@storeCKEditorImages')->name('memperships.storeCKEditorImages');
+    Route::get('memperships/print/{id}', 'MempershipsController@print')->name('memperships.print');
     Route::resource('memperships', 'MempershipsController');
 
 
@@ -174,7 +175,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('questionnaire/volunteers','QuestionnaireController@volunteers')->name('questionnaire.volunteers');
     Route::get('questionnaire/volunteers/{id}','QuestionnaireController@volunteers_show')->name('questionnaire.volunteers.show');
     Route::get('questionnaire/courses','QuestionnaireController@courses')->name('questionnaire.courses');
-    Route::get('questionnaire/courses/{id}','QuestionnaireController@courses_show')->name('questionnaire.courses.show');
+    Route::get('questionnaire/courses/type/{course_type}','QuestionnaireController@courses')->name('questionnaire.courses.type');
+    Route::get('questionnaire/courses/{id}','QuestionnaireController@courses_show')->name('questionnaire.courses.show'); 
     Route::get('questionnaire/members','QuestionnaireController@members')->name('questionnaire.members');
     Route::get('questionnaire/members/{id}','QuestionnaireController@members_show')->name('questionnaire.members.show');
     

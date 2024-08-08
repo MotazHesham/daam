@@ -85,9 +85,15 @@
 </div>
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
-        <a class="btn btn-success" href="#" onclick="copyToClipboard('{{ route('frontend.questionnaire','courses') }}')">
-            رابط الاستبيان
-        </a>
+        @if(request('course_type'))
+            <a class="btn btn-success" href="#" onclick="copyToClipboard('{{ route('frontend.questionnaire','courses_2') }}')">
+                رابط الاستبيان
+            </a>
+        @else
+            <a class="btn btn-success" href="#" onclick="copyToClipboard('{{ route('frontend.questionnaire','courses') }}')">
+                رابط الاستبيان
+            </a>
+        @endif
     </div>
 </div> 
     <div class="card">
@@ -160,7 +166,7 @@
                 serverSide: true,
                 retrieve: true,
                 aaSorting: [],
-                ajax: "{{ route('admin.questionnaire.courses') }}",
+                ajax: "{{ route('admin.questionnaire.courses',['course_type' => $course_type]) }}",
                 columns: [{
                         data: 'placeholder',
                         name: 'placeholder'
