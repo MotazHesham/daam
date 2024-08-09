@@ -180,6 +180,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('questionnaire/members','QuestionnaireController@members')->name('questionnaire.members');
     Route::get('questionnaire/members/{id}','QuestionnaireController@members_show')->name('questionnaire.members.show');
     
+    // Donations
+    Route::delete('donations/destroy', 'DonationsController@massDestroy')->name('donations.massDestroy');
+    Route::post('donations/parse-csv-import', 'DonationsController@parseCsvImport')->name('donations.parseCsvImport');
+    Route::post('donations/process-csv-import', 'DonationsController@processCsvImport')->name('donations.processCsvImport');
+    Route::resource('donations', 'DonationsController');
+
+    // Beneficiaries
+    Route::delete('beneficiaries/destroy', 'BeneficiariesController@massDestroy')->name('beneficiaries.massDestroy');
+    Route::get('beneficiaries/status/{id}/{status}', 'BeneficiariesController@status')->name('beneficiaries.status');
+    Route::post('beneficiaries/status2', 'BeneficiariesController@status2')->name('beneficiaries.status2');
+    Route::post('beneficiaries/media', 'BeneficiariesController@storeMedia')->name('beneficiaries.storeMedia');
+    Route::post('beneficiaries/ckmedia', 'BeneficiariesController@storeCKEditorImages')->name('beneficiaries.storeCKEditorImages');
+    Route::post('beneficiaries/parse-csv-import', 'BeneficiariesController@parseCsvImport')->name('beneficiaries.parseCsvImport');
+    Route::post('beneficiaries/process-csv-import', 'BeneficiariesController@processCsvImport')->name('beneficiaries.processCsvImport');
+    Route::resource('beneficiaries', 'BeneficiariesController');
+    
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');

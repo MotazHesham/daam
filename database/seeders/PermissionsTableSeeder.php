@@ -9,553 +9,611 @@ class PermissionsTableSeeder extends Seeder
 {
     public function run()
     {
+        $i = 1;
+        
         $permissions = [
             [
-                'id'    => 1,
+                'id'    => $i++,
                 'title' => 'user_management_access',
             ],
             [
-                'id'    => 2,
+                'id'    => $i++,
                 'title' => 'permission_create',
             ],
             [
-                'id'    => 3,
+                'id'    => $i++,
                 'title' => 'permission_edit',
             ],
             [
-                'id'    => 4,
+                'id'    => $i++,
                 'title' => 'permission_show',
             ],
             [
-                'id'    => 5,
+                'id'    => $i++,
                 'title' => 'permission_delete',
             ],
             [
-                'id'    => 6,
+                'id'    => $i++,
                 'title' => 'permission_access',
             ],
             [
-                'id'    => 7,
+                'id'    => $i++,
                 'title' => 'role_create',
             ],
             [
-                'id'    => 8,
+                'id'    => $i++,
                 'title' => 'role_edit',
             ],
             [
-                'id'    => 9,
+                'id'    => $i++,
                 'title' => 'role_show',
             ],
             [
-                'id'    => 10,
+                'id'    => $i++,
                 'title' => 'role_delete',
             ],
             [
-                'id'    => 11,
+                'id'    => $i++,
                 'title' => 'role_access',
             ],
             [
-                'id'    => 12,
+                'id'    => $i++,
                 'title' => 'user_create',
             ],
             [
-                'id'    => 13,
+                'id'    => $i++,
                 'title' => 'user_edit',
             ],
             [
-                'id'    => 14,
+                'id'    => $i++,
                 'title' => 'user_show',
             ],
             [
-                'id'    => 15,
+                'id'    => $i++,
                 'title' => 'user_delete',
             ],
             [
-                'id'    => 16,
+                'id'    => $i++,
                 'title' => 'user_access',
             ],
             [
-                'id'    => 17,
+                'id'    => $i++,
                 'title' => 'audit_log_show',
             ],
             [
-                'id'    => 18,
+                'id'    => $i++,
                 'title' => 'audit_log_access',
             ],
             [
-                'id'    => 19,
+                'id'    => $i++,
                 'title' => 'user_alert_create',
             ],
             [
-                'id'    => 20,
+                'id'    => $i++,
                 'title' => 'user_alert_show',
             ],
             [
-                'id'    => 21,
+                'id'    => $i++,
                 'title' => 'user_alert_delete',
             ],
             [
-                'id'    => 22,
+                'id'    => $i++,
                 'title' => 'user_alert_access',
             ],
             [
-                'id'    => 23,
+                'id'    => $i++,
                 'title' => 'setting_create',
             ],
             [
-                'id'    => 24,
+                'id'    => $i++,
                 'title' => 'setting_edit',
             ],
             [
-                'id'    => 25,
+                'id'    => $i++,
                 'title' => 'setting_show',
             ],
             [
-                'id'    => 26,
+                'id'    => $i++,
                 'title' => 'setting_delete',
             ],
             [
-                'id'    => 27,
+                'id'    => $i++,
                 'title' => 'setting_access',
             ],
             [
-                'id'    => 28,
+                'id'    => $i++,
                 'title' => 'frontend_setting_access',
             ],
             [
-                'id'    => 29,
+                'id'    => $i++,
                 'title' => 'slider_create',
             ],
             [
-                'id'    => 30,
+                'id'    => $i++,
                 'title' => 'slider_edit',
             ],
             [
-                'id'    => 31,
+                'id'    => $i++,
                 'title' => 'slider_show',
             ],
             [
-                'id'    => 32,
+                'id'    => $i++,
                 'title' => 'slider_delete',
             ],
             [
-                'id'    => 33,
+                'id'    => $i++,
                 'title' => 'slider_access',
             ],
             [
-                'id'    => 34,
+                'id'    => $i++,
                 'title' => 'hawkma_mangment_access',
             ],
             [
-                'id'    => 35,
+                'id'    => $i++,
                 'title' => 'hawkam_category_create',
             ],
             [
-                'id'    => 36,
+                'id'    => $i++,
                 'title' => 'hawkam_category_edit',
             ],
             [
-                'id'    => 37,
+                'id'    => $i++,
                 'title' => 'hawkam_category_show',
             ],
             [
-                'id'    => 38,
+                'id'    => $i++,
                 'title' => 'hawkam_category_delete',
             ],
             [
-                'id'    => 39,
+                'id'    => $i++,
                 'title' => 'hawkam_category_access',
             ],
             [
-                'id'    => 40,
+                'id'    => $i++,
                 'title' => 'hawkma_create',
             ],
             [
-                'id'    => 41,
+                'id'    => $i++,
                 'title' => 'hawkma_edit',
             ],
             [
-                'id'    => 42,
+                'id'    => $i++,
                 'title' => 'hawkma_show',
             ],
             [
-                'id'    => 43,
+                'id'    => $i++,
                 'title' => 'hawkma_delete',
             ],
             [
-                'id'    => 44,
+                'id'    => $i++,
                 'title' => 'hawkma_access',
             ],
             [
-                'id'    => 45,
+                'id'    => $i++,
                 'title' => 'post_create',
             ],
             [
-                'id'    => 46,
+                'id'    => $i++,
                 'title' => 'post_edit',
             ],
             [
-                'id'    => 47,
+                'id'    => $i++,
                 'title' => 'post_show',
             ],
             [
-                'id'    => 48,
+                'id'    => $i++,
                 'title' => 'post_delete',
             ],
             [
-                'id'    => 49,
+                'id'    => $i++,
                 'title' => 'post_access',
             ],
             [
-                'id'    => 50,
+                'id'    => $i++,
                 'title' => 'partner_create',
             ],
             [
-                'id'    => 51,
+                'id'    => $i++,
                 'title' => 'partner_edit',
             ],
             [
-                'id'    => 52,
+                'id'    => $i++,
                 'title' => 'partner_show',
             ],
             [
-                'id'    => 53,
+                'id'    => $i++,
                 'title' => 'partner_delete',
             ],
             [
-                'id'    => 54,
+                'id'    => $i++,
                 'title' => 'partner_access',
             ],
             [
-                'id'    => 55,
+                'id'    => $i++,
                 'title' => 'said_about_us_create',
             ],
             [
-                'id'    => 56,
+                'id'    => $i++,
                 'title' => 'said_about_us_edit',
             ],
             [
-                'id'    => 57,
+                'id'    => $i++,
                 'title' => 'said_about_us_show',
             ],
             [
-                'id'    => 58,
+                'id'    => $i++,
                 'title' => 'said_about_us_delete',
             ],
             [
-                'id'    => 59,
+                'id'    => $i++,
                 'title' => 'said_about_us_access',
             ],
             [
-                'id'    => 60,
+                'id'    => $i++,
                 'title' => 'project_create',
             ],
             [
-                'id'    => 61,
+                'id'    => $i++,
                 'title' => 'project_edit',
             ],
             [
-                'id'    => 62,
+                'id'    => $i++,
                 'title' => 'project_show',
             ],
             [
-                'id'    => 63,
+                'id'    => $i++,
                 'title' => 'project_delete',
             ],
             [
-                'id'    => 64,
+                'id'    => $i++,
                 'title' => 'project_access',
             ],
             [
-                'id'    => 65,
+                'id'    => $i++,
                 'title' => 'volunteering_managment_access',
             ],
             [
-                'id'    => 66,
+                'id'    => $i++,
                 'title' => 'volunteer_create',
             ],
             [
-                'id'    => 67,
+                'id'    => $i++,
                 'title' => 'volunteer_edit',
             ],
             [
-                'id'    => 68,
+                'id'    => $i++,
                 'title' => 'volunteer_show',
             ],
             [
-                'id'    => 69,
+                'id'    => $i++,
                 'title' => 'volunteer_delete',
             ],
             [
-                'id'    => 70,
+                'id'    => $i++,
                 'title' => 'volunteer_access',
             ],
             [
-                'id'    => 71,
+                'id'    => $i++,
                 'title' => 'volunteer_guide_create',
             ],
             [
-                'id'    => 72,
+                'id'    => $i++,
                 'title' => 'volunteer_guide_edit',
             ],
             [
-                'id'    => 73,
+                'id'    => $i++,
                 'title' => 'volunteer_guide_show',
             ],
             [
-                'id'    => 74,
+                'id'    => $i++,
                 'title' => 'volunteer_guide_delete',
             ],
             [
-                'id'    => 75,
+                'id'    => $i++,
                 'title' => 'volunteer_guide_access',
             ],
             [
-                'id'    => 76,
+                'id'    => $i++,
                 'title' => 'member_create',
             ],
             [
-                'id'    => 77,
+                'id'    => $i++,
                 'title' => 'member_edit',
             ],
             [
-                'id'    => 78,
+                'id'    => $i++,
                 'title' => 'member_show',
             ],
             [
-                'id'    => 79,
+                'id'    => $i++,
                 'title' => 'member_delete',
             ],
             [
-                'id'    => 80,
+                'id'    => $i++,
                 'title' => 'member_access',
             ],
             [
-                'id'    => 81,
+                'id'    => $i++,
                 'title' => 'contact_mangment_access',
             ],
             [
-                'id'    => 82,
+                'id'    => $i++,
                 'title' => 'contact_create',
             ],
             [
-                'id'    => 83,
+                'id'    => $i++,
                 'title' => 'contact_edit',
             ],
             [
-                'id'    => 84,
+                'id'    => $i++,
                 'title' => 'contact_show',
             ],
             [
-                'id'    => 85,
+                'id'    => $i++,
                 'title' => 'contact_delete',
             ],
             [
-                'id'    => 86,
+                'id'    => $i++,
                 'title' => 'contact_access',
             ],
             [
-                'id'    => 87,
+                'id'    => $i++,
                 'title' => 'subscribe_create',
             ],
             [
-                'id'    => 88,
+                'id'    => $i++,
                 'title' => 'subscribe_edit',
             ],
             [
-                'id'    => 89,
+                'id'    => $i++,
                 'title' => 'subscribe_show',
             ],
             [
-                'id'    => 90,
+                'id'    => $i++,
                 'title' => 'subscribe_delete',
             ],
             [
-                'id'    => 91,
+                'id'    => $i++,
                 'title' => 'subscribe_access',
             ],
             [
-                'id'    => 92,
+                'id'    => $i++,
                 'title' => 'course_create',
             ],
             [
-                'id'    => 93,
+                'id'    => $i++,
                 'title' => 'course_edit',
             ],
             [
-                'id'    => 94,
+                'id'    => $i++,
                 'title' => 'course_show',
             ],
             [
-                'id'    => 95,
+                'id'    => $i++,
                 'title' => 'course_delete',
             ],
             [
-                'id'    => 96,
+                'id'    => $i++,
                 'title' => 'course_access',
             ],
             [
-                'id'    => 97,
+                'id'    => $i++,
                 'title' => 'course_student_create',
             ],
             [
-                'id'    => 98,
+                'id'    => $i++,
                 'title' => 'course_student_edit',
             ],
             [
-                'id'    => 99,
+                'id'    => $i++,
                 'title' => 'course_student_show',
             ],
             [
-                'id'    => 100,
+                'id'    => $i++,
                 'title' => 'course_student_delete',
             ],
             [
-                'id'    => 101,
+                'id'    => $i++,
                 'title' => 'course_student_access',
             ],
             [
-                'id'    => 102,
+                'id'    => $i++,
                 'title' => 'task_management_access',
             ],
             [
-                'id'    => 103,
+                'id'    => $i++,
                 'title' => 'task_status_create',
             ],
             [
-                'id'    => 104,
+                'id'    => $i++,
                 'title' => 'task_status_edit',
             ],
             [
-                'id'    => 105,
+                'id'    => $i++,
                 'title' => 'task_status_show',
             ],
             [
-                'id'    => 106,
+                'id'    => $i++,
                 'title' => 'task_status_delete',
             ],
             [
-                'id'    => 107,
+                'id'    => $i++,
                 'title' => 'task_status_access',
             ],
             [
-                'id'    => 108,
+                'id'    => $i++,
                 'title' => 'task_tag_create',
             ],
             [
-                'id'    => 109,
+                'id'    => $i++,
                 'title' => 'task_tag_edit',
             ],
             [
-                'id'    => 110,
+                'id'    => $i++,
                 'title' => 'task_tag_show',
             ],
             [
-                'id'    => 111,
+                'id'    => $i++,
                 'title' => 'task_tag_delete',
             ],
             [
-                'id'    => 112,
+                'id'    => $i++,
                 'title' => 'task_tag_access',
             ],
             [
-                'id'    => 113,
+                'id'    => $i++,
                 'title' => 'task_create',
             ],
             [
-                'id'    => 114,
+                'id'    => $i++,
                 'title' => 'task_edit',
             ],
             [
-                'id'    => 115,
+                'id'    => $i++,
                 'title' => 'task_show',
             ],
             [
-                'id'    => 116,
+                'id'    => $i++,
                 'title' => 'task_delete',
             ],
             [
-                'id'    => 117,
+                'id'    => $i++,
                 'title' => 'task_access',
             ],
             [
-                'id'    => 118,
+                'id'    => $i++,
                 'title' => 'tasks_calendar_access',
             ],
             [
-                'id'    => 119,
+                'id'    => $i++,
                 'title' => 'review_delete',
             ],
             [
-                'id'    => 120,
+                'id'    => $i++,
                 'title' => 'review_access',
             ],
             [
-                'id'    => 121,
+                'id'    => $i++,
                 'title' => 'report_mangment_access',
             ],
             [
-                'id'    => 122,
+                'id'    => $i++,
                 'title' => 'report_category_create',
             ],
             [
-                'id'    => 123,
+                'id'    => $i++,
                 'title' => 'report_category_edit',
             ],
             [
-                'id'    => 124,
+                'id'    => $i++,
                 'title' => 'report_category_show',
             ],
             [
-                'id'    => 125,
+                'id'    => $i++,
                 'title' => 'report_category_delete',
             ],
             [
-                'id'    => 126,
+                'id'    => $i++,
                 'title' => 'report_category_access',
             ],
             [
-                'id'    => 127,
+                'id'    => $i++,
                 'title' => 'report_create',
             ],
             [
-                'id'    => 128,
+                'id'    => $i++,
                 'title' => 'report_edit',
             ],
             [
-                'id'    => 129,
+                'id'    => $i++,
                 'title' => 'report_show',
             ],
             [
-                'id'    => 130,
+                'id'    => $i++,
                 'title' => 'report_delete',
             ],
             [
-                'id'    => 131,
+                'id'    => $i++,
                 'title' => 'report_access',
             ],
             [
-                'id'    => 132,
+                'id'    => $i++,
                 'title' => 'humanitarian_aid_create',
             ],
             [
-                'id'    => 133,
+                'id'    => $i++,
                 'title' => 'humanitarian_aid_edit',
             ],
             [
-                'id'    => 134,
+                'id'    => $i++,
                 'title' => 'humanitarian_aid_show',
             ],
             [
-                'id'    => 135,
+                'id'    => $i++,
                 'title' => 'humanitarian_aid_delete',
             ],
             [
-                'id'    => 136,
+                'id'    => $i++,
                 'title' => 'humanitarian_aid_access',
             ],
             [
-                'id'    => 137,
+                'id'    => $i++,
+                'title' => 'donation_system_access',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'donation_create',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'donation_edit',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'donation_show',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'donation_delete',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'donation_access',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'beneficiary_create',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'beneficiary_edit',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'beneficiary_show',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'beneficiary_delete',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'beneficiary_access',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'beneficiary_status_specialist',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'beneficiary_status_manager',
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'beneficiary_status_money',
+            ], 
+            [
+                'id'    => $i++,
                 'title' => 'profile_password_edit',
             ],
         ];

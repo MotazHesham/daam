@@ -40,7 +40,7 @@
                                     <select name="fields[{{ $key }}]">
                                         <option value=''>Please select</option>
                                         @foreach($fillables as $k => $fillable)
-                                            <option value="{{ $fillable }}" {{ strtolower($header) === strtolower($fillable) ? 'selected' : '' }}>{{ $fillable }}</option>
+                                            <option value="{{ $fillable }}" {{ strtolower($header) === strtolower($fillable) ? 'selected' : '' }}>{{ trans('cruds.beneficiary.fields.'.$fillable) }}</option>
                                         @endforeach
                                     </select>
                                 </td>
