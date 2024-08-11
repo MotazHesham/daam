@@ -44,7 +44,7 @@ class QuestionnaireVolunteer extends Model
         'question_6' => 'مدى حرص مسؤول التطوع على الإجابة عن اسئلتك ؟',
         'question_7' => 'مدى استفادتكم من هذه الفرصة التطوعية ؟',
         'question_8' => 'مدى رضاك عن أداء القائمين على الفرصة ؟',
-        'question_9' => 'مدى رغبتك في تكرار تجربة التطوع لدى اكتفاء مستقبلا ؟', 
+        'question_9' => 'مدى رغبتك في تكرار تجربة التطوع لدى دعم مستقبلا ؟', 
     ];
 
     protected function serializeDate(DateTimeInterface $date)

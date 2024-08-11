@@ -50,6 +50,9 @@
                         {{ trans('cruds.donation.fields.notes') }}
                     </th>
                     <th>
+                        اجمالي التبرعات
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -113,6 +116,7 @@
 { data: 'exchange_period', name: 'exchange_period' },
 { data: 'target', name: 'target' },
 { data: 'notes', name: 'notes' },
+{ data: 'beneficiaries', name: 'beneficiaries' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

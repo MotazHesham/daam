@@ -33,6 +33,19 @@
                         <input type="hidden" name="id" id="beneficiary_id">
                         <input type="hidden" name="status" value="done">
                         <div class="form-group">
+                            <label class="required" for="donation_id">المتبرع</label>
+                            <select class="form-control select2 {{ $errors->has('category') ? 'is-invalid' : '' }}" name="donation_id" id="donation_id" required>
+                                @foreach($donations as $id => $entry)
+                                    <option value="{{ $id }}" {{ old('donation_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('donation'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('donation') }}
+                                </div>
+                            @endif 
+                        </div>
+                        <div class="form-group">
                             <label for="amount">{{ trans('cruds.beneficiary.fields.amount') }}</label>
                             <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" type="number" name="amount" id="amount" value="{{ old('amount') }}" step="0.01">
                             @if($errors->has('amount'))

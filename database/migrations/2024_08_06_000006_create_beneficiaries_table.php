@@ -25,6 +25,8 @@ class CreateBeneficiariesTable extends Migration
             $table->longText('cancel_reason')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id', 'user_fk_10001954')->references('id')->on('users');
+            $table->unsignedBigInteger('donation_id')->nullable();
+            $table->foreign('donation_id', 'donation_fk_154651954')->references('id')->on('donations');
             $table->timestamps();
             $table->softDeletes();
         });

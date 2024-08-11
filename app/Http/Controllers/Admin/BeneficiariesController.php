@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\Donation;
 
 class BeneficiariesController extends Controller
 {
@@ -34,7 +35,13 @@ class BeneficiariesController extends Controller
         if(!in_array($request->status,array_keys(Beneficiary::STATUS_SELECT))){
             abort(422);
         }
-        $beneficiary->update($request->only('amount','notes','status','cancel_reason'));
+        $donation = Donation::findOrfail($request->donation_id);
+        $sumDonated = Beneficiary::where('status','done')->where('donation_id',$request->donation_id)->sum('amount');
+        if($request->amount > $donation->total - $sumDonated){
+            alert('الباقي من التبرع لا يكفي المطلوب','','error');
+            return redirect()->back();
+        }
+        $beneficiary->update($request->only('amount','notes','status','cancel_reason','donation_id'));
 
         if (count($beneficiary->attachments) > 0) {
             foreach ($beneficiary->attachments as $media) {
@@ -133,8 +140,10 @@ class BeneficiariesController extends Controller
 
             return $table->make(true);
         }
+        
+        $donations = Donation::pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.beneficiaries.index');
+        return view('admin.beneficiaries.index',compact('donations'));
     }
 
     public function create()

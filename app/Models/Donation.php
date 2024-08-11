@@ -25,11 +25,18 @@ class Donation extends Model
         'widow'    => 'أرامل وأبنائهن',
         'divorced' => 'مطالقات وأبنائهن',
     ];
+    public const EXPENSES_TYPE_SELECT = [
+        'flat'    => 'قيمة',
+        'percent' => 'نسبة',
+    ];
 
     protected $fillable = [
         'company_name',
         'date',
         'amount',
+        'expenses',
+        'expenses_type',
+        'total',
         'type',
         'exchange_period',
         'target',
@@ -51,7 +58,7 @@ class Donation extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
-    }
+    } 
 
     public function getDateAttribute($value)
     {
@@ -61,5 +68,9 @@ class Donation extends Model
     public function setDateAttribute($value)
     {
         $this->attributes['date'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+    }
+    
+    public function beneficiaries(){
+        return $this->hasMany(Beneficiary::class);
     }
 }

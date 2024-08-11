@@ -66,6 +66,9 @@ class DonationsController extends Controller
                 return $row->notes ? $row->notes : '';
             });
 
+            $table->editColumn('beneficiaries', function ($row) {
+                return $row->beneficiaries ? $row->beneficiaries->where('status','done')->sum('amount') : '';
+            });
             $table->rawColumns(['actions', 'placeholder']);
 
             return $table->make(true);
@@ -83,7 +86,16 @@ class DonationsController extends Controller
 
     public function store(StoreDonationRequest $request)
     {
-        $donation = Donation::create($request->all());
+        $v = $request->all();
+        
+        $total = 0;
+        if($request->expenses_type == 'flat'){
+            $total = $request->amount - $request->expenses;
+        }elseif($request->expenses_type == 'percent'){
+            $total = $request->amount - (($request->amount * $request->expenses) / 100);
+        }
+        $v['total'] = $total;
+        $donation = Donation::create($v);
 
         return redirect()->route('admin.donations.index');
     }

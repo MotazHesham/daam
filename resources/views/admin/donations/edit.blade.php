@@ -41,6 +41,31 @@
                 <span class="help-block">{{ trans('cruds.donation.fields.amount_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="expenses">{{ trans('cruds.donation.fields.expenses') }}</label>
+                <input class="form-control {{ $errors->has('expenses') ? 'is-invalid' : '' }}" type="number" name="expenses" id="expenses" value="{{ old('expenses', $donation->expenses) }}" step="0.01">
+                @if($errors->has('expenses'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('expenses') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.donation.fields.expenses_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label>{{ trans('cruds.donation.fields.expenses_type') }}</label>
+                <select class="form-control {{ $errors->has('expenses_type') ? 'is-invalid' : '' }}" name="expenses_type" id="expenses_type">
+                    <option value disabled {{ old('expenses_type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\Donation::EXPENSES_TYPE_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('expenses_type', $donation->expenses_type</option>) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('expenses_type'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('expenses_type') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.donation.fields.expenses_type_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label>{{ trans('cruds.donation.fields.type') }}</label>
                 <select class="form-control {{ $errors->has('type') ? 'is-invalid' : '' }}" name="type" id="type">
                     <option value disabled {{ old('type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>

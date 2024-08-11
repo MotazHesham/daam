@@ -52,6 +52,7 @@ class Beneficiary extends Model implements HasMedia
         'age',
         'status',
         'user_id',
+        'donation_id',
         'date',
         'amount',
         'notes',
@@ -77,6 +78,11 @@ class Beneficiary extends Model implements HasMedia
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function donation()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    
     public function getDateAttribute($value)
     {
         return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;

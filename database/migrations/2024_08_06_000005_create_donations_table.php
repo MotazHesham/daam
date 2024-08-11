@@ -13,6 +13,8 @@ class CreateDonationsTable extends Migration
             $table->string('company_name')->nullable();
             $table->date('date')->nullable();
             $table->decimal('amount', 15, 2)->nullable();
+            $table->decimal('expenses', 15, 2)->nullable();
+            $table->string('expenses_type')->nullable();
             $table->string('type')->nullable();
             $table->longText('exchange_period')->nullable();
             $table->string('target')->nullable();
