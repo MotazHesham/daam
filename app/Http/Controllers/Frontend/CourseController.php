@@ -27,7 +27,7 @@ class CourseController extends Controller
     
 
     public function storeStudent(StoreCourseStudentRequest $request)
-    {
+    { 
         $courseStudent = CourseStudent::create($request->all());
 
         alert('تم أرسال طلبك بنجاح','','success');

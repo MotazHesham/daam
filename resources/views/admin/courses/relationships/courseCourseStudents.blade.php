@@ -1,12 +1,4 @@
-@can('course_student_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.course-students.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.courseStudent.title_singular') }}
-            </a>
-        </div>
-    </div>
-@endcan
+
 
 <div class="card">
     <div class="card-header">
@@ -35,13 +27,7 @@
                         </th>
                         <th>
                             {{ trans('cruds.courseStudent.fields.certificate') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.courseStudent.fields.course') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.course.fields.title') }}
-                        </th>
+                        </th>  
                         <th>
                             &nbsp;
                         </th>
@@ -67,13 +53,7 @@
                             </td>
                             <td>
                                 {{ App\Models\CourseStudent::CERTIFICATE_RADIO[$courseStudent->certificate] ?? '' }}
-                            </td>
-                            <td>
-                                {{ $courseStudent->course->title ?? '' }}
-                            </td>
-                            <td>
-                                {{ $courseStudent->course->title ?? '' }}
-                            </td>
+                            </td>  
                             <td>
                                 @can('course_student_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.course-students.show', $courseStudent->id) }}">

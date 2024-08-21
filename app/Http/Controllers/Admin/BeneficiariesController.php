@@ -108,13 +108,13 @@ class BeneficiariesController extends Controller
                 }
 
 
-                return $status . $cancel . view('partials.datatablesActions', compact(
+                return  view('partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',
                     'crudRoutePart',
                     'row'
-                ));
+                )) . '<br><br>' . $status . '&nbsp;' . $cancel;
             });
 
             $table->editColumn('id', function ($row) {
@@ -130,7 +130,8 @@ class BeneficiariesController extends Controller
                 return $row->marrige_status ? Beneficiary::MARRIGE_STATUS_SELECT[$row->marrige_status] : '';
             });
             $table->editColumn('status', function ($row) {
-                return $row->status ? Beneficiary::STATUS_SELECT[$row->status] : '';
+                $status = $row->status;
+                return view('admin.beneficiaries.progress',compact('status'));
             });
             $table->addColumn('user_name', function ($row) {
                 return $row->user ? $row->user->name : '';

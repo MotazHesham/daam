@@ -166,6 +166,16 @@
             </a>
             <ul class="c-sidebar-nav-dropdown-items"> 
                 <li class="c-sidebar-nav-item">
+                    <a href="{{ route('admin.questionnaire.certificate') }}"
+                        class="c-sidebar-nav-link {{ request()->is('admin/questionnaire/certificate') ? 'c-active' : '' }}">
+                        <i class="fa-fw fas fa-chart-line c-sidebar-nav-icon">
+
+                        </i>
+                        طلب شهادة لدورة
+
+                    </a>
+                </li>  
+                <li class="c-sidebar-nav-item">
                     <a href="{{ route('admin.questionnaire.traning') }}"
                         class="c-sidebar-nav-link {{ request()->is('admin/questionnaire/traning') ? 'c-active' : '' }}">
                         <i class="fa-fw fas fa-chart-line c-sidebar-nav-icon">

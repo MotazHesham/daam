@@ -1,4 +1,61 @@
 @extends('layouts.admin')
+@section('styles')
+<style>
+    .progressbar {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .progressbar::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #ddd;
+        z-index: 0;
+    }
+    .progress-step {
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        position: relative;
+    }
+    .progress-step .step-circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .progress-step .step-title {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    .progress-step.active .step-circle {
+        background-color: #0d6efd;
+        color: #fff;
+    }
+    .progress-step.error .step-circle {
+        background-color: red;
+        color: #fff;
+    }
+    .progress-step.warning .step-circle {
+        background-color: yellow;
+        color: #fff;
+    }
+    .progress-step.completed .step-circle {
+        background-color: green;
+        color: #fff;
+    }
+</style> 
+@endsection
 @section('content')
     @can('beneficiary_create')
         <div style="margin-bottom: 10px;" class="row">
@@ -148,13 +205,10 @@
                             {{ trans('cruds.beneficiary.fields.marrige_status') }}
                         </th>
                         <th>
-                            {{ trans('cruds.beneficiary.fields.status') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.beneficiary.fields.user') }}
-                        </th>
+                        </th> 
                         <th>
-                            {{ trans('cruds.beneficiary.fields.date') }}
+                            {{ trans('cruds.beneficiary.fields.status') }}
                         </th>
                         <th>
                             &nbsp;
@@ -199,16 +253,12 @@
                         name: 'marrige_status'
                     },
                     {
-                        data: 'status',
-                        name: 'status'
-                    },
-                    {
                         data: 'user_name',
                         name: 'user.name'
-                    },
+                    }, 
                     {
-                        data: 'date',
-                        name: 'date'
+                        data: 'status',
+                        name: 'status'
                     },
                     {
                         data: 'actions',

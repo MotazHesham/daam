@@ -95,6 +95,62 @@
                             {{ $courseStudent->course->title ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.relevance') }}
+                        </th>
+                        <td>
+                            {{ $courseStudent->relevance ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.attend_course') }}
+                        </th>
+                        <td>
+                            {{ $courseStudent->attend_course ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.course_name') }}
+                        </th>
+                        <td>
+                            {{ $courseStudent->course_name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.course_trainer') }}
+                        </th>
+                        <td>
+                            {{ $courseStudent->course_trainer ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.transportaion') }}
+                        </th>
+                        <td>
+                            {{ $courseStudent->transportaion ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.prev_exper') }}
+                        </th>
+                        <td>
+                            {{ $courseStudent->prev_exper ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.address') }}
+                        </th>
+                        <td>
+                            {{ $courseStudent->address ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

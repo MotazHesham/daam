@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\QuestionnaireCertificate;
 use App\Models\QuestionnaireCourse;
 use App\Models\QuestionnaireMember;
 use App\Models\QuestionnaireTraning;
@@ -132,6 +133,50 @@ class QuestionnaireController extends Controller
         }
 
         return view('admin.questionnaire.traning',compact('chart6','chart7','chart8','chart9','chart10','chart11'));
+    }
+
+    public function certificate_show($id){
+
+        $raw = QuestionnaireCertificate::findOrfail($id);
+
+        return view('admin.questionnaire.certificate_show',compact('raw'));
+    }
+    
+    public function certificate(Request $request)
+    { 
+        
+        if ($request->ajax()) {
+            $query = QuestionnaireCertificate::query()->select(sprintf('%s.*', (new QuestionnaireCertificate)->table));
+            $table = Datatables::of($query);
+
+            $table->addColumn('placeholder', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+
+            $table->editColumn('id', function ($row) {
+                return $row->id ? $row->id : '';
+            });
+            $table->editColumn('name', function ($row) {
+                return $row->name ? $row->name : '';
+            });
+            $table->editColumn('course_name', function ($row) {
+                return $row->course_name ? $row->course_name : '';
+            });
+            $table->editColumn('phone', function ($row) {
+                return $row->phone ? $row->phone : '';
+            });
+            $table->editColumn('actions', function ($row) { 
+
+                return '<a class="btn btn-xs btn-primary" href="' . route('admin.questionnaire.certificate.show', $row->id) .'">
+                            '. trans('global.view') .'
+                        </a>';
+            }); 
+
+            $table->rawColumns(['actions', 'placeholder']);
+
+            return $table->make(true);
+        }
+
+        return view('admin.questionnaire.certificate');
     }
 
     public function traning_show($id){

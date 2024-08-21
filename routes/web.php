@@ -179,6 +179,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('questionnaire/courses/{id}','QuestionnaireController@courses_show')->name('questionnaire.courses.show'); 
     Route::get('questionnaire/members','QuestionnaireController@members')->name('questionnaire.members');
     Route::get('questionnaire/members/{id}','QuestionnaireController@members_show')->name('questionnaire.members.show');
+    Route::get('questionnaire/certificate','QuestionnaireController@certificate')->name('questionnaire.certificate');
+    Route::get('questionnaire/certificate/{id}','QuestionnaireController@certificate_show')->name('questionnaire.certificate.show');
     
     // Donations
     Route::delete('donations/destroy', 'DonationsController@massDestroy')->name('donations.massDestroy');

@@ -11,6 +11,7 @@ use App\Models\Mempership;
 use App\Models\Partner;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\QuestionnaireCertificate;
 use App\Models\QuestionnaireCourse;
 use App\Models\QuestionnaireMember;
 use App\Models\QuestionnaireTraning;
@@ -116,13 +117,18 @@ class HomeController extends Controller
         }elseif($type == 'members'){ 
             $title = 'استبيان قياس رأي أعضاء الجمعية العمومية';
             $view = 'members';
+        }elseif($type == 'certificate'){ 
+            $title = 'طلب شهادة لدورة';
+            $view = 'certificate';
+        }else{
+            abort(404);
         }
         return view('frontend.questionnaire.'.$view,compact('type','title'));
     }
 
     public function questionnaire_store(Request $request){
         $request->validate([
-            'type' => 'in:traning,volunteers,courses,members,courses_2'
+            'type' => 'in:traning,volunteers,courses,members,courses_2,certificate'
         ]);
 
         if($request->type == 'traning'){
@@ -135,6 +141,8 @@ class HomeController extends Controller
             QuestionnaireCourse::create($request->all());
         }elseif($request->type == 'members'){
             QuestionnaireMember::create($request->all());
+        }elseif($request->type == 'certificate'){
+            QuestionnaireCertificate::create($request->all());
         }
         
         alert('تم أرسال التقييم بنجاح', '', 'success');
