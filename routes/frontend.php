@@ -46,6 +46,10 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () {
     // projects
     Route::get('courses', 'CourseController@courses')->name('courses');
     Route::get('course/{id}', 'CourseController@course')->name('course');
+    Route::get('course/attend/{id}', 'CourseController@course_attend')->name('course.attend');
+    Route::get('course/certificate/{id}', 'CourseController@course_certificate')->name('course.certificate');
+    Route::post('course/attend_store', 'CourseController@attend_store')->name('course.attend_store');
+    Route::post('course/certificate_store', 'CourseController@certificate_store')->name('course.certificate_store');
     Route::get('course/subscribe/{id}', 'CourseController@subscribe')->name('course.subscribe');
     Route::post('course/storeStudent', 'CourseController@storeStudent')->name('course.storeStudent');
 

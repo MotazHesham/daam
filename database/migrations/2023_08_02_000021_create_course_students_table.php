@@ -18,6 +18,15 @@ class CreateCourseStudentsTable extends Migration
             $table->string('registered')->nullable();
             $table->string('certificate')->nullable();
             $table->longText('description')->nullable();
+            $table->string('relevance')->nullable();
+            $table->string('attend_course')->nullable();
+            $table->string('course_name')->nullable();
+            $table->string('course_trainer')->nullable();
+            $table->string('transportaion')->nullable();
+            $table->string('prev_exper')->nullable();
+            $table->string('address')->nullable();
+            $table->tinyInteger('request_certificate')->default(0);
+            $table->string('email_certificate')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

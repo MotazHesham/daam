@@ -8,7 +8,10 @@ use App\Models\QuestionnaireCourse;
 use App\Models\QuestionnaireMember;
 use App\Models\QuestionnaireTraning;
 use App\Models\QuestionnaireVolunteer;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -141,6 +144,25 @@ class QuestionnaireController extends Controller
 
         return view('admin.questionnaire.certificate_show',compact('raw'));
     }
+    public function get_certificate($id){
+
+        $raw = QuestionnaireCertificate::findOrfail($id); 
+
+        $path = 'public/questionnaire/questionnaireCert_'.$id .'.pdf';
+
+        if (!Storage::exists($path)) { 
+            $data = [
+                'name' => $raw->name ,
+                'course_name' => $raw->course_name , 
+            ]; 
+            $pdf = PDF::loadHTML(view('admin.courses.certificate2', $data)->toArabicHTML())->output();
+
+            Storage::put($path, $pdf);
+        }
+        return Storage::download($path); 
+    }
+
+    
     
     public function certificate(Request $request)
     { 
@@ -168,6 +190,8 @@ class QuestionnaireController extends Controller
 
                 return '<a class="btn btn-xs btn-primary" href="' . route('admin.questionnaire.certificate.show', $row->id) .'">
                             '. trans('global.view') .'
+                        </a>' . ' &nbsp; ' . '<a class="btn btn-xs btn-success" href="' . route('admin.questionnaire.get_certificate', $row->id) .'">
+                            طباعة الشهادة
                         </a>';
             }); 
 

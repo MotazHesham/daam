@@ -47,6 +47,8 @@ class CourseStudent extends Model
         'transportaion',
         'prev_exper',
         'address',
+        'request_certificate',
+        'email_certificate',
         'course_id',
         'created_at',
         'updated_at',
@@ -71,5 +73,9 @@ class CourseStudent extends Model
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    public function attendance(){
+        return $this->hasMany(CourseAttendance::class,'course_student_id');
     }
 }

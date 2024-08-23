@@ -3,8 +3,8 @@
 <div class="row">
     <div class="col-md-4"> 
         <div class="card">
-                    <div class="card-header">
-                        {{ trans('global.show') }} {{ trans('cruds.course.title') }}
+            <div class="card-header">
+                {{ trans('global.show') }} {{ trans('cruds.course.title') }}.
             </div>
 
             <div class="card-body">
@@ -12,6 +12,12 @@
                     <div class="form-group">
                         <a class="btn btn-default" href="{{ route('admin.courses.index') }}">
                             {{ trans('global.back_to_list') }}
+                        </a>
+                        <a class="btn btn-success" href="{{ route('admin.courses.qr_attendance',encrypt($course->id))}}">
+                            عرض صفحة تسجيل  الحضور
+                        </a>
+                        <a class="btn btn-info" href="{{ route('admin.courses.qr_certificate',encrypt($course->id))}}">
+                            عرض صفحة طلب شهادة
                         </a>
                     </div>
                     <table class="table table-bordered table-striped">

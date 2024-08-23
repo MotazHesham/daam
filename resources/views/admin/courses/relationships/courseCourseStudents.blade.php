@@ -20,6 +20,9 @@
                             {{ trans('cruds.courseStudent.fields.name') }}
                         </th>
                         <th>
+                            {{ trans('cruds.courseStudent.fields.identity_num') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.courseStudent.fields.phone_number') }}
                         </th>
                         <th>
@@ -28,6 +31,12 @@
                         <th>
                             {{ trans('cruds.courseStudent.fields.certificate') }}
                         </th>  
+                        <th>
+                            الحضور
+                        </th>
+                        <th>
+                            الشهادة
+                        </th>
                         <th>
                             &nbsp;
                         </th>
@@ -46,6 +55,9 @@
                                 {{ $courseStudent->name ?? '' }}
                             </td>
                             <td>
+                                {{ $courseStudent->identity_num ?? '' }}
+                            </td>
+                            <td>
                                 {{ $courseStudent->phone_number ?? '' }}
                             </td>
                             <td>
@@ -54,6 +66,21 @@
                             <td>
                                 {{ App\Models\CourseStudent::CERTIFICATE_RADIO[$courseStudent->certificate] ?? '' }}
                             </td>  
+                            <td>
+                                @foreach($courseStudent->attendance as $raw)
+                                    {{ $raw->date }}
+                                    <br>
+                                @endforeach
+                            </td>
+                            <td>
+                                @if($courseStudent->request_certificate)
+                                    تم الطلب
+                                    <br>
+                                    {{ $courseStudent->email_certificate }}
+                                @else 
+                                    لم يتم الطلب
+                                @endif
+                            </td>
                             <td>
                                 @can('course_student_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.course-students.show', $courseStudent->id) }}">
@@ -74,6 +101,15 @@
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
                                 @endcan
+                                
+                                <a class="btn btn-xs btn-warning" href="{{ route('admin.courses.get_certificate', $courseStudent->id) }}">
+                                    طباعة الشهادة
+                                </a>
+                                @if($courseStudent->request_certificate)
+                                    <a class="btn btn-xs btn-success" href="{{ route('admin.courses.send_certificate', $courseStudent->id) }}">
+                                        ارسال الشهادة بالأيميل
+                                    </a>
+                                @endif
 
                             </td>
 

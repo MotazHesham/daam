@@ -117,9 +117,6 @@ class HomeController extends Controller
         }elseif($type == 'members'){ 
             $title = 'استبيان قياس رأي أعضاء الجمعية العمومية';
             $view = 'members';
-        }elseif($type == 'certificate'){ 
-            $title = 'طلب شهادة لدورة';
-            $view = 'certificate';
         }else{
             abort(404);
         }
@@ -128,7 +125,7 @@ class HomeController extends Controller
 
     public function questionnaire_store(Request $request){
         $request->validate([
-            'type' => 'in:traning,volunteers,courses,members,courses_2,certificate'
+            'type' => 'in:traning,volunteers,courses,members,courses_2'
         ]);
 
         if($request->type == 'traning'){
@@ -141,8 +138,6 @@ class HomeController extends Controller
             QuestionnaireCourse::create($request->all());
         }elseif($request->type == 'members'){
             QuestionnaireMember::create($request->all());
-        }elseif($request->type == 'certificate'){
-            QuestionnaireCertificate::create($request->all());
         }
         
         alert('تم أرسال التقييم بنجاح', '', 'success');

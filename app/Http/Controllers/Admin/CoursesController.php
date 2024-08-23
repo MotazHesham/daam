@@ -7,9 +7,13 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyCourseRequest;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Mail\CertificateMail2;
 use App\Models\Course;
+use App\Models\CourseStudent;
 use Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
@@ -24,6 +28,31 @@ class CoursesController extends Controller
         $course->$type = $request->status; 
         $course->save();
         return 1;
+    }
+
+    
+    public function get_certificate($id){
+        $courseStudent = CourseStudent::findOrFail($id);
+        $path = certificate_store($id);
+        return Storage::download($path);   
+    } 
+
+    public function send_certificate($id){
+        $courseStudent = CourseStudent::findOrFail($id); 
+        Mail::to($courseStudent->email_certificate)->send(new CertificateMail2($courseStudent)); 
+        alert('تم الارسال بنجاح','','success');
+        return redirect()->back();  
+    }
+
+    
+    public function qr_attendance($id){
+        $course = Course::findOrFail(decrypt($id));
+        return view('admin.courses.qr_attendance',compact('course'));
+    }
+    
+    public function qr_certificate($id){
+        $course = Course::findOrFail(decrypt($id));
+        return view('admin.courses.qr_certificate',compact('course'));
     }
 
     public function index(Request $request)
@@ -148,7 +177,7 @@ class CoursesController extends Controller
     {
         abort_if(Gate::denies('course_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $course->load('courseCourseStudents');
+        $course->load('courseCourseStudents.attendance');
 
         return view('admin.courses.show', compact('course'));
     }

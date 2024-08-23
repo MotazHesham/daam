@@ -91,7 +91,7 @@
                                             <input type="Radio" id="showRegister" class="opti" name="registered" Value="no" checked>لا 
                                         </div>
                                         <div class="form-grp col-md-6" id="relevance-div">
-                                            <input type="text" required placeholder="صلة القرابة بمستفيدة الجمعية" name="relevance">
+                                            <input type="text"   placeholder="صلة القرابة بمستفيدة الجمعية" name="relevance">
                                         </div>
 
                                     </div>
@@ -103,10 +103,10 @@
                                             <input type="Radio" required class="opti" class="opti" Name="attend_course" Value="no" >لا
                                         </div>
                                         <div class="form-grp col-md-6 attend-courses-before">
-                                            <input type="text" required placeholder="اسم الدورة" name="course_name">
+                                            <input type="text"   placeholder="اسم الدورة" name="course_name">
                                         </div>
                                         <div class="form-grp col-md-6 attend-courses-before">
-                                            <input type="text" required placeholder="اسم المدرب/ه" name="course_trainer">
+                                            <input type="text"   placeholder="اسم المدرب/ه" name="course_trainer">
                                         </div> 
                                     </div>
 

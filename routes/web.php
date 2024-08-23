@@ -12,6 +12,11 @@ Route::get('/home', function () {
 });
 
 Auth::routes(['register' => false]);
+Route::get('/updateapp', function()
+{
+    system('composer dump-autoload');
+    echo 'composer dump-autoload complete';
+});
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
@@ -118,8 +123,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Courses
     Route::delete('courses/destroy', 'CoursesController@massDestroy')->name('courses.massDestroy');
     Route::post('courses/update_statuses', 'CoursesController@update_statuses')->name('courses.update_statuses');
+    Route::get('courses/qr_attendance/{id}', 'CoursesController@qr_attendance')->name('courses.qr_attendance');
+    Route::get('courses/qr_certificate/{id}', 'CoursesController@qr_certificate')->name('courses.qr_certificate');
+    Route::post('courses/update_certificate', 'CoursesController@update_certificate')->name('courses.update_certificate');
+    Route::get('courses/send_certificate/{id}', 'CoursesController@send_certificate')->name('courses.send_certificate');
+    Route::get('courses/get_certificate/{id}', 'CoursesController@get_certificate')->name('courses.get_certificate');
     Route::post('courses/media', 'CoursesController@storeMedia')->name('courses.storeMedia');
     Route::post('courses/ckmedia', 'CoursesController@storeCKEditorImages')->name('courses.storeCKEditorImages');
+    Route::get('courses/print/{id}', 'CoursesController@print')->name('courses.print');
     Route::resource('courses', 'CoursesController');
 
     // Course Students
@@ -181,6 +192,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('questionnaire/members/{id}','QuestionnaireController@members_show')->name('questionnaire.members.show');
     Route::get('questionnaire/certificate','QuestionnaireController@certificate')->name('questionnaire.certificate');
     Route::get('questionnaire/certificate/{id}','QuestionnaireController@certificate_show')->name('questionnaire.certificate.show');
+    Route::get('questionnaire/get_certificate/{id}', 'QuestionnaireController@get_certificate')->name('questionnaire.get_certificate');
     
     // Donations
     Route::delete('donations/destroy', 'DonationsController@massDestroy')->name('donations.massDestroy');
