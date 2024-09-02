@@ -31,7 +31,7 @@
                 </a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('permission_access')
-                        <li class="c-sidebar-nav-item">
+                        {{-- <li class="c-sidebar-nav-item">
                             <a href="{{ route('admin.permissions.index') }}"
                                 class="c-sidebar-nav-link {{ request()->is('admin/permissions') || request()->is('admin/permissions/*') ? 'c-active' : '' }}">
                                 <i class="fa-fw fas fa-unlock-alt c-sidebar-nav-icon">
@@ -39,7 +39,7 @@
                                 </i>
                                 {{ trans('cruds.permission.title') }}
                             </a>
-                        </li>
+                        </li> --}}
                     @endcan
                     @can('role_access')
                         <li class="c-sidebar-nav-item">

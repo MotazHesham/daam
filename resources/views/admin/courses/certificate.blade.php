@@ -20,7 +20,7 @@
     
     
             body {
-                color: red;
+                color: #7e3d0f;
                 text-align: right;
             }
     
@@ -77,9 +77,9 @@
             <p
                 style="
                     position: absolute;
-                    top: 160px;
+                    top: 178px;
                     font-size: 22px;
-                    right: 250px;
+                    right: 280px;
                 "
             >
                 {{ $name }}
@@ -87,9 +87,9 @@
             <p
                 style="
                     position: absolute;
-                    top: 230px;
+                    top: 215px;
                     font-size: 22px;
-                    right: 345px; 
+                    right: 280px; 
                 "
             > 
                 {{ $course_name }}
@@ -97,18 +97,43 @@
             <p
                 style="
                     position: absolute;
-                    top: 320px;
+                    top: 249px;
                     font-size: 22px;
-                    right: 160px;
-                    color:#7e3d0f
+                    right: 280px; 
                 "
-            >
-                <span>م</span>
-                <span>{{$course_date}}</span>
-                <span>يوم {{$day}}</span>
-                <span> <b> {{ $trainer ?? '' }}</b> </span>
-                <span>المدرب</span>
+            > 
+                {{ $trainer }}
             </p>
+            <p
+                style="
+                    position: absolute;
+                    top: 290px;
+                    font-size: 22px;
+                    right: 230px; 
+                "
+            > 
+                {{ $attend_type }}
+            </p>
+            <p
+                style="
+                    position: absolute;
+                    top: 290px;
+                    font-size: 22px;
+                    right: 420px; 
+                "
+            > 
+                {{ $day }}
+            </p>
+            <p
+                style="
+                    position: absolute;
+                    top: 303px;
+                    font-size: 17px;
+                    right: 580px; 
+                "
+            > 
+                {{ $course_date }}
+            </p> 
             <img
                 src="https://daam.org.sa/public/course-certificate.jpg"
                 alt=""

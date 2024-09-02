@@ -44,7 +44,7 @@ class CertificateMail2 extends Mailable
             view: 'emails.certification_2',
             with: [  
                 'name' => $this->courseStudent->name,
-                'path' => 'courses/course_'.$this->courseStudent->id.'_'. $this->courseStudent->course_id .'.pdf'
+                'path' => 'https://daam.org.sa/storage/app/public/courses/course_'.$this->courseStudent->id.'_'. $this->courseStudent->course_id .'.pdf'
             ]
         );
     }

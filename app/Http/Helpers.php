@@ -2,6 +2,7 @@
 
 use App\Http\Resources\PostResource;
 use App\Http\Resources\ProjectResource;
+use App\Models\Course;
 use App\Models\CourseStudent;
 use App\Models\Post;
 use App\Models\Project;
@@ -46,6 +47,7 @@ if (! function_exists('certificate_store')) {
                 'course_name' => $courseStudent->course->title ?? '' ,
                 'day' => $days[$day],
                 'trainer' => $courseStudent->course->trainer ?? '' ,
+                'attend_type' => $courseStudent->course->attend_type ? Course::ATTEND_TYPE_SELECT[$courseStudent->course->attend_type] : '',
                 'course_date' => $courseStudent->course->start_at ? Carbon::createFromFormat(config('panel.date_format'), $courseStudent->course->start_at)->format('Y / m / d')   : '' ,
             ];
             $html = view('admin.courses.certificate',$data)->toArabicHTML();

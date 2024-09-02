@@ -55,7 +55,7 @@
                 <select class="form-control {{ $errors->has('expenses_type') ? 'is-invalid' : '' }}" name="expenses_type" id="expenses_type">
                     <option value disabled {{ old('expenses_type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
                     @foreach(App\Models\Donation::EXPENSES_TYPE_SELECT as $key => $label)
-                        <option value="{{ $key }}" {{ old('expenses_type', $donation->expenses_type</option>) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                        <option value="{{ $key }}" {{ old('expenses_type', $donation->expenses_type) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('expenses_type'))
