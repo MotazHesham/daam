@@ -22,7 +22,7 @@ class DonationsController extends Controller
         abort_if(Gate::denies('donation_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Donation::query()->select(sprintf('%s.*', (new Donation)->table));
+            $query = Donation::query()->with('beneficiaries')->select(sprintf('%s.*', (new Donation)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -93,6 +93,8 @@ class DonationsController extends Controller
             $total = $request->amount - $request->expenses;
         }elseif($request->expenses_type == 'percent'){
             $total = $request->amount - (($request->amount * $request->expenses) / 100);
+        }else{
+            $total = $request->amount;
         }
         $v['total'] = $total;
         $donation = Donation::create($v);
@@ -109,7 +111,18 @@ class DonationsController extends Controller
 
     public function update(UpdateDonationRequest $request, Donation $donation)
     {
-        $donation->update($request->all());
+        $v = $request->all();
+        
+        $total = 0;
+        if($request->expenses_type == 'flat'){
+            $total = $request->amount - $request->expenses;
+        }elseif($request->expenses_type == 'percent'){
+            $total = $request->amount - (($request->amount * $request->expenses) / 100);
+        }else{
+            $total = $request->amount;
+        }
+        $v['total'] = $total;
+        $donation->update($v);
 
         return redirect()->route('admin.donations.index');
     }
@@ -117,6 +130,8 @@ class DonationsController extends Controller
     public function show(Donation $donation)
     {
         abort_if(Gate::denies('donation_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $donation->load('beneficiaries');
 
         return view('admin.donations.show', compact('donation'));
     }

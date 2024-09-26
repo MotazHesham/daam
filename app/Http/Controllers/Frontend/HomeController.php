@@ -95,7 +95,8 @@ class HomeController extends Controller
             $mempership->addMedia($request->receipt_photo)->toMediaCollection('receipt_photo');
         } 
 
-        return redirect()->back();
+        alert('تم أرسال طلب أنضمامك بنجاح', '', 'success');
+        return redirect()->route('home');
     } 
 
     public function questionnaire($type)

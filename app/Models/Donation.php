@@ -24,6 +24,7 @@ class Donation extends Model
     public const TARGET_SELECT = [
         'widow'    => 'أرامل وأبنائهن',
         'divorced' => 'مطالقات وأبنائهن',
+        'widow_divorced' => 'أرامل ومطالقات وأبنائهن',
     ];
     public const EXPENSES_TYPE_SELECT = [
         'flat'    => 'قيمة',
