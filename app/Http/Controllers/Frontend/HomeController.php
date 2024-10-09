@@ -18,6 +18,7 @@ use App\Models\QuestionnaireTraning;
 use App\Models\QuestionnaireVolunteer;
 use App\Models\Report;
 use App\Models\ReportCategory;
+use App\Models\ReportMoney;
 use App\Models\SaidAboutUs;
 use App\Models\Setting;
 use App\Models\Slider;
@@ -62,9 +63,13 @@ class HomeController extends Controller
 
     public function reports($type)
     {
+        $reportMoneys = [];
+        if($type == 'money'){
+            $reportMoneys = ReportMoney::orderBy('year','desc')->get()->groupBy('year');
+        }
         $reportCategories = ReportCategory::with('reports')->where('type', $type)->where('published', 1)->orderBy('created_at', 'asc')->paginate(15);
         $type = Report::TYPE_SELECT[$type];
-        return view('frontend.reports', compact('reportCategories', 'type'));
+        return view('frontend.reports', compact('reportCategories', 'type','reportMoneys'));
     }
 
     public function terms()

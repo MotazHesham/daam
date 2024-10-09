@@ -735,7 +735,7 @@ class PermissionsTableSeeder extends Seeder
             [
                 'id'    => $i++,
                 'title' => 'report_mangment_access',
-                'type' => 'report_category.report',
+                'type' => 'report_category.report.report_money',
                 'parent' => 1,
             ],
             [
@@ -796,6 +796,36 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => $i++,
                 'title' => 'report_access',
                 'type' => 'report',
+                'parent' => 0,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'report_money_create',
+                'type' => 'report_money',
+                'parent' => 0,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'report_money_edit',
+                'type' => 'report_money',
+                'parent' => 0,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'report_money_show',
+                'type' => 'report_money',
+                'parent' => 0,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'report_money_delete',
+                'type' => 'report_money',
+                'parent' => 0,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'report_money_access',
+                'type' => 'report_money',
                 'parent' => 0,
             ],
             [
@@ -946,6 +976,12 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => $i++,
                 'title' => 'questionnaire',
                 'type' => 'questionnaire',
+                'parent' => 2,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'memperships',
+                'type' => 'memperships',
                 'parent' => 2,
             ],
             [

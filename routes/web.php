@@ -210,6 +210,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('beneficiaries/process-csv-import', 'BeneficiariesController@processCsvImport')->name('beneficiaries.processCsvImport');
     Route::resource('beneficiaries', 'BeneficiariesController');
     
+    // Report Money 
+    Route::post('report-moneys/media', 'ReportMoneyController@storeMedia')->name('report-moneys.storeMedia');
+    Route::post('report-moneys/ckmedia', 'ReportMoneyController@storeCKEditorImages')->name('report-moneys.storeCKEditorImages');
+    Route::resource('report-moneys', 'ReportMoneyController');
+
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');

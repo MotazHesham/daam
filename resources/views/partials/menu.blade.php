@@ -287,8 +287,7 @@
             </li>
         @endcan
         @can('report_mangment_access')
-            <li
-                class="c-sidebar-nav-dropdown {{ request()->is('admin/report-categories*') ? 'c-show' : '' }} {{ request()->is('admin/reports*') ? 'c-show' : '' }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/report-categories*") ? "c-show" : "" }} {{ request()->is("admin/reports*") ? "c-show" : "" }} {{ request()->is("admin/report-moneys*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw far fa-file-alt c-sidebar-nav-icon">
 
@@ -315,6 +314,16 @@
 
                                 </i>
                                 {{ trans('cruds.report.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('report_money_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.report-moneys.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/report-moneys") || request()->is("admin/report-moneys/*") ? "c-active" : "" }}">
+                                <i class="fa-fw far fa-file-alt c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.reportMoney.title') }}
                             </a>
                         </li>
                     @endcan
