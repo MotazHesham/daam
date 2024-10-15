@@ -27,6 +27,7 @@ class StoreVolunteerRequest extends FormRequest
             ],
             'email' => [
                 'required',
+                'unique:volunteers'
             ],
             'phone_number' => [
                 'string',

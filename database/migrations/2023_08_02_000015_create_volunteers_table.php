@@ -13,10 +13,14 @@ class CreateVolunteersTable extends Migration
             $table->string('name');
             $table->string('identity_num');
             $table->string('email');
+            $table->string('password')->nullable();
             $table->string('phone_number');
             $table->string('interest')->nullable();
             $table->string('initiative_name')->nullable();
             $table->string('prev_experience')->nullable();
+            $table->tinyInteger('approved')->default(0);
+            $table->datetime('email_verified_at')->nullable(); 
+            $table->string('remember_token')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

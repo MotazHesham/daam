@@ -33,7 +33,7 @@ class VolunteersController extends Controller
                 $viewGate      = 'volunteer_show';
                 $editGate      = 'volunteer_edit';
                 $deleteGate    = 'volunteer_delete';
-                $crudRoutePart = 'volunteers';
+                $crudRoutePart = 'volunteers'; 
 
                 return view('partials.datatablesActions', compact(
                     'viewGate',
@@ -59,11 +59,21 @@ class VolunteersController extends Controller
             $table->editColumn('created_at', function ($row) {
                 return $row->created_at ? $row->created_at : '';
             });
+            $table->editColumn('approved', function ($row) {
+                if(!$row->approved){
+                    $verify = '<a class="btn btn-xs btn-warning" href="'. route('admin.volunteers.verify', $row->id) .'">
+                                    '. trans('global.verify') .'
+                                </a> &nbsp; ';
+                }else{
+                    $verify = '  <i class="fas fa-check-circle" style="color:green;font-size:20px"> </i> ';
+                }
+                return $verify;
+            });
             $table->editColumn('cv', function ($row) {
                 return $row->cv ? '<a href="' . $row->cv->getUrl() . '" target="_blank">' . trans('global.downloadFile') . '</a>' : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'cv']);
+            $table->rawColumns(['actions', 'placeholder', 'cv','approved']);
 
             return $table->make(true);
         }
@@ -100,6 +110,13 @@ class VolunteersController extends Controller
         return view('admin.volunteers.edit', compact('volunteer'));
     }
 
+    public function verify($id)
+    {
+        $volunteer = Volunteer::findOrFail($id);
+
+        return view('admin.volunteers.verify', compact('volunteer'));
+    }
+
     public function update(UpdateVolunteerRequest $request, Volunteer $volunteer)
     {
         $volunteer->update($request->all());
@@ -114,6 +131,15 @@ class VolunteersController extends Controller
         } elseif ($volunteer->cv) {
             $volunteer->cv->delete();
         }
+
+        return redirect()->route('admin.volunteers.index');
+    }
+    public function verify_submit(Request $request)
+    {
+        $volunteer = Volunteer::findOrfail($request->id);  
+        $volunteer->approved = 1;
+        $volunteer->password = bcrypt($request->password);
+        $volunteer->save();
 
         return redirect()->route('admin.volunteers.index');
     }

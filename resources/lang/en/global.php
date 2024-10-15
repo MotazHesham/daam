@@ -159,6 +159,7 @@ return [
         'disable'        => 'Disable',
         'resend'         => 'Resend',
     ],
+    'verify'         => 'Verify',
     'chart_type'                     => 'Chart type',
     'code'                           => 'Code',
     'companies'                      => 'Companies',

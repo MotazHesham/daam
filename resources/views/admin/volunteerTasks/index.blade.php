@@ -1,46 +1,49 @@
 @extends('layouts.admin')
 @section('content')
-    @can('volunteer_create')
+    @can('volunteer_task_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.volunteers.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.volunteer.title_singular') }}
+                <a class="btn btn-success" href="{{ route('admin.volunteer-tasks.create') }}">
+                    {{ trans('global.add') }} {{ trans('cruds.volunteerTask.title_singular') }}
                 </a>
             </div>
         </div>
     @endcan
     <div class="card">
         <div class="card-header">
-            {{ trans('cruds.volunteer.title_singular') }} {{ trans('global.list') }}
+            {{ trans('cruds.volunteerTask.title_singular') }} {{ trans('global.list') }}
         </div>
 
         <div class="card-body">
-            <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Volunteer">
+            <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-VolunteerTask">
                 <thead>
                     <tr>
                         <th width="10">
 
                         </th>
                         <th>
-                            {{ trans('cruds.volunteer.fields.id') }}
+                            {{ trans('cruds.volunteerTask.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.volunteer.fields.name') }}
+                            {{ trans('cruds.volunteerTask.fields.volunteer') }}
                         </th>
                         <th>
-                            {{ trans('cruds.volunteer.fields.phone_number') }}
+                            {{ trans('cruds.volunteerTask.fields.name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.volunteer.fields.initiative_name') }}
+                            {{ trans('cruds.volunteerTask.fields.address') }}
                         </th>
                         <th>
-                            {{ trans('cruds.volunteer.fields.cv') }}
+                            {{ trans('cruds.volunteerTask.fields.phone') }}
                         </th>
                         <th>
-                            {{ trans('global.verify') }}
+                            {{ trans('cruds.volunteerTask.fields.visit_type') }}
                         </th>
                         <th>
-                            {{ trans('cruds.volunteer.fields.created_at') }}
+                            {{ trans('cruds.volunteerTask.fields.date') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.volunteerTask.fields.status') }}
                         </th>
                         <th>
                             &nbsp;
@@ -63,7 +66,7 @@
                 serverSide: true,
                 retrieve: true,
                 aaSorting: [],
-                ajax: "{{ route('admin.volunteers.index') }}",
+                ajax: "{{ route('admin.volunteer-tasks.index') }}",
                 columns: [{
                         data: 'placeholder',
                         name: 'placeholder'
@@ -73,30 +76,32 @@
                         name: 'id'
                     },
                     {
+                        data: 'volunteer_name',
+                        name: 'volunteer.name'
+                    },
+                    {
                         data: 'name',
                         name: 'name'
                     },
                     {
-                        data: 'phone_number',
-                        name: 'phone_number'
+                        data: 'address',
+                        name: 'address'
                     },
                     {
-                        data: 'initiative_name',
-                        name: 'initiative_name'
+                        data: 'phone',
+                        name: 'phone'
                     },
                     {
-                        data: 'cv',
-                        name: 'cv',
-                        sortable: false,
-                        searchable: false
+                        data: 'visit_type',
+                        name: 'visit_type'
                     },
                     {
-                        data: 'approved',
-                        name: 'approved'
+                        data: 'date',
+                        name: 'date'
                     },
                     {
-                        data: 'created_at',
-                        name: 'created_at'
+                        data: 'status',
+                        name: 'status'
                     },
                     {
                         data: 'actions',
@@ -109,7 +114,7 @@
                 ],
                 pageLength: 25,
             };
-            let table = $('.datatable-Volunteer').DataTable(dtOverrideGlobals);
+            let table = $('.datatable-VolunteerTask').DataTable(dtOverrideGlobals);
             $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e) {
                 $($.fn.dataTable.tables(true)).DataTable()
                     .columns.adjust();

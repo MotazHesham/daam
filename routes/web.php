@@ -99,8 +99,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('volunteers/destroy', 'VolunteersController@massDestroy')->name('volunteers.massDestroy');
     Route::post('volunteers/media', 'VolunteersController@storeMedia')->name('volunteers.storeMedia');
     Route::post('volunteers/ckmedia', 'VolunteersController@storeCKEditorImages')->name('volunteers.storeCKEditorImages');
+    Route::get('volunteers/verify/{id}', 'VolunteersController@verify')->name('volunteers.verify');
+    Route::post('volunteers/verify_submit', 'VolunteersController@verify_submit')->name('volunteers.verify_submit');
     Route::resource('volunteers', 'VolunteersController');
 
+    // Volunteer Tasks
+    Route::delete('volunteer-tasks/destroy', 'VolunteerTasksController@massDestroy')->name('volunteer-tasks.massDestroy');
+    Route::get('volunteer-tasks/qr/{id}', 'VolunteerTasksController@qr')->name('volunteer-tasks.qr');
+    Route::resource('volunteer-tasks', 'VolunteerTasksController');
+    
     // Volunteer Guides
     Route::delete('volunteer-guides/destroy', 'VolunteerGuidesController@massDestroy')->name('volunteer-guides.massDestroy');
     Route::post('volunteer-guides/update_statuses', 'VolunteerGuidesController@update_statuses')->name('volunteer-guides.update_statuses');

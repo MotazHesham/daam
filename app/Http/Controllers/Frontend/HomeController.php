@@ -23,7 +23,9 @@ use App\Models\SaidAboutUs;
 use App\Models\Setting;
 use App\Models\Slider;
 use App\Models\Subscribe;
+use App\Models\Volunteer;
 use App\Models\VolunteerGuide;
+use App\Models\VolunteerTask;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -40,6 +42,12 @@ class HomeController extends Controller
         $reviews = SaidAboutUs::orderBy('created_at', 'desc')->take(10)->get();
         $partners = Partner::orderBy('created_at', 'desc')->get();
         return view('frontend.home', compact('sliders','Aids', 'site_settings', 'projects', 'news', 'reviews', 'partners', 'headline'));
+    }
+
+    public function volunteer_qr($id){
+        $task = VolunteerTask::findOrFail(decrypt($id));
+        $volunteer = Volunteer::findOrFail($task->volunteer_id);
+        return view('frontend.volunteer_qr', compact('volunteer'));
     }
 
     public function about()

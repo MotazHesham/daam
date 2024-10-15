@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('volunteer/qr/{id}', 'Frontend\HomeController@volunteer_qr')->name('volunteer_qr');
+
 Route::get('/', 'Frontend\HomeController@home')->name('home');
 
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function () { 

@@ -399,7 +399,7 @@ class PermissionsTableSeeder extends Seeder
             [
                 'id'    => $i++,
                 'title' => 'volunteering_managment_access',
-                'type' => 'volunteer.volunteer_guide',
+                'type' => 'volunteer.volunteer_guide.volunteer_task',
                 'parent' => 1,
             ],
             [
@@ -460,6 +460,36 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => $i++,
                 'title' => 'volunteer_guide_access',
                 'type' => 'volunteer_guide',
+                'parent' => 0,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'volunteer_task_create',
+                'type' => 'volunteer_task',
+                'parent' => 0,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'volunteer_task_edit',
+                'type' => 'volunteer_task',
+                'parent' => 0,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'volunteer_task_show',
+                'type' => 'volunteer_task',
+                'parent' => 0,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'volunteer_task_delete',
+                'type' => 'volunteer_task',
+                'parent' => 0,
+            ],
+            [
+                'id'    => $i++,
+                'title' => 'volunteer_task_access',
+                'type' => 'volunteer_task',
                 'parent' => 0,
             ],
             [

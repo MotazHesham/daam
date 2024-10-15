@@ -253,7 +253,7 @@
         @endcan
         @can('volunteering_managment_access')
             <li
-                class="c-sidebar-nav-dropdown {{ request()->is('admin/volunteers*') ? 'c-show' : '' }} {{ request()->is('admin/volunteer-guides*') ? 'c-show' : '' }}">
+                class="c-sidebar-nav-dropdown {{ request()->is('admin/volunteers*') ? 'c-show' : '' }} {{ request()->is('admin/volunteer-guides*') ? 'c-show' : '' }} {{ request()->is("admin/volunteer-tasks*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fab fa-hire-a-helper c-sidebar-nav-icon">
 
@@ -269,6 +269,16 @@
 
                                 </i>
                                 {{ trans('cruds.volunteer.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('volunteer_task_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.volunteer-tasks.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/volunteer-tasks") || request()->is("admin/volunteer-tasks/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-tasks c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.volunteerTask.title') }}
                             </a>
                         </li>
                     @endcan

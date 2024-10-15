@@ -9,18 +9,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Volunteer extends Model implements HasMedia
+class Volunteer extends Authenticatable implements HasMedia
 {
     use SoftDeletes, InteractsWithMedia, HasFactory;
 
     public $table = 'volunteers';
 
+    protected $guard = 'volunteer';
+
     protected $appends = [
         'cv',
     ];
 
+    protected $hidden = [ 
+        'remember_token',
+        'password',
+    ];
+
     protected $dates = [
+        'email_verified_at',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -30,10 +39,14 @@ class Volunteer extends Model implements HasMedia
         'name',
         'identity_num',
         'email',
+        'password',
         'phone_number',
         'interest',
         'initiative_name',
         'prev_experience',
+        'approved',
+        'email_verified_at',
+        'remember_token',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -53,5 +66,9 @@ class Volunteer extends Model implements HasMedia
     public function getCvAttribute()
     {
         return $this->getMedia('cv')->last();
+    }
+    public function volunteerVolunteerTasks()
+    {
+        return $this->hasMany(VolunteerTask::class, 'volunteer_id', 'id');
     }
 }

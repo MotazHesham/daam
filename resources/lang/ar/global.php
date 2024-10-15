@@ -159,6 +159,7 @@ return [
         'disable'        => 'تعطيل',
         'resend'         => 'إعادة إرسال',
     ],
+    'verify'         => 'توثيق',
     'chart_type'                     => 'نوع الرسم البياني',
     'code'                           => 'كود',
     'companies'                      => 'الشركات',
