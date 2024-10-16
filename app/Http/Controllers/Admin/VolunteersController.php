@@ -100,6 +100,15 @@ class VolunteersController extends Controller
             Media::whereIn('id', $media)->update(['model_id' => $volunteer->id]);
         }
 
+
+        if ($request->input('photo', false)) {
+            $volunteer->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        }
+
+        if ($media = $request->input('ck-media', false)) {
+            Media::whereIn('id', $media)->update(['model_id' => $volunteer->id]);
+        }
+
         return redirect()->route('admin.volunteers.index');
     }
 
@@ -132,6 +141,18 @@ class VolunteersController extends Controller
             $volunteer->cv->delete();
         }
 
+
+        if ($request->input('photo', false)) {
+            if (! $volunteer->photo || $request->input('photo') !== $volunteer->photo->file_name) {
+                if ($volunteer->photo) {
+                    $volunteer->photo->delete();
+                }
+                $volunteer->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+            }
+        } elseif ($volunteer->photo) {
+            $volunteer->photo->delete();
+        }
+        
         return redirect()->route('admin.volunteers.index');
     }
     public function verify_submit(Request $request)

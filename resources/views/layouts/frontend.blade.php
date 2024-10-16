@@ -513,6 +513,16 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/js/bootstrap.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
     <script id="rendered-js">
+        
+        //perevent submittig multiple times
+        $("body").on("submit", "form", function() {
+            $(this).submit(function() {
+                return false;
+            });
+            return true;
+        });
+        
+        
         const multipleItemCarousel = document.querySelector("#carouselExampleControls");
 
         if (window.matchMedia("(min-width:576px)").matches) {

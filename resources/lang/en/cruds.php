@@ -379,6 +379,8 @@ return [
             'id_helper'              => ' ',
             'name'                   => 'Name',
             'name_helper'            => ' ',
+            'photo'                   => 'Photo',
+            'photo_helper'            => ' ',
             'identity_num'           => 'Identity Num',
             'identity_num_helper'    => ' ',
             'email'                  => 'Email',

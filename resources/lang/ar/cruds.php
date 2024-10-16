@@ -379,6 +379,8 @@ return [
             'id_helper'              => ' ',
             'name'                   => 'الأسم',
             'name_helper'            => ' ',
+            'photo'                   => 'الصورة',
+            'photo_helper'            => ' ',
             'identity_num'           => 'رقم الهوية',
             'identity_num_helper'    => ' ',
             'email'                  => 'البريد الألكتروني',

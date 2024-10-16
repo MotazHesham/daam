@@ -47,7 +47,7 @@ class HomeController extends Controller
     public function volunteer_qr($id){
         $task = VolunteerTask::findOrFail(decrypt($id));
         $volunteer = Volunteer::findOrFail($task->volunteer_id);
-        return view('frontend.volunteer_qr', compact('volunteer'));
+        return view('frontend.volunteer_qr', compact('volunteer','task'));
     }
 
     public function about()

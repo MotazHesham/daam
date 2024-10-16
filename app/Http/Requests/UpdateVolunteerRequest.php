@@ -27,6 +27,7 @@ class UpdateVolunteerRequest extends FormRequest
             ],
             'email' => [
                 'required',
+                'unique:volunteers,email,' . request()->route('volunteer')->id,
             ],
             'phone_number' => [
                 'string',

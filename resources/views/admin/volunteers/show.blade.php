@@ -91,6 +91,18 @@
                             @endif
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.volunteer.fields.photo') }}
+                        </th>
+                        <td>
+                            @if($volunteer->photo)
+                                <a href="{{ $volunteer->photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $volunteer->photo->getUrl('thumb') }}">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

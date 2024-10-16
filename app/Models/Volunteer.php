@@ -21,7 +21,8 @@ class Volunteer extends Authenticatable implements HasMedia
 
     protected $appends = [
         'cv',
-    ];
+        'photo',
+    ]; 
 
     protected $hidden = [ 
         'remember_token',
@@ -61,6 +62,20 @@ class Volunteer extends Authenticatable implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('preview2')->fit('crop', 440, 440);
+    }
+
+    public function getPhotoAttribute()
+    {
+        $file = $this->getMedia('photo')->last();
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+            $file->preview2   = $file->getUrl('preview2');
+        }
+
+        return $file;
     }
 
     public function getCvAttribute()

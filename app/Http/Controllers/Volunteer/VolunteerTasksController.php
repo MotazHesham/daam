@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Volunteer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyVolunteerTaskRequest;
@@ -20,31 +20,65 @@ class VolunteerTasksController extends Controller
         $volunteerTask = VolunteerTask::findOrFail($id);
         $volunteerTask->load('volunteer');
 
-        return view('admin.volunteerTasks.qr', compact('volunteerTask'));
+        return view('volunteer.volunteerTasks.qr', compact('volunteerTask'));
+    }
+
+    public function status(Request $request){ 
+        $volunteerTask = VolunteerTask::findOrFail($request->id);
+        if($request->status == 'start'){
+            $volunteerTask->status = 'working';
+            $volunteerTask->arrive_time = date('H:i:s');
+            $volunteerTask->save();
+
+        }elseif($request->status == 'end'){
+
+            $volunteerTask->status = 'done';
+            $volunteerTask->leave_time = date('H:i:s');
+            $volunteerTask->save();
+        }else{
+            abort(404);
+        }
+
+        
+        return redirect()->route('volunteer.volunteer-tasks.index');
     }
 
     public function index(Request $request)
-    {
-        abort_if(Gate::denies('volunteer_task_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    { 
 
         if ($request->ajax()) {
-            $query = VolunteerTask::with(['volunteer'])->select(sprintf('%s.*', (new VolunteerTask)->table));
+            $query = VolunteerTask::where('volunteer_id',auth('volunteer')->user()->id)->select(sprintf('%s.*', (new VolunteerTask)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'volunteer_task_show';
-                $editGate      = $row->status == 'pending' ? 'volunteer_task_edit' : false;
-                $deleteGate    = $row->status == 'pending' ? 'volunteer_task_delete' : false;
+                $viewGate      = false;
+                $editGate      =   false;
+                $deleteGate    =   false;
                 $crudRoutePart = 'volunteer-tasks';
 
-                $qr = '<a class="btn btn-xs btn-success" href="'. route('admin.' . $crudRoutePart . '.qr', $row->id) .'">
+                $qr = '<a class="btn btn-xs btn-success" href="'. route('volunteer.' . $crudRoutePart . '.qr', $row->id) .'">
                             الهوية الرقمية
                         </a> &nbsp;'; 
+                
+                if($row->status == 'pending'){
 
-                return $qr . view('partials.datatablesActions', compact(
+                    $status = '<a class="btn btn-xs btn-info" href="'. route('volunteer.' . $crudRoutePart . '.status', ['id' => $row->id , 'status' => 'start']) .'">
+                    بدء العمل
+                    </a> &nbsp;'; 
+                }elseif($row->status == 'working'){
+                    $status = '<a class="btn btn-xs btn-warning" href="'. route('volunteer.' . $crudRoutePart . '.status', ['id' => $row->id , 'status' => 'end']) .'">
+                    انهاء العمل
+                    </a> &nbsp;'; 
+                    
+                }else{
+                    $status = '';
+                    $qr = '';
+                }
+
+                return $status . $qr . view('partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',
@@ -55,10 +89,7 @@ class VolunteerTasksController extends Controller
 
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
-            });
-            $table->addColumn('volunteer_name', function ($row) {
-                return $row->volunteer ? $row->volunteer->name : '';
-            });
+            }); 
 
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
@@ -82,58 +113,31 @@ class VolunteerTasksController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.volunteerTasks.index');
-    }
-
-    public function create()
-    {
-        abort_if(Gate::denies('volunteer_task_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $volunteers = Volunteer::where('approved',1)->get()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.volunteerTasks.create', compact('volunteers'));
-    }
-
-    public function store(StoreVolunteerTaskRequest $request)
-    {
-        $volunteerTask = VolunteerTask::create($request->all());
-
-        return redirect()->route('admin.volunteer-tasks.index');
-    }
+        return view('volunteer.volunteerTasks.index');
+    }  
 
     public function edit(VolunteerTask $volunteerTask)
-    {
-        abort_if(Gate::denies('volunteer_task_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    { 
 
-        $volunteers = Volunteer::where('approved',1)->get()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $volunteers = Volunteer::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $volunteerTask->load('volunteer');
 
-        return view('admin.volunteerTasks.edit', compact('volunteerTask', 'volunteers'));
+        return view('volunteer.volunteerTasks.edit', compact('volunteerTask', 'volunteers'));
     }
 
-    public function update(UpdateVolunteerTaskRequest $request, VolunteerTask $volunteerTask)
+    public function update(Request $request, VolunteerTask $volunteerTask)
     {
         $volunteerTask->update($request->all());
 
-        return redirect()->route('admin.volunteer-tasks.index');
+        return redirect()->route('volunteer.volunteer-tasks.index');
     }
 
     public function show(VolunteerTask $volunteerTask)
-    {
-        abort_if(Gate::denies('volunteer_task_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    { 
 
         $volunteerTask->load('volunteer');
 
-        return view('admin.volunteerTasks.show', compact('volunteerTask'));
-    }
-
-    public function destroy(VolunteerTask $volunteerTask)
-    {
-        abort_if(Gate::denies('volunteer_task_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $volunteerTask->delete();
-
-        return back();
+        return view('volunteer.volunteerTasks.show', compact('volunteerTask'));
     } 
 }
