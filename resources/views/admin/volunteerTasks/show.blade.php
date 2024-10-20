@@ -49,6 +49,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.volunteerTask.fields.identity') }}
+                        </th>
+                        <td>
+                            {{ $volunteerTask->identity }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.volunteerTask.fields.phone') }}
                         </th>
                         <td>

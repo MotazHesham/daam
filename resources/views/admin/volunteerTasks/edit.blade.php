@@ -55,6 +55,16 @@
                 <span class="help-block">{{ trans('cruds.volunteerTask.fields.phone_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="identity">{{ trans('cruds.volunteerTask.fields.identity') }}</label>
+                <input class="form-control {{ $errors->has('identity') ? 'is-invalid' : '' }}" type="text" name="identity" id="identity" value="{{ old('identity', $volunteerTask->identity) }}" required>
+                @if($errors->has('identity'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('identity') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.volunteerTask.fields.identity_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="details">{{ trans('cruds.volunteerTask.fields.details') }}</label>
                 <textarea class="form-control {{ $errors->has('details') ? 'is-invalid' : '' }}" name="details" id="details">{{ old('details', $volunteerTask->details) }}</textarea>
                 @if($errors->has('details'))

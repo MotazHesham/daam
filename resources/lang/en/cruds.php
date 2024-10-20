@@ -848,6 +848,8 @@ return [
             'name_helper'          => ' ',
             'address'              => 'Address',
             'address_helper'       => ' ',
+            'identity'              => 'Identity Num',
+            'identity_helper'       => ' ',
             'phone'                => 'Phone',
             'phone_helper'         => ' ',
             'visit_type'           => 'Visit Type',

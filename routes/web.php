@@ -13,6 +13,8 @@ Route::get('/home', function () {
 
 Auth::routes(['register' => false]); 
 
+Route::get('api/search_beneficires','ApiController@searchBeneficires')->name('api.search_beneficires');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions

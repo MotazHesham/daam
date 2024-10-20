@@ -11,6 +11,7 @@ class CreateVolunteerTasksTable extends Migration
         Schema::create('volunteer_tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('identity');
             $table->string('address');
             $table->string('phone');
             $table->longText('details')->nullable();

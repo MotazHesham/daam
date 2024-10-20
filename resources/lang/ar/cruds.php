@@ -932,6 +932,8 @@ return [
             'name_helper'          => ' ',
             'address'              => 'العنوان',
             'address_helper'       => ' ',
+            'identity'              => 'رقم الهوية',
+            'identity_helper'       => ' ',
             'phone'                => 'رقم الهاتف',
             'phone_helper'         => ' ',
             'visit_type'           => 'نوع الزيارة',

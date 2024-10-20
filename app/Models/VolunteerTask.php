@@ -42,6 +42,7 @@ class VolunteerTask extends Model implements HasMedia
     protected $fillable = [
         'volunteer_id',
         'name',
+        'identity',
         'address',
         'phone',
         'details',
