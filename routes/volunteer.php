@@ -12,8 +12,11 @@ Route::group(['prefix' => 'volunteer', 'as' => 'volunteer.', 'namespace' => 'Vol
 
     // Volunteer Tasks
     Route::delete('volunteer-tasks/destroy', 'VolunteerTasksController@massDestroy')->name('volunteer-tasks.massDestroy');
+    Route::post('volunteer-tasks/finish', 'VolunteerTasksController@finish')->name('volunteer-tasks.finish');
     Route::get('volunteer-tasks/qr/{id}', 'VolunteerTasksController@qr')->name('volunteer-tasks.qr');
     Route::get('volunteer-tasks/status/{id}/{status}', 'VolunteerTasksController@status')->name('volunteer-tasks.status');
+    Route::post('volunteer-tasks/media', 'VolunteerTasksController@storeMedia')->name('volunteer-tasks.storeMedia');
+    Route::post('volunteer-tasks/ckmedia', 'VolunteerTasksController@storeCKEditorImages')->name('volunteer-tasks.storeCKEditorImages');
     Route::resource('volunteer-tasks', 'VolunteerTasksController'); 
 
     

@@ -178,6 +178,7 @@
                                                 <li><a href="{{ route('frontend.volunteer_guide') }}"> أدلة التطوع</a>
                                                 </li>
                                                 <li><a href="{{ route('frontend.volunteer') }}">انضم كمتطوع</a></li>
+                                                <li><a href="{{ route('volunteer.login_form') }}"> دخول المتطوعين</a></li>
                                             </ul>
                                         </li>
 

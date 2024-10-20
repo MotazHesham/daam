@@ -72,8 +72,7 @@
         <h4 class="mt-3">الهوية الرقمية لمتطوع جمعية دعم</h4>
 
         <!-- QR Code -->
-        <div class="qr-code mt-3">
-            {{route('volunteer_qr',encrypt($volunteerTask->id))}}
+        <div class="qr-code mt-3"> 
             {!! QrCode::size(150)->generate(route('volunteer_qr',encrypt($volunteerTask->id))) !!} 
         </div>
 

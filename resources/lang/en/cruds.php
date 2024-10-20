@@ -870,6 +870,10 @@ return [
             'status_helper'        => ' ',
             'cancel_reason'        => 'Cancel Reason',
             'cancel_reason_helper' => ' ',
+            'notes'                => 'Notes',
+            'notes_helper'         => ' ',
+            'files'                => 'Files',
+            'files_helper'         => ' ',
         ],
     ],
 ];

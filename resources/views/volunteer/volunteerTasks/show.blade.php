@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.volunteer')
 @section('content')
 
 <div class="card">
@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.volunteer-tasks.index') }}">
+                <a class="btn btn-default" href="{{ route('volunteer.volunteer-tasks.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -22,15 +22,7 @@
                         <td>
                             {{ $volunteerTask->id }}
                         </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.volunteerTask.fields.volunteer') }}
-                        </th>
-                        <td>
-                            {{ $volunteerTask->volunteer->name ?? '' }}
-                        </td>
-                    </tr>
+                    </tr> 
                     <tr>
                         <th>
                             {{ trans('cruds.volunteerTask.fields.name') }}
@@ -126,7 +118,7 @@
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.volunteer-tasks.index') }}">
+                <a class="btn btn-default" href="{{ route('volunteer.volunteer-tasks.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>

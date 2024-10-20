@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Volunteer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyVolunteerTaskRequest;
 use App\Http\Requests\StoreVolunteerTaskRequest;
 use App\Http\Requests\UpdateVolunteerTaskRequest;
@@ -10,17 +11,38 @@ use App\Models\Volunteer;
 use App\Models\VolunteerTask;
 use Gate;
 use Illuminate\Http\Request;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class VolunteerTasksController extends Controller
 {
+    use MediaUploadingTrait;
+
     public function qr($id)
     {  
         $volunteerTask = VolunteerTask::findOrFail($id);
         $volunteerTask->load('volunteer');
 
         return view('volunteer.volunteerTasks.qr', compact('volunteerTask'));
+    }
+    public function finish(Request $request)
+    {  
+        $volunteerTask = VolunteerTask::findOrFail($request->id);
+        $volunteerTask->notes = $request->notes;
+        $volunteerTask->status = 'done';
+        $volunteerTask->leave_time = date('H:i:s');
+        $volunteerTask->save();
+
+        foreach ($request->input('files', []) as $file) {
+            $volunteerTask->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('files');
+        }
+
+        if ($media = $request->input('ck-media', false)) {
+            Media::whereIn('id', $media)->update(['model_id' => $volunteerTask->id]);
+        }
+
+        return redirect()->route('volunteer.volunteer-tasks.index');
     }
 
     public function status(Request $request){ 
@@ -59,6 +81,9 @@ class VolunteerTasksController extends Controller
                 $deleteGate    =   false;
                 $crudRoutePart = 'volunteer-tasks';
 
+                $view = '<a class="btn btn-xs btn-info" href="'. route('volunteer.' . $crudRoutePart . '.show', $row->id) .'">
+                            '. trans('global.view') . '
+                        </a> &nbsp;'; 
                 $qr = '<a class="btn btn-xs btn-success" href="'. route('volunteer.' . $crudRoutePart . '.qr', $row->id) .'">
                             الهوية الرقمية
                         </a> &nbsp;'; 
@@ -69,7 +94,7 @@ class VolunteerTasksController extends Controller
                     بدء العمل
                     </a> &nbsp;'; 
                 }elseif($row->status == 'working'){
-                    $status = '<a class="btn btn-xs btn-warning" href="'. route('volunteer.' . $crudRoutePart . '.status', ['id' => $row->id , 'status' => 'end']) .'">
+                    $status = '<a class="btn btn-xs btn-warning" href="#" onclick="edit_volunteer_task('.$row->id.')">
                     انهاء العمل
                     </a> &nbsp;'; 
                     
@@ -78,7 +103,7 @@ class VolunteerTasksController extends Controller
                     $qr = '';
                 }
 
-                return $status . $qr . view('partials.datatablesActions', compact(
+                return $view . $status . $qr . view('partials.datatablesActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',
@@ -140,4 +165,15 @@ class VolunteerTasksController extends Controller
 
         return view('volunteer.volunteerTasks.show', compact('volunteerTask'));
     } 
+    public function storeCKEditorImages(Request $request)
+    {
+        abort_if(Gate::denies('volunteer_task_create') && Gate::denies('volunteer_task_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $model         = new VolunteerTask();
+        $model->id     = $request->input('crud_id', 0);
+        $model->exists = true;
+        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+
+        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
 }

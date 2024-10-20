@@ -954,6 +954,10 @@ return [
             'status_helper'        => ' ',
             'cancel_reason'        => 'سبب الرفض',
             'cancel_reason_helper' => ' ',
+            'notes'                => 'التقرير',
+            'notes_helper'         => ' ',
+            'files'                => 'المرفقات',
+            'files_helper'         => ' ',
         ],
     ],
 ];

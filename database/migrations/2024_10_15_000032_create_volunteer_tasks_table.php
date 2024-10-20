@@ -20,6 +20,7 @@ class CreateVolunteerTasksTable extends Migration
             $table->time('leave_time')->nullable();
             $table->string('status')->default('pending');
             $table->longText('cancel_reason')->nullable();
+            $table->longText('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
