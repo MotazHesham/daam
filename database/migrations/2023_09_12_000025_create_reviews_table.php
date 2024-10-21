@@ -12,6 +12,7 @@ class CreateReviewsTable extends Migration
             $table->bigIncrements('id');
             $table->string('identity_number')->nullable();
             $table->string('phone_number')->nullable();
+            $table->string('name')->nullable();
             $table->string('review')->nullable();
             $table->text('reason')->nullable();
             $table->timestamps();

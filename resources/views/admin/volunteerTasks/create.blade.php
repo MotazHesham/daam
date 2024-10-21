@@ -30,7 +30,10 @@
                         <div style="display: flex">
                             <input class="form-control {{ $errors->has('search') ? 'is-invalid' : '' }}" type="text"
                             name="search" id="search">
-                            <button class="btn btn-info" type="button" onclick="search_for_beneficires()">search</button>
+                            <button class="btn btn-info" id="search-btn" type="button" onclick="search_for_beneficires()"> 
+                                <span id="spinner" class="spinner-border spinner-border-sm" role="status" style="display:none"></span>
+                                <span id="button-text">search</span>
+                            </button>
                         </div>
                     </div> 
                     <div class="form-group col-md-6" id="search-result">
@@ -145,6 +148,17 @@
             var params = {
                 search: search
             };
+
+            // Get button elements
+            var searchButton = document.getElementById('search-btn');
+            var spinner = document.getElementById('spinner');
+            var buttonText = document.getElementById('button-text');
+
+            // Show spinner and disable button
+            spinner.style.display = 'inline-block';
+            buttonText.style.display = 'none';
+            searchButton.disabled = true;
+
             $.ajax({
                 type: 'GET',
                 url: url,
@@ -154,6 +168,12 @@
                 },
                 error: function(xhr, status, error) {
                     console.log(xhr.responseText);
+                },
+                complete: function() {
+                    // Hide spinner and enable button again
+                    spinner.style.display = 'none';
+                    buttonText.style.display = 'inline-block';
+                    searchButton.disabled = false;
                 }
             }); 
 

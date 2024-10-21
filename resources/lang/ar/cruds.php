@@ -663,6 +663,8 @@ return [
             'identity_number_helper' => ' ',
             'phone_number'           => 'رقم الهاتف',
             'phone_number_helper'    => ' ',
+            'name'                 => 'الاسم',
+            'name_helper'          => ' ',
             'review'                 => 'التقييم',
             'review_helper'          => ' ',
             'created_at'             => 'Created at',

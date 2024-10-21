@@ -18,7 +18,7 @@ class StoreReviewRequest extends FormRequest
     {
         return [  
             'g-recaptcha-response' => [ 
-                'required',
+                // 'required',
             ],
         ];
     }

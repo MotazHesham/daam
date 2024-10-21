@@ -21,6 +21,9 @@
                             {{ trans('cruds.review.fields.role') }}
                         </th>
                         <th>
+                            {{ trans('cruds.review.fields.name') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.review.fields.identity_number') }}
                         </th>
                         <th>
@@ -42,6 +45,9 @@
                             </td>
                             <td>
                                 {{ $review->id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $review->name ?? '' }}
                             </td>
                             <td>
                                 {{ $review->role->title ?? '' }}

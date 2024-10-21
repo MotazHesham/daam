@@ -651,6 +651,8 @@ return [
             'phone_number_helper'    => ' ',
             'review'                 => 'Review',
             'review_helper'          => ' ',
+            'name'                 => 'Name',
+            'name_helper'          => ' ',
             'created_at'             => 'Created at',
             'created_at_helper'      => ' ',
             'updated_at'             => 'Updated at',

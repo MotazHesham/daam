@@ -51,14 +51,9 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-grp">
-                                            <input type="text" placeholder="رقم الهوية" value="{{ old('identity_number') }}" required name="identity_number">
-                                        </div>
-                                    </div> 
-                                    <div class="col-md-6">
-                                        <div class="form-grp">
-                                            <input type="text" placeholder=" رقم الجوال " value="{{ old('phone_number') }}" required name="phone_number">
+                                            <input type="text" placeholder="رقم الهوية او الجوال" value="{{ old('identity_number') }}" required name="identity_number">
                                         </div>
                                     </div>  
                                     <div class="col-md-12 mb-4">

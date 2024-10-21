@@ -8,22 +8,42 @@ use Illuminate\Support\Facades\Http;
 class ApiController extends Controller
 {
     public function searchBeneficires(){ 
-        $response = Http::get('https://apimob.charities-sys.com/MobileApi/GetBeneficiariesList?filter='.request('search'));
+        $response = $this->GetBeneficiariesList(request('search'));
         // Check if the request was successful (status code 200)
-        if ($response->successful()) {
+        if ($response['success']) {
             // Get the response body as an array
-            $result = $response->json(); 
+            $result = $response['result']; 
     
             // Return or manipulate the data
             return view('admin.volunteerTasks.search-result',compact('result'));
+        }else{
+            return response()->json([
+                'error' => 'API call failed',
+                'message' => $response['result'],
+            ], $response['status']);
+        } 
+    }
+
+    public function GetBeneficiariesList($search){
+        $response = Http::get('https://apimob.charities-sys.com/MobileApi/GetBeneficiariesList?filter='.$search);
+        // Check if the request was successful (status code 200)
+        if ($response->successful()) { 
+            return [
+                'result' => $response->json(),
+                'success' => true,
+                'status' => $response->status(),
+
+            ];
         }
     
         // Handle errors
         if ($response->failed()) {
-            return response()->json([
-                'error' => 'API call failed',
-                'message' => $response->body(),
-            ], $response->status());
+            return [
+                'result' => $response->body(),
+                'success' => false,
+                'status' => $response->status(),
+
+            ]; 
         }
     }
 }

@@ -28,6 +28,7 @@ class Review extends Model
         'role_id',
         'identity_number',
         'phone_number',
+        'name',
         'review',
         'reason',
         'created_at',
