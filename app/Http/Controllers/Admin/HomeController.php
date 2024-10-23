@@ -18,7 +18,7 @@ class HomeController
             'aggregate_function'    => 'count',
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y',
-            'column_class'          => 'col-md-4',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'post',
         ];
@@ -56,7 +56,7 @@ class HomeController
             'aggregate_function'    => 'count',
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y',
-            'column_class'          => 'col-md-4',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'project',
         ];
@@ -94,7 +94,7 @@ class HomeController
             'aggregate_function'    => 'count',
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'd/m/Y',
-            'column_class'          => 'col-md-4',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'translation_key'       => 'member',
         ];
@@ -188,6 +188,128 @@ class HomeController
             $settings5['fields'] = [];
         }
 
-        return view('home', compact('settings1', 'settings2', 'settings3', 'settings4', 'settings5'));
+        
+        $settings50 = [
+            'chart_title'        => 'التبرعات حسب الفئة',
+            'chart_type'         => 'pie',
+            'report_type'        => 'group_by_string',
+            'model'              => 'App\Models\Donation',
+            'group_by_field'     => 'target',
+            'aggregate_function' => 'count',
+            'filter_field'       => 'created_at',
+            'column_class'       => 'col-md-4',
+            'entries_number'     => '5',
+            'translation_key'    => 'Donation',
+        ];
+
+        $chart5 = new LaravelChart($settings50);
+
+        $settings6 = [
+            'chart_title'           => 'مستفيدين التبرع',
+            'chart_type'            => 'number_block',
+            'report_type'           => 'group_by_date',
+            'model'                 => 'App\Models\Beneficiary',
+            'group_by_field'        => 'created_at',
+            'group_by_period'       => 'day',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-3',
+            'entries_number'        => '5',
+            'translation_key'       => 'beneficiary',
+        ];
+
+        $settings6['total_number'] = 0;
+        if (class_exists($settings6['model'])) {
+            $settings6['total_number'] = $settings6['model']::when(isset($settings6['filter_field']), function ($query) use ($settings6) {
+                if (isset($settings6['filter_days'])) {
+                    return $query->where($settings6['filter_field'], '>=',
+                        now()->subDays($settings6['filter_days'])->format('Y-m-d'));
+                } elseif (isset($settings6['filter_period'])) {
+                    switch ($settings6['filter_period']) {
+                        case 'week': $start = date('Y-m-d', strtotime('last Monday'));
+                        break;
+                        case 'month': $start = date('Y-m') . '-01';
+                        break;
+                        case 'year': $start = date('Y') . '-01-01';
+                        break;
+                    }
+                    if (isset($start)) {
+                        return $query->where($settings6['filter_field'], '>=', $start);
+                    }
+                }
+            })
+                ->{$settings6['aggregate_function'] ?? 'count'}($settings6['aggregate_field'] ?? '*');
+        }
+
+        $settings7 = [
+            'chart_title'           => 'اخر التبرعات',
+            'chart_type'            => 'latest_entries',
+            'report_type'           => 'group_by_date',
+            'model'                 => 'App\Models\Donation',
+            'group_by_field'        => 'date',
+            'group_by_period'       => 'day',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y',
+            'column_class'          => 'col-md-8',
+            'entries_number'        => '5',
+            'fields'                => [
+                'id'           => '',
+                'company_name' => '',
+                'amount'       => '',
+                'created_at'   => '',
+            ],
+            'translation_key' => 'donation',
+        ];
+
+        $settings7['data'] = [];
+        if (class_exists($settings7['model'])) {
+            $settings7['data'] = $settings7['model']::latest()
+                ->take($settings7['entries_number'])
+                ->get();
+        }
+
+        if (! array_key_exists('fields', $settings7)) {
+            $settings7['fields'] = [];
+        }
+
+        $settings8 = [
+            'chart_title'           => 'التبرعات',
+            'chart_type'            => 'bar',
+            'report_type'           => 'group_by_date',
+            'model'                 => 'App\Models\Donation',
+            'group_by_field'        => 'created_at',
+            'group_by_period'       => 'day',
+            'aggregate_function'    => 'sum',
+            'aggregate_field'       => 'amount',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-6',
+            'entries_number'        => '5',
+            'translation_key'       => 'donation',
+        ];
+
+        $chart8 = new LaravelChart($settings8);
+
+        $settings9 = [
+            'chart_title'           => 'التبرعات للمستفيدات',
+            'chart_type'            => 'line',
+            'report_type'           => 'group_by_date',
+            'model'                 => 'App\Models\Beneficiary',
+            'group_by_field'        => 'created_at',
+            'group_by_period'       => 'day',
+            'aggregate_function'    => 'sum',
+            'aggregate_field'       => 'amount',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-6',
+            'entries_number'        => '5',
+            'translation_key'       => 'beneficiary',
+        ];
+
+        $chart9 = new LaravelChart($settings9);
+
+        return view('home', compact('settings1', 'settings2', 'settings3', 'settings4', 'settings5','chart5','settings6','settings7','chart8','chart9'));
     }
 }

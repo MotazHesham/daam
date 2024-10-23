@@ -244,7 +244,7 @@
                     <div class=" col-md-4">
                         <div class=" home_Volunteer b-left">
                             <div class="icon"><img src="{{ asset('frontend/img/clock.png') }}" /></div>
-                            <h4> عدد الساعات : {{ $site_settings->hours_count ?? '' }} ساعة </h4>
+                            <h4> عدد الساعات : {{ $site_settings->hours_count ?? '' }} </h4>
                         </div>
                     </div>
 

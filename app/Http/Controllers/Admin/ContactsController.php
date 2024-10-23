@@ -61,6 +61,9 @@ class ContactsController extends Controller
             $table->editColumn('message', function ($row) {
                 return $row->message ? $row->message : '';
             });
+            $table->editColumn('created_at', function ($row) {
+                return $row->created_at ? $row->created_at : '';
+            });
 
             $table->rawColumns(['actions', 'placeholder']);
 

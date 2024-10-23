@@ -26,6 +26,7 @@
         $('#address').val(address);
         $('#phone').val(phone);
         $('#identity').val(identity);
+        $('#identity_num').val(identity);
     });
     // Set the first option as selected by default and trigger change event
     $('#result').val($('#result option:first').val()).trigger('change');

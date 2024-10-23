@@ -24,7 +24,7 @@ class ReviewController extends Controller
             // Get the response body as an array
             $result = $response['result'];  
             if(!$result['data'] || empty($result['data']) ){
-                alert('رقم الهوية أو الجوال خطأ','','error');
+                alert()->html('انت غير مسجل في جمعية دعم..يمكنك التسجيل الان من خلال الرابط التالي https://charities-sys.com/web/index.aspx','','error');
                 return redirect()->route('frontend.reviews');
             }
     
@@ -39,7 +39,7 @@ class ReviewController extends Controller
             alert('تم أرسال تقييمك بنجاح','','success');
             return redirect()->route('frontend.reviews');
         }else{
-            alert('رقم الهوية أو الجوال خطأ','','error');
+            alert()->html('انت غير مسجل في جمعية دعم..يمكنك التسجيل الان من خلال الرابط التالي'. '<a ="https://charities-sys.com/web/index.aspx">الرابط</a>','error');
             return redirect()->route('frontend.reviews');
         } 
     }

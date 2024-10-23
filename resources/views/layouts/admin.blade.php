@@ -331,6 +331,44 @@
         });
     </script>
     <script>
+        
+        function search_for_beneficires() {
+            var search = document.getElementById('search').value;  
+            var url = "{{ route('api.search_beneficires') }}";
+            var params = {
+                search: search
+            };
+
+            // Get button elements
+            var searchButton = document.getElementById('search-btn');
+            var spinner = document.getElementById('spinner');
+            var buttonText = document.getElementById('button-text');
+
+            // Show spinner and disable button
+            spinner.style.display = 'inline-block';
+            buttonText.style.display = 'none';
+            searchButton.disabled = true;
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: params,
+                success: function(data) {
+                    $('#search-result').html(data);
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                },
+                complete: function() {
+                    // Hide spinner and enable button again
+                    spinner.style.display = 'none';
+                    buttonText.style.display = 'inline-block';
+                    searchButton.disabled = false;
+                }
+            }); 
+
+        } 
+        
         $(document).ready(function() {
             $('.searchable-field').select2({
                 minimumInputLength: 3,

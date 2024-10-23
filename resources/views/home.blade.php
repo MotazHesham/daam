@@ -43,6 +43,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="{{ $settings6['column_class'] }}">
+                            <div class="card text-white bg-primary">
+                                <div class="card-body pb-0">
+                                    <div class="text-value">{{ number_format($settings6['total_number']) }}</div>
+                                    <div>{{ $settings6['chart_title'] }}</div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
                         {{-- Widget - latest entries --}}
                         <div class="{{ $settings4['column_class'] }}" style="overflow-x: auto;">
                             <h3>{{ $settings4['chart_title'] }}</h3>
@@ -120,7 +129,57 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="{{ $chart5->options['column_class'] }}">
+                            <h3>{!! $chart5->options['chart_title'] !!}</h3>
+                            {!! $chart5->renderHtml() !!}
+                        </div>
+                        {{-- Widget - latest entries --}}
+                        <div class="{{ $settings7['column_class'] }}" style="overflow-x: auto;">
+                            <h3>{{ $settings7['chart_title'] }}</h3>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        @foreach($settings7['fields'] as $key => $value)
+                                            <th>
+                                                {{ trans(sprintf('cruds.%s.fields.%s', $settings7['translation_key'] ?? 'pleaseUpdateWidget', $key)) }}
+                                            </th>
+                                        @endforeach
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($settings7['data'] as $entry)
+                                        <tr>
+                                            @foreach($settings7['fields'] as $key => $value)
+                                                <td>
+                                                    @if($value === '')
+                                                        {{ $entry->{$key} }}
+                                                    @elseif(is_iterable($entry->{$key}))
+                                                        @foreach($entry->{$key} as $subEentry)
+                                                            <span class="label label-info">{{ $subEentry->{$value} }}</span>
+                                                        @endforeach
+                                                    @else
+                                                        {{ data_get($entry, $key . '.' . $value) }}
+                                                    @endif
+                                                </td>
+                                            @endforeach
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="{{ count($settings7['fields']) }}">{{ __('No entries found') }}</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
 
+                        <div class="{{ $chart8->options['column_class'] }}">
+                            <h3>{!! $chart8->options['chart_title'] !!}</h3>
+                            {!! $chart8->renderHtml() !!}
+                        </div>
+                        <div class="{{ $chart9->options['column_class'] }}">
+                            <h3>{!! $chart9->options['chart_title'] !!}</h3>
+                            {!! $chart9->renderHtml() !!}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,4 +187,7 @@
     </div>
 </div>
 @endsection
-@section('scripts') 
+@section('scripts')  
+@parent
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>{!! $chart5->renderJs() !!}{!! $chart8->renderJs() !!}{!! $chart9->renderJs() !!}
+@endsection

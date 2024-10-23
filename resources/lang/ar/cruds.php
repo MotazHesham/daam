@@ -853,8 +853,8 @@ return [
         ],
     ],
     'beneficiary' => [
-        'title'          => 'المستفيدات',
-        'title_singular' => 'Beneficiary',
+        'title'          => 'الاستقبال',
+        'title_singular' => 'مستفيدة',
         'fields'         => [
             'id'                    => 'ID',
             'id_helper'             => ' ',
