@@ -18,16 +18,43 @@
                             {{ trans('cruds.courseStudent.fields.name') }}
                         </th>
                         <th>
+                            {{ trans('cruds.courseStudent.fields.email') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.courseStudent.fields.identity_num') }}
                         </th>
                         <th>
                             {{ trans('cruds.courseStudent.fields.phone_number') }}
                         </th>
                         <th>
+                            {{ trans('cruds.courseStudent.fields.date_of_birth') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.courseStudent.fields.registered') }}
                         </th>
                         <th>
                             {{ trans('cruds.courseStudent.fields.certificate') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.description') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.relevance') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.attend_course') }}
+                        </th>
+                        <th> 
+                            الدورات السابقة
+                        </th>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.transportaion') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.prev_exper') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.courseStudent.fields.address') }}
                         </th>
                         <th>
                             الحضور
@@ -56,16 +83,47 @@
                                 {{ $courseStudent->name ?? '' }}
                             </td>
                             <td>
+                                {{ $courseStudent->email ?? '' }}
+                            </td>
+                            <td>
                                 {{ $courseStudent->identity_num ?? '' }}
                             </td>
                             <td>
                                 {{ $courseStudent->phone_number ?? '' }}
                             </td>
                             <td>
+                                {{ $courseStudent->date_of_birth ?? '' }}
+                            </td>
+                            <td>
                                 {{ App\Models\CourseStudent::REGISTERED_RADIO[$courseStudent->registered] ?? '' }}
                             </td>
                             <td>
                                 {{ App\Models\CourseStudent::CERTIFICATE_RADIO[$courseStudent->certificate] ?? '' }}
+                            </td>
+                            <td>
+                                {{ $courseStudent->description ?? '' }}
+                            </td>
+                            <td>
+                                {{ $courseStudent->relevance ?? '' }}
+                            </td>
+                            <td>
+                                {{ $courseStudent->attend_course ?? '' }}
+                            </td>
+                            <td> 
+                                @if($courseStudent->courses_before)
+                                    @foreach(json_decode($courseStudent->courses_before,true) as $raw)
+                                        {{ $raw['course_name'] }} ,
+                                    @endforeach
+                                @endif
+                            </td>
+                            <td>
+                                {{ $courseStudent->transportaion ?? '' }}
+                            </td>
+                            <td>
+                                {{ $courseStudent->prev_exper ?? '' }}
+                            </td>
+                            <td>
+                                {{ $courseStudent->address ?? '' }}
                             </td>
                             <td>
                                 @foreach ($courseStudent->attendance as $raw)

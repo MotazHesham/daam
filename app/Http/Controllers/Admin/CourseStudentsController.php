@@ -103,7 +103,7 @@ class CourseStudentsController extends Controller
     {
         $courseStudent->update($request->all());
 
-        return redirect()->route('admin.course-students.index');
+        return redirect()->route('admin.courses.show',$courseStudent->course_id);
     }
 
     public function show(CourseStudent $courseStudent)

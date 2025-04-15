@@ -83,19 +83,19 @@
                                                             <td>{{ $lable }}</td>
                                                             <td></td>
                                                             <td  >
-                                                                <input type="radio" style="height: 20px;width:30px" name="{{ $key }}" value="5">
-                                                            </td>
-                                                            <td>
-                                                                <input type="radio" style="height: 20px;width:30px" name="{{ $key }}" value="4">
-                                                            </td>
-                                                            <td>
-                                                                <input type="radio" style="height: 20px;width:30px" checked name="{{ $key }}" value="3">
+                                                                <input type="radio" style="height: 20px;width:30px" name="{{ $key }}" value="1">
                                                             </td>
                                                             <td>
                                                                 <input type="radio" style="height: 20px;width:30px" name="{{ $key }}" value="2">
                                                             </td>
                                                             <td>
-                                                                <input type="radio" style="height: 20px;width:30px" name="{{ $key }}" value="1">
+                                                                <input type="radio" style="height: 20px;width:30px" checked name="{{ $key }}" value="3">
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" style="height: 20px;width:30px" name="{{ $key }}" value="4">
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" style="height: 20px;width:30px" name="{{ $key }}" value="5">
                                                             </td>
                                                             <td></td>
                                                         </tr> 

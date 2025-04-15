@@ -2,8 +2,11 @@
 @section('content')
 
 <div class="card"> 
+    <div class="card-header">
+        <button class="btn btn-info" onClick="printdiv('printable_div_id');">طباعة</button>
+    </div>
     <div class="card-body">
-        <div class="form-group"> 
+        <div class="form-group" id="printable_div_id"> 
             <table class="table table-bordered table-striped">
                 <tbody>
                     <tr>

@@ -113,20 +113,28 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.courseStudent.fields.course_name') }}
+                            الدورات السابقة
                         </th>
                         <td>
-                            {{ $courseStudent->course_name ?? '' }}
+                            @if($courseStudent->courses_before)
+                                <table class="table">
+                                    <thead>
+                                        <th>الدورة</th>
+                                        <th>المدرب</th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach(json_decode($courseStudent->courses_before,true) as $raw)
+                                            <tr>
+
+                                                <td>{{ $raw['course_name'] }}</td>
+                                                <td>{{ $raw['course_trainer'] }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
                         </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.courseStudent.fields.course_trainer') }}
-                        </th>
-                        <td>
-                            {{ $courseStudent->course_trainer ?? '' }}
-                        </td>
-                    </tr>
+                    </tr> 
                     <tr>
                         <th>
                             {{ trans('cruds.courseStudent.fields.transportaion') }}

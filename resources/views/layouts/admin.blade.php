@@ -184,8 +184,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
     
-    <script>
-        
+    <script> 
+        function printdiv(elem) {
+            const content = document.getElementById(elem).innerHTML;
+            const printWindow = window.open('', '', 'height=800,width=1000');
+
+            // Start of HTML
+            printWindow.document.write('<html');
+
+            // If the app locale is Arabic, add dir="rtl"
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+            if (isRTL) {
+                printWindow.document.write(' dir="rtl"');
+            }
+
+            printWindow.document.write('><head><title>' + document.title + '</title>');
+
+            // Grab all stylesheets and <style> blocks
+            const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'))
+                .map(style => style.outerHTML)
+                .join('\n');
+
+            printWindow.document.write(styles);
+            printWindow.document.write('</head><body>');
+            printWindow.document.write(content);
+            printWindow.document.write('</body></html>');
+
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
+        } 
+
         function copyToClipboard(text) { 
             var $temp = $("<input>");
             $("body").append($temp); 

@@ -59,81 +59,97 @@
                                 @csrf
                                 <div class="row">
                                     <input type="hidden" value="{{ $course->id }}" name="course_id">
+                                    <div class="form-grp" style="display: flex">
+                                        <input type="text" required placeholder=" رقم الهوية" maxlength="10" name="identity_num" id="identity_num" required  onkeyup="search_for_beneficires()"> 
+                                        <button class="btn btn-info" id="search-btn" type="button" onclick="search_for_beneficires()"> 
+                                            <span id="spinner" class="spinner-border spinner-border-sm" role="status" style="display:none"></span>
+                                            <span id="button-text"></span>
+                                        </button>
+                                    </div> 
+
                                     <div class="form-grp">
-                                        <input type="text" required placeholder="الاسم بالكامل" name="name" required>
-                                    </div>
-                                    <div class="form-grp">
-                                        <input type="text" required placeholder="البريد الإلكتروني" name="email" required>
+                                        <div class="row ">
+                                            <div class="form-grp col-md-6">
+                                                <input type="text" required placeholder="رقم الجوال " maxlength="10" name="phone_number" id="phone_number" required>
+                                            </div>
+                                            <div class="form-grp col-md-6">
+                                                <input type="text" required placeholder="الاسم بالكامل" name="name" id="name" required>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="row ">
-                                        <div class="form-grp col-md-6">
-                                            <input type="text" required placeholder=" رقم الهوية" maxlength="10" name="identity_num" required>
-                                        </div> 
-                                        <div class="form-grp col-md-6">
-                                            <input type="text" required placeholder="رقم الجوال " maxlength="10" name="phone_number" required>
-                                        </div>
+                                    <div class="form-grp">
+                                        <input type="text" required placeholder="البريد الإلكتروني" name="email" id="email" required>
                                     </div>
 
                                     {{-- <div class="row ">
                                         <div class="form-grp col-md-6">
                                             <input type="text" class="date_frontend" placeholder=" تاريخ الميلاد" required name="date_of_birth">
                                         </div> 
-                                    </div> --}}
-                                    <div class="row ">
-                                        <div class="  col-md-6">
-                                            <span class="theme-color"> 
-                                                مسجل في الجمعية؟ *
-                                            </span>
-                                            <a target="_blank" id="register" href="https://charities-sys.com/web/index.aspx" style="color: red;">اضغط هنا للتسجيل</a>
-                                            <br />
-                                            <input class="opti" id="hideRegister" type="Radio" name="registered"  Value="yes">نعم
-                                            <input type="Radio" id="showRegister" class="opti" name="registered" Value="no" checked>لا 
-                                        </div>
-                                        <div class="form-grp col-md-6" id="relevance-div">
-                                            <input type="text"   placeholder="صلة القرابة بمستفيدة الجمعية" name="relevance">
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="  col-md-12">
-                                            <span class="theme-color"> هل سبق لك حضور دورة/دورات نفس المجال ؟ *</span> 
-                                            <br />
-                                            <input class="opti" type="Radio" Name="attend_course" Value="yes" checked required>نعم
-                                            <input type="Radio" required class="opti" class="opti" Name="attend_course" Value="no" >لا
-                                        </div>
-                                        <div class="form-grp col-md-6 attend-courses-before">
-                                            <input type="text"   placeholder="اسم الدورة" name="course_name">
-                                        </div>
-                                        <div class="form-grp col-md-6 attend-courses-before">
-                                            <input type="text"   placeholder="اسم المدرب/ه" name="course_trainer">
+                                    </div> --}} 
+                                        <div class="row " id="relateto-beneficry">
+                                            <div class="  col-md-12">
+                                                <span class="theme-color"> 
+                                                    مسجل في الجمعية؟ *
+                                                </span>
+                                                <a target="_blank" id="register" href="https://charities-sys.com/web/index.aspx" style="color: red;">اضغط هنا للتسجيل</a>
+                                                <br />
+                                                <input class="opti" id="hideRegister" type="Radio" name="registered"  Value="yes">نعم
+                                                <input type="Radio" id="showRegister" class="opti" name="registered" Value="no" checked>لا 
+                                            </div>
+                                            <div class="form-grp col-md-6" id="relevance-div">
+                                                <input type="text"   placeholder="صلة القرابة بمستفيدة الجمعية" name="relevance">
+                                            </div> 
+                                            <div class="form-grp col-md-6" id="relevance-div"> 
+                                                <input type="text"   placeholder="رقم الهوية الخاص بالمستفيدة" name="relevance_identity" max="10">
+                                            </div> 
                                         </div> 
-                                    </div>
+                                    
+                                        <div class="row" id="courses_before">
+                                            <div class="  col-md-12">
+                                                <span class="theme-color"> هل سبق لك حضور دورة/دورات نفس المجال ؟ *</span> 
+                                                <br />
+                                                <input class="opti" type="Radio" Name="attend_course" Value="yes" checked required>نعم
+                                                <input type="Radio" required class="opti" class="opti" Name="attend_course" Value="no" >لا
+                                            </div>
+                                            <div class="form-grp col-md-6 attend-courses-before">
+                                                <input type="text"   placeholder="اسم الدورة" name="courses_before[0][course_name]">
+                                            </div>
+                                            <div class="form-grp col-md-6 attend-courses-before">
+                                                <input type="text"   placeholder="اسم المدرب/ه" name="courses_before[0][course_trainer]">
+                                            </div>  
+                                        </div>
+                                        <div class="form-grp">
 
-                                    <div class="row">
-                                        <div class="  col-md-4">
-                                            <span class="theme-color"> هل تريد الحصول علي شهادة ؟ *</span> 
-                                            <br />
-                                            <input class="opti" type="Radio" Name="certificate" Value="yes" required>نعم
-                                            <input type="Radio" required class="opti" class="opti" Name="certificate" Value="no" checked>لا
+                                            <button class="btn attend-courses-before" style="padding:10px 41px" onclick="add_course()" type="button">  + أضافة المزيد</button>
                                         </div>
-                                        <div class="  col-md-4">
-                                            <span class="theme-color"> هل لديك مواصلات ؟ *</span> 
-                                            <br />
-                                            <input class="opti" type="Radio" Name="transportaion" Value="yes" required>نعم
-                                            <input type="Radio" required class="opti" class="opti" Name="transportaion" Value="no" checked>لا
+                                            
+                                        <div class="row">
+                                            <div class="  col-md-4">
+                                                <span class="theme-color"> هل تريد الحصول علي شهادة ؟ *</span> 
+                                                <br />
+                                                <input class="opti" type="Radio" Name="certificate" Value="yes" required>نعم
+                                                <input type="Radio" required class="opti" class="opti" Name="certificate" Value="no" checked>لا
+                                            </div>
+                                            <div class="  col-md-4">
+                                                <span class="theme-color"> هل لديك مواصلات ؟ *</span> 
+                                                <br />
+                                                <input class="opti" type="Radio" Name="transportaion" Value="yes" required>نعم
+                                                <input type="Radio" required class="opti" class="opti" Name="transportaion" Value="no" checked>لا
+                                            </div>
+                                            <div class="  col-md-4">
+                                                <span class="theme-color"> هل لديك خبرة او معرفة سابقة في مجال الدورة ؟ *</span> 
+                                                <br />
+                                                <input class="opti" type="Radio" Name="prev_exper" Value="yes" required>نعم
+                                                <input type="Radio" required class="opti" class="opti" Name="prev_exper" Value="no" checked>لا
+                                            </div>
+                                        </div> 
+                                    <div class="form-grp">
+                                        <div class="row ">
+                                            <div class="form-grp col-md-12">
+                                                <input type="text" required placeholder=" عنوان الحي السكني"  maxlength="10" name="address" required>
+                                            </div>  
                                         </div>
-                                        <div class="  col-md-4">
-                                            <span class="theme-color"> هل لديك خبرة او معرفة سابقة في مجال الدورة ؟ *</span> 
-                                            <br />
-                                            <input class="opti" type="Radio" Name="prev_exper" Value="yes" required>نعم
-                                            <input type="Radio" required class="opti" class="opti" Name="prev_exper" Value="no" checked>لا
-                                        </div>
-                                    </div>
-                                    <div class="row ">
-                                        <div class="form-grp col-md-12">
-                                            <input type="text" required placeholder=" عنوان الحي السكني"  maxlength="10" name="address" required>
-                                        </div>  
                                     </div>
                                     <div class="form-grp">
                                         <span class="theme-color"> كيف ممكن تسفيدي من البرنامج بعد انتهاء فترة التدريب ؟ * </span>
@@ -159,6 +175,19 @@
 @endsection
 @section('scripts')
     <script>
+        var counter = 0;
+        function add_course(){
+            counter++;
+            var div = `
+                    <div class="form-grp col-md-6 attend-courses-before">
+                        <input type="text"   placeholder="اسم الدورة" name="courses_before[${counter}][course_name]">
+                    </div>
+                    <div class="form-grp col-md-6 attend-courses-before">
+                        <input type="text"   placeholder="اسم المدرب/ه" name="courses_before[${counter}][course_trainer]">
+                    </div>  `;
+
+            $("#courses_before").append(div);
+        }
         $(document).ready(function() {
             $("#hideRegister").click(function() {
 

@@ -13,6 +13,10 @@ class ApiController extends Controller
         if ($response['success']) {
             // Get the response body as an array
             $result = $response['result']; 
+
+            if(request()->has('only_data')){
+                return response()->json($result['data'][0] ?? 0,200);
+            }
     
             // Return or manipulate the data
             return view('admin.volunteerTasks.search-result',compact('result'));

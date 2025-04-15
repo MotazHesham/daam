@@ -19,28 +19,31 @@ class ReviewController extends Controller
     public function store(StoreReviewRequest $request){
         $ApiController = new ApiController;
         $response = $ApiController->GetBeneficiariesList($request->identity_number);
-        
+        $registered = true;
         if ($response['success']) {
             // Get the response body as an array
             $result = $response['result'];  
             if(!$result['data'] || empty($result['data']) ){
-                alert()->html('انت غير مسجل في جمعية دعم..يمكنك التسجيل الان من خلال الرابط التالي https://charities-sys.com/web/index.aspx','','error');
-                return redirect()->route('frontend.reviews');
-            }
-    
-            $review = Review::create([
-                'role_id' => $request->role_id,
-                'identity_number' => $result['data'][0]['nationalID'] ?? '',
-                'phone_number' => $result['data'][0]['phoneNo'] ?? '',
-                'name' => $result['data'][0]['fullName'] ?? '',
-                'review' => $request->review,
-                'reason' => $request->reason,
-            ]); 
-            alert('تم أرسال تقييمك بنجاح','','success');
-            return redirect()->route('frontend.reviews');
+                $registered = false; 
+            } 
         }else{
-            alert()->html('انت غير مسجل في جمعية دعم..يمكنك التسجيل الان من خلال الرابط التالي'. '<a ="https://charities-sys.com/web/index.aspx">الرابط</a>','error');
-            return redirect()->route('frontend.reviews');
+            $registered = false;
         } 
+        
+        if($registered){
+            alert('تم أرسال تقييمك بنجاح','','success'); 
+        }else{ 
+            alert('تم أرسال تقييمك بنجاح, ورقم الهوية غير مسجل في الجمعية','','success');
+        }
+
+        $review = Review::create([
+            'role_id' => $request->role_id,
+            'identity_number' => $result['data'][0]['nationalID'] ?? '',
+            'phone_number' => $result['data'][0]['phoneNo'] ?? '',
+            'name' => $result['data'][0]['fullName'] ?? '',
+            'review' => $request->review,
+            'reason' => $request->reason,
+        ]); 
+        return redirect()->route('frontend.reviews');
     }
 }

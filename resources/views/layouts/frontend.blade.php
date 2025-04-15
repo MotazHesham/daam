@@ -219,7 +219,7 @@
                                             </ul>
                                         </li> 
 
-                                        <li href="#" class="d-block d-md-none"> <a href="https://daamj.sa">المتجر</a></li>
+                                        <li href="#" class="d-block d-md-none"> <a href="https://salla.sa/daamj">المتجر</a></li>
                                         <li href="#" class="d-block d-md-none"> <a href="{{ route('frontend.reviews') }}">تقييم المستفيدين</a></li>
                                         <li class="dropdown d-block d-md-none ">
                                             <a href="#"> الخدمات الإلكترونية</a>
@@ -420,9 +420,9 @@
                                         <li><a href="{{ route('frontend.about') }}">عن الجمعيه</a></li> 
                                         <li><a href="{{ route('frontend.projects') }}">مشاريعنا</a></li>
                                         <li><a href="{{ route('frontend.contacts','contact') }}">تواصل معنا</a></li> 
-                                        <li><a href="{{ route('frontend.posts','events') }}"> الفعاليات والانشطة</a></li> 
-                                        <!--<li><a href="{{ route('frontend.members','active') }}">الخدمات الالكترونية</a></li>-->
+                                        <li><a href="{{ route('frontend.posts','events') }}"> الفعاليات والانشطة</a></li>  
                                         <li><a href="{{ route('frontend.contacts','suggest') }}">صوتك مسموع</a></li>
+                                        <li style="margin-bottom: 18px;"><a href="https://salla.sa/daamj">المتجر</a></li>
                                     </ul>
                                     <a href="{{ asset('cert.pdf') }}">
                                         <div style="border: 1px solid white; padding: 10px 12px;border-radius:25px;margin-top:20px">
@@ -514,7 +514,63 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/js/bootstrap.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
     <script id="rendered-js">
-        
+        var checkLenght = true;
+
+        function search_for_beneficires() {
+            var search = document.getElementById('identity_num').value;  
+            if(search.length < 10 && checkLenght){
+                return;
+            }
+            var url = "{{ route('api.search_beneficires') }}";
+            var params = {
+                search: search,
+                only_data:true
+            };
+
+            // Get button elements
+            var searchButton = document.getElementById('search-btn');
+            var spinner = document.getElementById('spinner');
+            var buttonText = document.getElementById('button-text');
+
+            // Show spinner and disable button
+            spinner.style.display = 'inline-block';
+            buttonText.style.display = 'none';
+            searchButton.disabled = true;
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: params,
+                success: function(data) {
+                    if(data != 0){ 
+                        $('#button-text').html('مسجل <i class="fas fa-check-circle" style="background:green"><i/>');
+                        $('#phone_number').val(data['phoneNo']);
+                        $('#name').val(data['fullName']);
+                        $('#email').val(data['emailAddress']);
+                        $('#relateto-beneficry').css('display','none');
+                        checkLenght = false;
+                    }else{ 
+                        checkLenght = true;
+                        $('#phone_number').val('');
+                        $('#name').val('');
+                        $('#email').val('');
+                        $('#relateto-beneficry').css('display','flex');
+                        $('#button-text').html('غير مسجل <i class="fas fa-exclamation-circle" style="color:yellow"><i/>');
+                    } 
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                },
+                complete: function() {
+                    // Hide spinner and enable button again
+                    spinner.style.display = 'none';
+                    buttonText.style.display = 'inline-block';
+                    searchButton.disabled = false;
+                }
+            }); 
+
+        } 
+
         //perevent submittig multiple times
         $("body").on("submit", "form", function() {
             $(this).submit(function() {

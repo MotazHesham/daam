@@ -74,8 +74,11 @@ class CourseController extends Controller
 
     public function storeStudent(StoreCourseStudentRequest $request)
     { 
+        
         if(!CourseStudent::where('identity_num',$request->identity_num)->where('course_id',$request->course_id)->first()){ 
-            $courseStudent = CourseStudent::create($request->all());
+            $validated_request = $request->all();
+            $validated_request['courses_before'] = $request->courses_before ? json_encode($request->courses_before) : null;
+            $courseStudent = CourseStudent::create($validated_request);
         }
 
         alert('تم أرسال طلبك بنجاح','','success');
