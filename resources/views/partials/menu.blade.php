@@ -226,6 +226,16 @@
                         أعضاء الجمعية العمومية
                     </a>
                 </li>  
+                <li class="c-sidebar-nav-item">
+                    <a href="{{ route('admin.questionnaire.specialneed') }}"
+                        class="c-sidebar-nav-link {{ request()->is('admin/questionnaire/special_need') ? 'c-active' : '' }}">
+                        <i class="fa-fw fas fa-chart-line c-sidebar-nav-icon">
+
+                        </i>
+                        استبيان الاحتياجات الخاصة
+                    </a>
+                </li>
+
             </ul>
         </li>
         @endcan

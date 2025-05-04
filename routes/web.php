@@ -196,6 +196,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('questionnaire/members/{id}','QuestionnaireController@members_show')->name('questionnaire.members.show');
     Route::get('questionnaire/certificate','QuestionnaireController@certificate')->name('questionnaire.certificate');
     Route::get('questionnaire/certificate/{id}','QuestionnaireController@certificate_show')->name('questionnaire.certificate.show');
+    Route::get('questionnaire/special-need','QuestionnaireController@specialneed')->name('questionnaire.specialneed');
+    Route::get('questionnaire/special-need/{id}','QuestionnaireController@specialneed_show')->name('questionnaire.specialneed.show');
     Route::get('questionnaire/get_certificate/{id}', 'QuestionnaireController@get_certificate')->name('questionnaire.get_certificate');
     
     // Donations

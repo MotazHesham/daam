@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\QuestionnaireCertificate;
 use App\Models\QuestionnaireCourse;
 use App\Models\QuestionnaireMember;
+use App\Models\QuestionnaireSpecialNeed;
 use App\Models\QuestionnaireTraning;
 use App\Models\QuestionnaireVolunteer;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -849,5 +850,134 @@ class QuestionnaireController extends Controller
         $raw = QuestionnaireMember::findOrfail($id);
 
         return view('admin.questionnaire.members_show',compact('raw'));
+    }
+    public function specialneed(Request $request)
+    { 
+        $settings1 = [
+            'chart_title'           => 'الحالة الاجتماعية',
+            'chart_type'            => 'pie',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireSpecialNeed',
+            'group_by_field'        => 'marige_status',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-4',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireSpecialNeed',
+            'group_by_field_special'=> 'MARIGE_STATUS_SELECT'
+        ];
+
+        $chart1 = new LaravelChart($settings1);
+
+        $settings2 = [
+            'chart_title'           => 'الفئة العمرية',
+            'chart_type'            => 'bar',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireSpecialNeed',
+            'group_by_field'        => 'age_range',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s', 
+            'column_class'          => 'col-md-4',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireSpecialNeed',
+            'group_by_field_special'=> 'AGE_RANGE_SELECT'
+        ];
+
+        $chart2 = new LaravelChart($settings2);
+
+        $settings3 = [
+            'chart_title'           => 'المستوى التعليمي',
+            'chart_type'            => 'doughnut',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireSpecialNeed', 
+            'group_by_field'        => 'special_need_education',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-4',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireSpecialNeed',
+            'group_by_field_special'=> 'SPECIAL_NEED_EDUCATION_SELECT'
+        ];
+
+        $chart3 = new LaravelChart($settings3);
+
+        $settings4 = [
+            'chart_title'           => 'صلة القرابة',
+            'chart_type'            => 'pie',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireSpecialNeed',
+            'group_by_field'        => 'relation',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s', 
+            'column_class'          => 'col-md-6',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireSpecialNeed',
+            'group_by_field_special'=> 'RELATION_SELECT'
+        ];
+
+        $chart4 = new LaravelChart($settings4);
+
+        $settings5 = [
+            'chart_title'           => 'لديه احتياجات خاصة',
+            'chart_type'            => 'pie',
+            'report_type'           => 'group_by_string',
+            'model'                 => 'App\Models\QuestionnaireSpecialNeed',
+            'group_by_field'        => 'has_special_needs',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'd/m/Y H:i:s',
+            'column_class'          => 'col-md-6',
+            'entries_number'        => '5',
+            'translation_key'       => 'QuestionnaireSpecialNeed',
+            'group_by_field_special'=> 'HAS_SPECIAL_NEEDS_SELECT'
+        ];
+        
+        $chart5 = new LaravelChart($settings5);
+
+        if ($request->ajax()) {
+            $query = QuestionnaireSpecialNeed::query()->select(sprintf('%s.*', (new QuestionnaireSpecialNeed)->table));
+            $table = Datatables::of($query);
+
+            $table->addColumn('placeholder', '&nbsp;');
+            $table->addColumn('actions', '&nbsp;');
+
+            $table->editColumn('actions', function ($row) { 
+
+                return '<a class="btn btn-xs btn-primary" href="' . route('admin.questionnaire.specialneed.show', $row->id) .'">
+                    '. trans('global.view') .'
+                </a>';
+            }); 
+            $table->editColumn('has_special_needs', function ($row) {
+                return $row->has_special_needs ? 'نعم' : 'لا';
+            });
+            $table->editColumn('age_range', function ($row) {
+                return QuestionnaireSpecialNeed::AGE_RANGE_SELECT[$row->age_range] ?? '';
+            });
+            $table->editColumn('special_need_education', function ($row) {
+                return QuestionnaireSpecialNeed::SPECIAL_NEED_EDUCATION_SELECT[$row->special_need_education] ?? '';
+            }); 
+            $table->editColumn('marige_status', function ($row) {
+                return QuestionnaireSpecialNeed::MARIGE_STATUS_SELECT[$row->marige_status] ?? '';
+            });
+            $table->editColumn('relation', function ($row) {
+                return QuestionnaireSpecialNeed::RELATION_SELECT[$row->relation] ?? '';
+            });  
+
+            $table->rawColumns(['actions', 'placeholder']);
+
+            return $table->make(true);
+        }
+
+        return view('admin.questionnaire.special_needs',compact('chart1','chart2','chart3','chart4','chart5'));
+    }
+    public function specialneed_show($id){
+
+        $raw = QuestionnaireSpecialNeed::findOrfail($id);
+
+        return view('admin.questionnaire.special_needs_show',compact('raw'));
     }
 }

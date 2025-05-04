@@ -14,6 +14,7 @@ use App\Models\Project;
 use App\Models\QuestionnaireCertificate;
 use App\Models\QuestionnaireCourse;
 use App\Models\QuestionnaireMember;
+use App\Models\QuestionnaireSpecialNeed;
 use App\Models\QuestionnaireTraning;
 use App\Models\QuestionnaireVolunteer;
 use App\Models\Report;
@@ -131,6 +132,9 @@ class HomeController extends Controller
         }elseif($type == 'members'){ 
             $title = 'استبيان قياس رأي أعضاء الجمعية العمومية';
             $view = 'members';
+        }elseif($type == 'special_needs'){ 
+            $title = 'استبيان';
+            $view = 'special_need';
         }else{
             abort(404);
         }
@@ -139,7 +143,7 @@ class HomeController extends Controller
 
     public function questionnaire_store(Request $request){
         $request->validate([
-            'type' => 'in:traning,volunteers,courses,members,courses_2'
+            'type' => 'in:traning,volunteers,courses,members,courses_2,special_needs'
         ]);
 
         if($request->type == 'traning'){
@@ -152,7 +156,10 @@ class HomeController extends Controller
             QuestionnaireCourse::create($request->all());
         }elseif($request->type == 'members'){
             QuestionnaireMember::create($request->all());
+        }elseif($request->type == 'special_needs'){
+            QuestionnaireSpecialNeed::create($request->all());
         }
+        
         
         alert('تم أرسال التقييم بنجاح', '', 'success');
         return redirect()->back();
