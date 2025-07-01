@@ -21,6 +21,26 @@ class QuestionnaireController extends Controller
     public function traning(Request $request)
     {
 
+
+        // Get filter parameters from request
+        $selectedMonth = $request->get('month', 'all');
+        $selectedYear = $request->get('year', 'all');
+        
+        if ($selectedYear && $selectedYear != 'all') {
+            if ($selectedMonth && $selectedMonth != 'all') {
+                // Filter by specific month in year
+                $startDate = $selectedYear . '-' . $selectedMonth . '-01';
+                $endDate = date('Y-m-t', strtotime($startDate));
+            } else {
+                // Filter by whole year
+                $startDate = $selectedYear . '-01-01';
+                $endDate = $selectedYear . '-12-31';
+            }
+        } else {
+            // No date filtering - show all data
+            $startDate = null;
+            $endDate = null;
+        }
         $settings6 = [
             'chart_title'           => QuestionnaireTraning::Q_SELECT['question_6'],
             'chart_type'            => 'doughnut',
@@ -29,6 +49,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_6', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -45,6 +67,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_7', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -61,6 +85,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_8', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -77,6 +103,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_9', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -93,6 +121,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_10', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -109,6 +139,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_11', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -136,7 +168,8 @@ class QuestionnaireController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.questionnaire.traning',compact('chart6','chart7','chart8','chart9','chart10','chart11'));
+        return view('admin.questionnaire.traning',compact('chart6','chart7','chart8','chart9','chart10','chart11',
+            'selectedMonth', 'selectedYear' ));
     }
 
     public function certificate_show($id){
@@ -213,6 +246,26 @@ class QuestionnaireController extends Controller
     public function volunteers(Request $request)
     {
 
+        // Get filter parameters from request
+        $selectedMonth = $request->get('month', 'all');
+        $selectedYear = $request->get('year', 'all');
+        
+        if ($selectedYear && $selectedYear != 'all') {
+            if ($selectedMonth && $selectedMonth != 'all') {
+                // Filter by specific month in year
+                $startDate = $selectedYear . '-' . $selectedMonth . '-01';
+                $endDate = date('Y-m-t', strtotime($startDate));
+            } else {
+                // Filter by whole year
+                $startDate = $selectedYear . '-01-01';
+                $endDate = $selectedYear . '-12-31';
+            }
+        } else {
+            // No date filtering - show all data
+            $startDate = null;
+            $endDate = null;
+        }
+        
 
         $settings1 = [
             'chart_title'           => QuestionnaireVolunteer::Q_SELECT['question_1'],
@@ -222,6 +275,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_1', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -238,6 +293,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_2', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -254,6 +311,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_3', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -270,6 +329,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_4', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -286,6 +347,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_5', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -302,6 +365,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_6', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -318,6 +383,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_7', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -334,6 +401,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_8', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -350,6 +419,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_9', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -377,7 +448,8 @@ class QuestionnaireController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.questionnaire.volunteers',compact('chart1','chart2','chart3','chart4','chart5','chart6','chart7','chart8','chart9'));
+        return view('admin.questionnaire.volunteers',compact('chart1','chart2','chart3','chart4','chart5','chart6','chart7','chart8','chart9',
+            'selectedMonth', 'selectedYear' ));
     }
     public function volunteers_show($id){
 
@@ -389,6 +461,26 @@ class QuestionnaireController extends Controller
     { 
         $course_type = request('course_type') ?? 1;
 
+        // Get filter parameters from request
+        $selectedMonth = $request->get('month', 'all');
+        $selectedYear = $request->get('year', 'all');
+        
+        if ($selectedYear && $selectedYear != 'all') {
+            if ($selectedMonth && $selectedMonth != 'all') {
+                // Filter by specific month in year
+                $startDate = $selectedYear . '-' . $selectedMonth . '-01';
+                $endDate = date('Y-m-t', strtotime($startDate));
+            } else {
+                // Filter by whole year
+                $startDate = $selectedYear . '-01-01';
+                $endDate = $selectedYear . '-12-31';
+            }
+        } else {
+            // No date filtering - show all data
+            $startDate = null;
+            $endDate = null;
+        }
+
         $settings1 = [
             'chart_title'           => QuestionnaireCourse::Q_SELECT['question_1'],
             'chart_type'            => 'doughnut',
@@ -398,6 +490,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -415,6 +509,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -432,6 +528,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -449,6 +547,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -483,6 +583,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-2',
             'entries_number'        => '5',
@@ -517,6 +619,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -534,6 +638,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -551,8 +657,10 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
-            'column_class'          => 'col-md-3',
+            'column_class'          => 'col-md-3',  
             'entries_number'        => '5',
             'translation_key'       => 'QuestionnaireCourse',
         ];
@@ -568,6 +676,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -585,6 +695,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -602,6 +714,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -636,6 +750,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -653,6 +769,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-4',
             'entries_number'        => '5',
@@ -670,6 +788,8 @@ class QuestionnaireController extends Controller
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
             'where_raw'             => 'course_type = ' . $course_type,
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-4',
             'entries_number'        => '5',
@@ -698,7 +818,7 @@ class QuestionnaireController extends Controller
             return $table->make(true);
         }
         return view('admin.questionnaire.courses',compact('chart1','chart2','chart3','chart4','chart5','chart6','chart7','chart8','chart9','chart10'
-        ,'chart11','chart12','chart13','chart14','chart15','chart16','chart17','course_type'));
+        ,'chart11','chart12','chart13','chart14','chart15','chart16','chart17','course_type','selectedMonth','selectedYear'));
     }
     public function courses_show($id){
 
@@ -712,6 +832,26 @@ class QuestionnaireController extends Controller
     {
 
 
+
+        // Get filter parameters from request
+        $selectedMonth = $request->get('month', 'all');
+        $selectedYear = $request->get('year', 'all');
+        
+        if ($selectedYear && $selectedYear != 'all') {
+            if ($selectedMonth && $selectedMonth != 'all') {
+                // Filter by specific month in year
+                $startDate = $selectedYear . '-' . $selectedMonth . '-01';
+                $endDate = date('Y-m-t', strtotime($startDate));
+            } else {
+                // Filter by whole year
+                $startDate = $selectedYear . '-01-01';
+                $endDate = $selectedYear . '-12-31';
+            }
+        } else {
+            // No date filtering - show all data
+            $startDate = null;
+            $endDate = null;
+        }
         $settings1 = [
             'chart_title'           => QuestionnaireMember::Q_SELECT['question_1'],
             'chart_type'            => 'doughnut',
@@ -720,6 +860,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_1', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -736,6 +878,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_2', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -752,6 +896,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_3', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -768,6 +914,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_4', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -784,6 +932,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_5', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -800,6 +950,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_6', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -816,6 +968,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'question_7', 
             'aggregate_function'    => 'count', 
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-3',
             'entries_number'        => '5',
@@ -843,7 +997,8 @@ class QuestionnaireController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.questionnaire.members',compact('chart1','chart2','chart3','chart4','chart5','chart6','chart7'));
+        return view('admin.questionnaire.members',compact('chart1','chart2','chart3','chart4','chart5','chart6','chart7',
+            'selectedMonth', 'selectedYear'));
     }
     public function members_show($id){
 
@@ -853,6 +1008,26 @@ class QuestionnaireController extends Controller
     }
     public function specialneed(Request $request)
     { 
+
+        // Get filter parameters from request
+        $selectedMonth = $request->get('month', 'all');
+        $selectedYear = $request->get('year', 'all');
+        
+        if ($selectedYear && $selectedYear != 'all') {
+            if ($selectedMonth && $selectedMonth != 'all') {
+                // Filter by specific month in year
+                $startDate = $selectedYear . '-' . $selectedMonth . '-01';
+                $endDate = date('Y-m-t', strtotime($startDate));
+            } else {
+                // Filter by whole year
+                $startDate = $selectedYear . '-01-01';
+                $endDate = $selectedYear . '-12-31';
+            }
+        } else {
+            // No date filtering - show all data
+            $startDate = null;
+            $endDate = null;
+        }
         $settings1 = [
             'chart_title'           => 'الحالة الاجتماعية',
             'chart_type'            => 'pie',
@@ -861,6 +1036,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'marige_status',
             'aggregate_function'    => 'count',
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-4',
             'entries_number'        => '5',
@@ -878,6 +1055,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'age_range',
             'aggregate_function'    => 'count',
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s', 
             'column_class'          => 'col-md-4',
             'entries_number'        => '5',
@@ -895,6 +1074,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'special_need_education',
             'aggregate_function'    => 'count',
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-4',
             'entries_number'        => '5',
@@ -912,6 +1093,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'relation',
             'aggregate_function'    => 'count',
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s', 
             'column_class'          => 'col-md-6',
             'entries_number'        => '5',
@@ -929,6 +1112,8 @@ class QuestionnaireController extends Controller
             'group_by_field'        => 'has_special_needs',
             'aggregate_function'    => 'count',
             'filter_field'          => 'created_at',
+            'range_date_start'      => $startDate,
+            'range_date_end'        => $endDate,
             'group_by_field_format' => 'd/m/Y H:i:s',
             'column_class'          => 'col-md-6',
             'entries_number'        => '5',
@@ -972,7 +1157,8 @@ class QuestionnaireController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.questionnaire.special_needs',compact('chart1','chart2','chart3','chart4','chart5'));
+        return view('admin.questionnaire.special_needs',compact('chart1','chart2','chart3','chart4','chart5',
+            'selectedMonth', 'selectedYear'));
     }
     public function specialneed_show($id){
 

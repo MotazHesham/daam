@@ -1,5 +1,32 @@
 @extends('layouts.admin')
 @section('content')  
+<form method="GET" action="" class="filter-form">
+    <div class="d-flex align-items-end gap-3">
+        <div class="form-group">
+            <label for="month">الشهر</label>
+            <select name="month" id="month" class="form-control">
+                <option value="all" @if(empty($selectedMonth) || $selectedMonth == 'all') selected @endif>كل الشهور</option>
+                @foreach(get_months() as $num => $name)
+                    <option value="{{ $num }}" @if($selectedMonth == $num) selected @endif>{{ $name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="year">السنة</label>
+            <select name="year" id="year" class="form-control">
+                <option value="all" @if(empty($selectedYear) || $selectedYear == 'all') selected @endif>كل السنوات</option>
+                @foreach(get_years() as $year)
+                    <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-filter mr-2"></i>تطبيق
+            </button>
+        </div>
+    </div>
+</form>
 <div class="row"> 
     <div class="{{ $chart1->options['column_class'] }} mb-5">
         <b>{!! $chart1->options['chart_title'] !!}</b>

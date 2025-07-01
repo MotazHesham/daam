@@ -22,6 +22,21 @@ if (! function_exists('headline_items')) {
     }
 }
 
+if (! function_exists('get_months')) {
+    function get_months(){
+        return [
+            '01' => 'يناير', '02' => 'فبراير', '03' => 'مارس', '04' => 'أبريل',
+            '05' => 'مايو', '06' => 'يونيو', '07' => 'يوليو', '08' => 'أغسطس',
+            '09' => 'سبتمبر', '10' => 'أكتوبر', '11' => 'نوفمبر', '12' => 'ديسمبر'
+        ];
+    }
+}
+
+if (! function_exists('get_years')) {
+    function get_years(){
+        return range(date('Y') - 5, date('Y') + 1);
+    }
+}
 
 if (! function_exists('certificate_store')) {
     function certificate_store($courseStudentId){
