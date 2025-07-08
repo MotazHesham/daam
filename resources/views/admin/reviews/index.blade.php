@@ -1,5 +1,40 @@
 @extends('layouts.admin')
 @section('content')
+    <form method="GET" action="" class="filter-form">
+        <div class="d-flex align-items-end gap-3">
+            <div class="form-group">
+                <label for="month">الشهر</label>
+                <select name="month" id="month" class="form-control">
+                    <option value="all" @if (empty($selectedMonth) || $selectedMonth == 'all') selected @endif>كل الشهور</option>
+                    @foreach (get_months() as $num => $name)
+                        <option value="{{ $num }}" @if ($selectedMonth == $num) selected @endif>
+                            {{ $name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="year">السنة</label>
+                <select name="year" id="year" class="form-control">
+                    <option value="all" @if (empty($selectedYear) || $selectedYear == 'all') selected @endif>كل السنوات</option>
+                    @foreach (get_years() as $year)
+                        <option value="{{ $year }}" @if ($selectedYear == $year) selected @endif>
+                            {{ $year }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-filter mr-2"></i>تطبيق
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="{{ $chart1->options['column_class'] }} mb-5">
+            <b>{!! $chart1->options['chart_title'] !!}</b>
+            {!! $chart1->renderHtml() !!}
+        </div>
+    </div>
     <div class="card">
         <div class="card-header">
             {{ trans('cruds.review.title_singular') }} {{ trans('global.list') }}
@@ -7,7 +42,7 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-Review">
+                <table class=" table table-bordered table-striped table-hover datatable ajaxTable datatable-Review">
                     <thead>
                         <tr>
                             <th width="10">
@@ -36,53 +71,6 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($reviews as $key => $review)
-                            <tr data-entry-id="{{ $review->id }}">
-                                <td>
-
-                                </td>
-                                <td>
-                                    {{ $review->id ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $review->identity_number ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $review->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $review->role->title ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $review->phone_number ?? '' }}
-                                </td>
-                                <td>
-                                    {{ App\Models\Review::REVIEW_RADIO[$review->review] ?? '' }}
-                                    <br>
-                                    @if ($review->review == 'not_good')
-                                        {{ $review->reason }}
-                                    @endif
-                                </td>
-                                <td>
-
-
-                                    @can('review_delete')
-                                        <form action="{{ route('admin.reviews.destroy', $review->id) }}" method="POST"
-                                            onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
-                                            style="display: inline-block;">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <input type="submit" class="btn btn-xs btn-danger"
-                                                value="{{ trans('global.delete') }}">
-                                        </form>
-                                    @endcan
-
-                                </td>
-
-                            </tr>
-                        @endforeach
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -90,6 +78,9 @@
 @endsection
 @section('scripts')
     @parent
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+    {!! $chart1->renderJs() !!}
     <script>
         $(function() {
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
@@ -133,16 +124,53 @@
                 dtButtons.push(deleteButton)
             @endcan
 
-            $.extend(true, $.fn.dataTable.defaults, {
+            let dtOverrideGlobals = {
+                buttons: dtButtons,
+                processing: true,
+                serverSide: true,
+                retrieve: true,
+                aaSorting: [],
+                ajax: "{{ route('admin.reviews.index') }}",
+                columns: [{
+                        data: 'placeholder',
+                        name: 'placeholder'
+                    },
+                    {
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'identity_number',
+                        name: 'identity_number'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'role.title',
+                        name: 'role.title'
+                    },
+                    {
+                        data: 'phone_number',
+                        name: 'phone_number'
+                    },
+                    {
+                        data: 'review',
+                        name: 'review'
+                    },
+                    {
+                        data: 'actions',
+                        name: '{{ trans('global.actions') }}'
+                    }
+                ],
                 orderCellsTop: true,
                 order: [
                     [1, 'desc']
                 ],
-                pageLength: 100,
-            });
-            let table = $('.datatable-Review:not(.ajaxTable)').DataTable({
-                buttons: dtButtons
-            })
+                pageLength: 10,
+            };
+            let table = $('.datatable-Review').DataTable(dtOverrideGlobals)
             $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e) {
                 $($.fn.dataTable.tables(true)).DataTable()
                     .columns.adjust();
